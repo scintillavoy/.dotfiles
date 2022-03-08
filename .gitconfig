@@ -10,9 +10,11 @@
 	################
 	b = branch
 	ba = branch -a
-	banm = branch -a --no-merged
 	bd = branch -d
 	bdd = branch -D
+	bnm = branch --no-merged
+	bnma = branch -a --no-merged
+	bnmr = branch -r --no-merged
 	################
 	o = checkout
 	ob = checkout -b
