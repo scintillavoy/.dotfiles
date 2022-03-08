@@ -1,0 +1,83 @@
+[user]
+	email = scintillavoy@gmail.com
+	name = scintillavoy
+[init]
+	defaultBranch = main
+[alias]
+	a = add
+	aa = add --all
+	ai = add -i
+	################
+	b = branch
+	ba = branch -a
+	banm = branch -a --no-merged
+	bd = branch -d
+	bdd = branch -D
+	################
+	o = checkout
+	ob = checkout -b
+	################
+	cp = cherry-pick
+	cpa = cherry-pick --abort
+	cpc = cherry-pick --continue
+	################
+	cl = clone
+	################
+	c = commit
+	ca = commit -a
+	cm = commit -m
+	cam = commit -am
+	cd = commit --amend
+	cda = commit --amend -a
+	cdm = commit --amend -m
+	cdam = commit --amend -am
+	ce = commit --allow-empty
+	cem = commit --allow-empty -m
+	################
+	f = fetch
+	fp = fetch -p
+	################
+	lg = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --graph --abbrev-commit
+	lga = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --graph --abbrev-commit --all
+	################
+	m = merge
+	mnoff = merge --no-ff
+	mff = merge --ff-only
+	ma = merge --abort
+	mc = merge --continue
+	ms = merge --skip
+	################
+	pl = pull
+	plff = pull --ff-only
+	################
+	ps = push
+	psoc = push origin HEAD
+	psuoc = push -u origin HEAD
+	psd = push --delete
+	pst = push --tags
+	################
+	rb = rebase
+	rba = rebase --abort
+	rbc = rebase --continue
+	rbi = rebase --interactive
+	rbs = rebase --skip
+	################
+	rs = reset
+	rsl = reset HEAD~
+	################
+	rst = restore
+	rsts = restore --staged
+	################
+	rmt = remote
+	rmta = remote add
+	rmtr = remote rm
+	rmtv = remote -v
+	################
+	stt = status
+	################
+	s = stash
+	sa = stash apply
+	sd = stash drop
+	sl = stash list
+	sp = stash pop
+	sw = stash show
