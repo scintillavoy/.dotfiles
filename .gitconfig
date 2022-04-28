@@ -75,6 +75,9 @@
 	rmtr = remote rm
 	rmtv = remote -v
 	################
+	rv = revert
+	rvnc = revert --no-commit
+	################
 	stt = status
 	################
 	s = stash
