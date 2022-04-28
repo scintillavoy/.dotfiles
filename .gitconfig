@@ -43,7 +43,7 @@
 	lga = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --graph --abbrev-commit --all
 	################
 	m = merge
-	mnoff = merge --no-ff
+	mnf = merge --no-ff
 	mff = merge --ff-only
 	ma = merge --abort
 	mc = merge --continue
