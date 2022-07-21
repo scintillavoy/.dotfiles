@@ -78,11 +78,11 @@
 	rv = revert
 	rvnc = revert --no-commit
 	################
-	stt = status
+	s = status
 	################
-	s = stash
-	sa = stash apply
-	sd = stash drop
-	sl = stash list
-	sp = stash pop
-	sw = stash show
+	st = stash
+	sta = stash apply
+	std = stash drop
+	stl = stash list
+	stp = stash pop
+	stw = stash show
