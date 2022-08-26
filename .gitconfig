@@ -80,7 +80,7 @@
 	################
 	s = status
 	################
-	st = stash
+	st = stash --include-untracked
 	sta = stash apply
 	std = stash drop
 	stl = stash list
