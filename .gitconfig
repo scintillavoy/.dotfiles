@@ -63,6 +63,7 @@
 	rbc = rebase --continue
 	rbi = rebase --interactive
 	rbs = rebase --skip
+	rbd = rebase --reset-author-date
 	################
 	rs = reset
 	rsl = reset HEAD~
