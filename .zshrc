@@ -114,15 +114,10 @@ source $ZSH/oh-my-zsh.sh
 alias sss="sudo shutdown -s"
 
 # -------------------------------------------------------------------
-# bindkey
-# -------------------------------------------------------------------
-
-# ctrl + space
-bindkey '^ ' autosuggest-accept
-
-# -------------------------------------------------------------------
 # Completion styles
 # -------------------------------------------------------------------
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
@@ -133,9 +128,21 @@ zstyle ':completion:*:descriptions' format '[%d]'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
+zstyle ':fzf-tab:*' fzf-bindings 'tab:accept'
+bindkey '^ ' fzf-tab-complete   # Ctrl + Space
+bindkey '^I' autosuggest-accept # Tab
+
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+# -------------------------------------------------------------------
+# Environment variablees
+# -------------------------------------------------------------------
+
+# Flutter
+export PATH="$PATH:$HOME/.sdk/flutter/bin"
+export PATH="$PATH:$HOME/.pub-cache/bin"
+
 # -------------------------------------------------------------------
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
