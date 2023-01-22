@@ -99,7 +99,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # -------------------------------------------------------------------
-# alias
+# Aliases
 # -------------------------------------------------------------------
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -139,8 +139,12 @@ bindkey '^I' autosuggest-accept # Tab
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 
 # -------------------------------------------------------------------
-# Environment variablees
+# Environment variables
 # -------------------------------------------------------------------
+
+# history
+export HISTSIZE=999999
+export SAVEHIST=$HISTSIZE
 
 # Flutter
 export PATH="$PATH:$HOME/.sdk/flutter/bin"
