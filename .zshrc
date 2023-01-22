@@ -131,8 +131,9 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 
 zstyle ':fzf-tab:*' fzf-bindings 'tab:accept'
 export FZF_DEFAULT_OPTS="--bind=tab:accept"
-bindkey '^@' fzf-tab-complete   # Ctrl + Space
-bindkey '^[OB' fzf-tab-complete # Down arrow
+bindkey '^@' fzf-tab-complete     # Ctrl + Space
+bindkey '^[OA' fzf-history-widget # Up arrow
+bindkey '^[OB' fzf-tab-complete   # Down arrow
 
 # zsh-autosuggestions
 bindkey '^I' autosuggest-accept # Tab
