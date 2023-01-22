@@ -117,6 +117,7 @@ alias sss="sudo shutdown -s"
 # Completion styles
 # -------------------------------------------------------------------
 
+# fzf and fzf-tab
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # disable sort when completing `git checkout`
@@ -129,10 +130,13 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
 zstyle ':fzf-tab:*' fzf-bindings 'tab:accept'
-bindkey '^ ' fzf-tab-complete   # Ctrl + Space
-bindkey '^I' autosuggest-accept # Tab
+export FZF_DEFAULT_OPTS="--bind=tab:accept"
+bindkey '^@' fzf-tab-complete   # Ctrl + Space
+bindkey '^[OB' fzf-tab-complete # Down arrow
 
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+# zsh-autosuggestions
+bindkey '^I' autosuggest-accept # Tab
+ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 
 # -------------------------------------------------------------------
 # Environment variablees
