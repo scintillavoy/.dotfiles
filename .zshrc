@@ -129,6 +129,7 @@ zstyle ':completion:*:descriptions' format '[%d]'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
+zstyle ':fzf-tab:*' accept-line enter
 zstyle ':fzf-tab:*' fzf-bindings 'tab:accept'
 export FZF_DEFAULT_OPTS="--bind=tab:accept"
 bindkey '^@' fzf-tab-complete     # Ctrl + Space
@@ -136,7 +137,7 @@ bindkey '^[OA' fzf-history-widget # Up arrow
 bindkey '^[OB' fzf-tab-complete   # Down arrow
 
 # zsh-autosuggestions
-bindkey '^I' autosuggest-accept # Tab
+bindkey '^I' autosuggest-accept   # Tab
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 
 # -------------------------------------------------------------------
