@@ -114,7 +114,7 @@ source $ZSH/oh-my-zsh.sh
 alias sss="sudo shutdown -s"
 
 # -------------------------------------------------------------------
-# Completion styles
+# Completion system
 # -------------------------------------------------------------------
 
 # fzf and fzf-tab
@@ -142,6 +142,9 @@ bindkey '^[[B' fzf-tab-complete   # Down arrow
 bindkey '^I' autosuggest-accept   # Tab
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 
+# Additional completions
+[[ ! -f ~/.completions.zsh ]] || source ~/.completions.zsh
+
 # -------------------------------------------------------------------
 # Environment variables
 # -------------------------------------------------------------------
@@ -156,51 +159,6 @@ export SAVEHIST=$HISTSIZE
 
 export PATH="$PATH:$HOME/.sdk/flutter/bin"
 export PATH="$PATH:$HOME/.pub-cache/bin"
-
-###-begin-flutter-completion-###
-
-if type complete &>/dev/null; then
-  __flutter_completion() {
-    local si="$IFS"
-    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
-                           COMP_LINE="$COMP_LINE" \
-                           COMP_POINT="$COMP_POINT" \
-                           flutter completion -- "${COMP_WORDS[@]}" \
-                           2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  complete -F __flutter_completion flutter
-elif type compdef &>/dev/null; then
-  __flutter_completion() {
-    si=$IFS
-    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
-                 COMP_LINE=$BUFFER \
-                 COMP_POINT=0 \
-                 flutter completion -- "${words[@]}" \
-                 2>/dev/null)
-    IFS=$si
-  }
-  compdef __flutter_completion flutter
-elif type compctl &>/dev/null; then
-  __flutter_completion() {
-    local cword line point words si
-    read -Ac words
-    read -cn cword
-    let cword-=1
-    read -l line
-    read -ln point
-    si="$IFS"
-    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
-                       COMP_LINE="$line" \
-                       COMP_POINT="$point" \
-                       flutter completion -- "${words[@]}" \
-                       2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  compctl -K __flutter_completion flutter
-fi
-
-###-end-flutter-completion-###
 
 # -------------------------------------------------------------------
 
