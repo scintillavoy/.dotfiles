@@ -131,7 +131,7 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 
 zstyle ':fzf-tab:*' accept-line enter
 zstyle ':fzf-tab:*' fzf-bindings 'tab:accept'
-export FZF_DEFAULT_OPTS="--bind=tab:accept"
+export FZF_DEFAULT_OPTS="--bind=tab:accept --no-mouse"
 bindkey '^@' fzf-tab-complete     # Ctrl + Space
 bindkey '^[OA' fzf-history-widget # Up arrow
 bindkey '^[[A' fzf-history-widget # Up arrow
