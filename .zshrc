@@ -157,7 +157,7 @@ export SAVEHIST=$HISTSIZE
 # Flutter
 # -------------------------------------------------------------------
 
-export PATH="$PATH:$HOME/.sdk/flutter/bin"
+export PATH="$PATH:$HOME/flutter/bin"
 export PATH="$PATH:$HOME/.pub-cache/bin"
 
 # -------------------------------------------------------------------
