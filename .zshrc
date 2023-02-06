@@ -129,18 +129,21 @@ zstyle ':completion:*:descriptions' format '[%d]'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
-zstyle ':fzf-tab:*' accept-line enter
-zstyle ':fzf-tab:*' fzf-bindings 'tab:accept'
 export FZF_DEFAULT_OPTS="--bind=tab:accept --no-mouse"
-bindkey '^@' fzf-tab-complete     # Ctrl + Space
+zstyle ':fzf-tab:*' fzf-bindings 'tab:accept'
+zstyle ':fzf-tab:*' accept-line enter
 bindkey '^[OA' fzf-history-widget # Up arrow
 bindkey '^[[A' fzf-history-widget # Up arrow
 bindkey '^[OB' fzf-tab-complete   # Down arrow
 bindkey '^[[B' fzf-tab-complete   # Down arrow
+bindkey '^@' fzf-tab-complete     # Ctrl + Space
 
 # zsh-autosuggestions
 bindkey '^I' autosuggest-accept   # Tab
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
+
+# Remove forward-char from accept widgets
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-char}")
 
 # Additional completions
 [[ ! -f ~/.completions.zsh ]] || source ~/.completions.zsh
@@ -153,10 +156,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 export HISTSIZE=999999
 export SAVEHIST=$HISTSIZE
 
-# -------------------------------------------------------------------
 # Flutter
-# -------------------------------------------------------------------
-
 export PATH="$PATH:$HOME/flutter/bin"
 export PATH="$PATH:$HOME/.pub-cache/bin"
 
