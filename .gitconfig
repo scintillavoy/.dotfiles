@@ -41,6 +41,8 @@
 	################
 	lg = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --graph --abbrev-commit
 	lga = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --graph --abbrev-commit --all
+	lgt = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>' --graph --abbrev-commit
+	lgta = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>' --graph --abbrev-commit --all
 	################
 	m = merge
 	mnf = merge --no-ff
