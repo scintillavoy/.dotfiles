@@ -121,13 +121,13 @@ alias k="kubectl"
 # fzf and fzf-tab
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# disable sort when completing `git checkout`
+# Disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 
-# set descriptions format to enable group support
+# Set descriptions format to enable group support
 zstyle ':completion:*:descriptions' format '[%d]'
 
-# switch group using `,` and `.`
+# Switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
 export FZF_DEFAULT_OPTS="--bind=tab:accept --no-mouse"
@@ -140,7 +140,7 @@ bindkey '^[[B' fzf-tab-complete   # Down arrow
 bindkey '^@' fzf-tab-complete     # Ctrl + Space
 
 # zsh-autosuggestions
-bindkey '^I' autosuggest-accept   # Tab
+bindkey '^I' forward-word         # Tab
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 
 # Remove forward-char from accept widgets
