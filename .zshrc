@@ -144,7 +144,7 @@ bindkey '^I' forward-word         # Tab
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 
 # Remove forward-char from accept widgets
-ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-char}")
+# ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-char}")
 
 # Additional completions
 [[ ! -f ~/.completions.zsh ]] || source ~/.completions.zsh
