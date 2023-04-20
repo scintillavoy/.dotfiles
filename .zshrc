@@ -140,11 +140,12 @@ bindkey '^[[B' fzf-tab-complete   # Down arrow
 bindkey '^@' fzf-tab-complete     # Ctrl + Space
 
 # zsh-autosuggestions
-bindkey '^I' forward-word         # Tab
+bindkey '^I' autosuggest-accept   # Tab
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 
-# Remove forward-char from accept widgets
-# ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-char}")
+# Move forward-char from accept widgets to partial accept widgets
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-char}")
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)
 
 # Additional completions
 [[ ! -f ~/.completions.zsh ]] || source ~/.completions.zsh
