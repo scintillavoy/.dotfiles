@@ -23,7 +23,7 @@ apply_patches=$?
 
 # Copy dotfiles.
 if [ $copy_dotfiles -eq 1 ]; then
-  files=(.gitconfig .vimrc .zshrc)
+  files=(.gitconfig .vimrc .zshrc .p10k.zsh)
   for file in ${files[@]}; do
     if [ -f "$HOME/$file" ]; then
       mv $HOME/$file $HOME/$file.bak
