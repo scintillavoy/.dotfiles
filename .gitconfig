@@ -47,6 +47,7 @@
 	lgt = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>' --graph --abbrev-commit
 	lgta = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>' --graph --abbrev-commit --all
 	lgtaa = !git log --pretty=format:'%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>' --graph --abbrev-commit $(git rev-list -g --all)
+	lgr = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --reverse --abbrev-commit
 	################
 	m = merge
 	mnf = merge --no-ff
