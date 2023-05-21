@@ -18,7 +18,7 @@
         },
         "rules": [
           {
-            "description": "Set mouse cursor position to the center of the first screen",
+            "description": "Set mouse cursor position to the center of the nth screen",
             "manipulators": [
               {
                 "from": {
@@ -32,6 +32,46 @@
                     "software_function": {
                       "set_mouse_cursor_position": {
                         "screen": 0,
+                        "x": "50%",
+                        "y": "50%"
+                      }
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "x",
+                  "modifiers": {
+                    "mandatory": ["left_control", "left_gui"]
+                  }
+                },
+                "to": [
+                  {
+                    "software_function": {
+                      "set_mouse_cursor_position": {
+                        "screen": 1,
+                        "x": "50%",
+                        "y": "50%"
+                      }
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "c",
+                  "modifiers": {
+                    "mandatory": ["left_control", "left_gui"]
+                  }
+                },
+                "to": [
+                  {
+                    "software_function": {
+                      "set_mouse_cursor_position": {
+                        "screen": 2,
                         "x": "50%",
                         "y": "50%"
                       }
