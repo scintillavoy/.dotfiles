@@ -114,14 +114,14 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$PATH:$HOME/flutter/bin"
 export PATH="$PATH:$HOME/.pub-cache/bin"
 
-alias f='flutter'
-alias fc='flutter create'
-alias fcf='flutter config'
-alias fdr='flutter doctor'
-alias fup='flutter upgrade'
-alias fp='flutter pub'
-alias fpa='flutter pub add'
-alias fpg='flutter pub get'
+alias fl='flutter'
+alias flc='flutter create'
+alias flcf='flutter config'
+alias fldr='flutter doctor'
+alias flup='flutter upgrade'
+alias flp='flutter pub'
+alias flpa='flutter pub add'
+alias flpg='flutter pub get'
 
 # -------------------------------------------------------------------
 # kubectl
