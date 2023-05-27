@@ -98,10 +98,6 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# -------------------------------------------------------------------
-# Aliases
-# -------------------------------------------------------------------
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -111,14 +107,34 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias sss='sudo shutdown -s'
+# -------------------------------------------------------------------
+# Dart & Flutter
+# -------------------------------------------------------------------
 
+export PATH="$PATH:$HOME/flutter/bin"
+export PATH="$PATH:$HOME/.pub-cache/bin"
+
+alias f='flutter'
+alias fc='flutter create'
+alias fcf='flutter config'
+alias fdr='flutter doctor'
+alias fup='flutter upgrade'
+alias fp='flutter pub'
+alias fpa='flutter pub add'
+alias fpg='flutter pub get'
+
+# -------------------------------------------------------------------
 # kubectl
+# -------------------------------------------------------------------
+
 alias k='kubectl'
 alias kcu='kubectl config use-context'
 alias kcg='kubectl config get-contexts'
 
-# git
+# -------------------------------------------------------------------
+# Git
+# -------------------------------------------------------------------
+
 alias g='git'
 
 alias ga='git add'
@@ -260,16 +276,14 @@ ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)
 [[ ! -f ~/.completions.zsh ]] || source ~/.completions.zsh
 
 # -------------------------------------------------------------------
-# Environment variables
+# Miscellaneous
 # -------------------------------------------------------------------
+
+alias sss='sudo shutdown -s'
 
 # history
 export HISTSIZE=999999
 export SAVEHIST=$HISTSIZE
-
-# Flutter
-export PATH="$PATH:$HOME/flutter/bin"
-export PATH="$PATH:$HOME/.pub-cache/bin"
 
 # -------------------------------------------------------------------
 
