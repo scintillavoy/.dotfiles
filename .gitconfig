@@ -9,15 +9,20 @@
 	ai = add -i
 	################
 	b = branch
-	ba = branch -a
-	bd = branch -d
-	bdd = branch -D
+	ba = branch --all
+	bd = branch --delete
+	bD = branch --delete --force
 	bnm = branch --no-merged
-	bnma = branch -a --no-merged
-	bnmr = branch -r --no-merged
+	bnma = branch --no-merged --all
+	bnmr = branch --no-merged --remotes
 	################
 	o = checkout
 	ob = checkout -b
+	################
+	cf = config
+	cfl = config --list
+	cfll = config --list --local
+	cfuser = !git config user.email 'scintillavoy@gmail.com' && git config user.name 'Dongyoung Moon'
 	################
 	cp = cherry-pick
 	cpa = cherry-pick --abort
@@ -28,32 +33,35 @@
 	cl = clone
 	################
 	c = commit
-	ca = commit -a
-	cm = commit -m
-	cam = commit -am
+	ca = commit --all
+	cm = commit --message
+	cam = commit --all --message
 	cd = commit --amend
-	cda = commit --amend -a
-	cdm = commit --amend -m
-	cdam = commit --amend -am
+	cda = commit --amend --all
+	cdm = commit --amend --message
+	cdam = commit --amend --all --message
 	ce = commit --allow-empty
-	cem = commit --allow-empty -m
+	cem = commit --allow-empty --message
 	################
 	f = fetch
-	fp = fetch -p
+	fp = fetch --prune
 	################
-	lg = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --graph --abbrev-commit
-	lga = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --graph --abbrev-commit --all
-	lgaa = !git log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --graph --abbrev-commit $(git rev-list -g --all)
-	lgt = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>' --graph --abbrev-commit
-	lgta = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>' --graph --abbrev-commit --all
-	lgtaa = !git log --pretty=format:'%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>' --graph --abbrev-commit $(git rev-list -g --all)
-	lgr = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --reverse --abbrev-commit
+	i = init
+	################
+	lg = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --abbrev-commit --graph
+	lga = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --abbrev-commit --graph --all
+	lgA = !git log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --abbrev-commit --graph $(git rev-list -g --all)
+	lgr = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --abbrev-commit --reverse
+	lgt = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>' --abbrev-commit --graph
+	lgta = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>' --abbrev-commit --graph --all
+	lgtA = !git log --pretty=format:'%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>' --abbrev-commit --graph $(git rev-list -g --all)
+	lgtr = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>' --abbrev-commit --reverse
 	################
 	m = merge
-	mnf = merge --no-ff
-	mff = merge --ff-only
 	ma = merge --abort
 	mc = merge --continue
+	mff = merge --ff-only
+	mnf = merge --no-ff
 	ms = merge --skip
 	################
 	pl = pull
@@ -68,9 +76,9 @@
 	rb = rebase
 	rba = rebase --abort
 	rbc = rebase --continue
+	rbd = rebase --reset-author-date
 	rbi = rebase --interactive
 	rbs = rebase --skip
-	rbd = rebase --reset-author-date
 	################
 	rs = reset
 	rsl = reset HEAD~
@@ -93,4 +101,7 @@
 	std = stash drop
 	stl = stash list
 	stp = stash pop
-	stw = stash show
+	sts = stash show
+	################
+	t = tag
+	td = tag --delete
