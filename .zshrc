@@ -77,7 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf-tab zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(fzf-tab zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,8 +111,117 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias sss="sudo shutdown -s"
-alias k="kubectl"
+alias sss='sudo shutdown -s'
+
+# kubectl
+alias k='kubectl'
+alias kcu='kubectl config use-context'
+alias kcg='kubectl config get-contexts'
+
+# git
+alias g='git'
+
+alias ga='git add'
+alias gaa='git add --all'
+alias gai='git add -i'
+
+alias gb='git branch'
+alias gba='git branch --all'
+alias gbd='git branch --delete'
+alias gbD='git branch --delete --force'
+alias gbnm='git branch --no-merged'
+alias gbnma='git branch --no-merged --all'
+alias gbnmr='git branch --no-merged --remotes'
+
+alias go='git checkout'
+alias gob='git checkout -b'
+
+alias gcf='git config'
+alias gcfl='git config --list'
+alias gcfll='git config --list --local'
+alias gcfuser='git config user.email "scintillavoy@gmail.com" && git config user.name "Dongyoung Moon"'
+
+alias gcp='git cherry-pick'
+alias gcpa='git cherry-pick --abort'
+alias gcpc='git cherry-pick --continue'
+
+alias gccc='git clean -xdf'
+
+alias gcl='git clone'
+
+alias gc='git commit'
+alias gca='git commit --all'
+alias gcm='git commit --message'
+alias gcam='git commit --all --message'
+alias gcd='git commit --amend'
+alias gcda='git commit --amend --all'
+alias gcdm='git commit --amend --message'
+alias gcdam='git commit --amend --all --message'
+alias gce='git commit --allow-empty'
+alias gcem='git commit --allow-empty --message'
+
+alias gf='git fetch'
+alias gfp='git fetch --prune'
+
+alias gi='git init'
+
+alias glg='git log --pretty=format:"%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>" --abbrev-commit --graph'
+alias glga='git log --pretty=format:"%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>" --abbrev-commit --graph --all'
+alias glgA='git log --pretty=format:"%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>" --abbrev-commit --graph $(git rev-list -g --all)'
+alias glgr='git log --pretty=format:"%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>" --abbrev-commit --reverse'
+alias glgt='git log --pretty=format:"%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>" --abbrev-commit --graph'
+alias glgta='git log --pretty=format:"%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>" --abbrev-commit --graph --all'
+alias glgtA='git log --pretty=format:"%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>" --abbrev-commit --graph $(git rev-list -g --all)'
+alias glgtr='git log --pretty=format:"%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>" --abbrev-commit --reverse'
+
+alias gm='git merge'
+alias gma='git merge --abort'
+alias gmc='git merge --continue'
+alias gmff='git merge --ff-only'
+alias gmnf='git merge --no-ff'
+alias gms='git merge --skip'
+
+alias gpl='git pull'
+alias gplff='git pull --ff-only'
+
+alias gps='git push'
+alias gpsoc='git push origin HEAD'
+alias gpsuoc='git push -u origin HEAD'
+alias gpsd='git push --delete'
+alias gpst='git push --tags'
+
+alias grb='git rebase'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias grbd='git rebase --reset-author-date'
+alias grbi='git rebase --interactive'
+alias grbs='git rebase --skip'
+
+alias grs='git reset'
+alias grsl='git reset HEAD~'
+
+alias grst='git restore'
+alias grsts='git restore --staged'
+
+alias grmt='git remote'
+alias grmta='git remote add'
+alias grmtr='git remote rm'
+alias grmtv='git remote -v'
+
+alias grv='git revert'
+alias grvnc='git revert --no-commit'
+
+alias gs='git status'
+
+alias gst='git stash --include-untracked'
+alias gsta='git stash apply'
+alias gstd='git stash drop'
+alias gstl='git stash list'
+alias gstp='git stash pop'
+alias gsts='git stash show'
+
+alias gt='git tag'
+alias gtd='git tag --delete'
 
 # -------------------------------------------------------------------
 # Completion system
