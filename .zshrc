@@ -149,8 +149,8 @@ alias gbnm='git branch --no-merged'
 alias gbnma='git branch --no-merged --all'
 alias gbnmr='git branch --no-merged --remotes'
 
-alias go='git checkout'
-alias gob='git checkout -b'
+alias gco='git checkout'
+alias gcob='git checkout -b'
 
 alias gcf='git config'
 alias gcfl='git config --list'

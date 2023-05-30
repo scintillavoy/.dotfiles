@@ -16,8 +16,8 @@
 	bnma = branch --no-merged --all
 	bnmr = branch --no-merged --remotes
 	################
-	o = checkout
-	ob = checkout -b
+	co = checkout
+	cob = checkout -b
 	################
 	cf = config
 	cfl = config --list
