@@ -136,8 +136,8 @@ alias flpg='flutter pub get'
 
 alias k='kubectl'
 alias kcf='kubectl config'
-alias kcfgc='kubectl config get-contexts'
-alias kcfuc='kubectl config use-context'
+alias kcfgct='kubectl config get-contexts'
+alias kcfuct='kubectl config use-context'
 
 # -------------------------------------------------------------------
 # Git
