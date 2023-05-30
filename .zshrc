@@ -114,8 +114,15 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$PATH:$HOME/flutter/bin"
 export PATH="$PATH:$HOME/.pub-cache/bin"
 
+alias dt='dart'
+alias dtcr='dart create'
+alias dtp='dart pub'
+alias dtpa='dart pub add'
+alias dtpg='dart pub get'
+alias dtr='dart run'
+
 alias fl='flutter'
-alias flc='flutter create'
+alias flcr='flutter create'
 alias flcf='flutter config'
 alias fldr='flutter doctor'
 alias flup='flutter upgrade'
@@ -128,8 +135,9 @@ alias flpg='flutter pub get'
 # -------------------------------------------------------------------
 
 alias k='kubectl'
-alias kcu='kubectl config use-context'
-alias kcg='kubectl config get-contexts'
+alias kcf='kubectl config'
+alias kcfcg='kubectl config get-contexts'
+alias kcfcu='kubectl config use-context'
 
 # -------------------------------------------------------------------
 # Git
