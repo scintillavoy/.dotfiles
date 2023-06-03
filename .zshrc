@@ -129,6 +129,7 @@ alias flup='flutter upgrade'
 alias flp='flutter pub'
 alias flpa='flutter pub add'
 alias flpg='flutter pub get'
+alias flv='flutter --version'
 
 # -------------------------------------------------------------------
 # Docker
