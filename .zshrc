@@ -144,6 +144,8 @@ alias dk='docker'
 alias k='kubectl'
 alias kcf='kubectl config'
 alias kgct='kubectl config get-contexts'
+alias ksct='kubectl config set-context'
+alias ksns='kubectl config set-context --current --namespace'
 alias kuct='kubectl config use-context'
 
 # -------------------------------------------------------------------
