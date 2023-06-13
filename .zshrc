@@ -120,6 +120,7 @@ alias dtp='dart pub'
 alias dtpa='dart pub add'
 alias dtpg='dart pub get'
 alias dtr='dart run'
+alias dtv='dart --version'
 
 alias fl='flutter'
 alias flcr='flutter create'
