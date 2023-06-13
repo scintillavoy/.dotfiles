@@ -145,6 +145,8 @@ alias k='kubectl'
 alias kcf='kubectl config'
 alias kgct='kubectl config get-contexts'
 alias ksct='kubectl config set-context'
+alias kcns='kubectl create namespace'
+alias kgns='kubectl get namespace'
 alias ksns='kubectl config set-context --current --namespace'
 alias kuct='kubectl config use-context'
 
