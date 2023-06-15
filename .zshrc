@@ -150,6 +150,7 @@ alias kcns='kubectl create namespace'
 alias kgns='kubectl get namespace'
 alias ksns='kubectl config set-context --current --namespace'
 alias kuct='kubectl config use-context'
+alias krr='kubectl rollout restart'
 
 # -------------------------------------------------------------------
 # Git
