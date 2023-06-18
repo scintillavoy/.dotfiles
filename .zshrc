@@ -144,12 +144,17 @@ alias dk='docker'
 
 alias k='kubectl'
 alias kcf='kubectl config'
+
+alias kdct='kubectl config delete-context'
 alias kgct='kubectl config get-contexts'
+alias krct='kubectl config rename-context'
 alias ksct='kubectl config set-context'
+alias kuct='kubectl config use-context'
+
 alias kcns='kubectl create namespace'
 alias kgns='kubectl get namespace'
 alias ksns='kubectl config set-context --current --namespace'
-alias kuct='kubectl config use-context'
+
 alias krr='kubectl rollout restart'
 
 # -------------------------------------------------------------------
