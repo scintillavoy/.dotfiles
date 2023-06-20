@@ -111,7 +111,7 @@ source $ZSH/oh-my-zsh.sh
 # Dart & Flutter
 # -------------------------------------------------------------------
 
-export PATH="$PATH:$HOME/flutter/bin"
+export PATH="$PATH:$HOME/.flutter/bin"
 export PATH="$PATH:$HOME/.pub-cache/bin"
 
 alias dt='dart'
