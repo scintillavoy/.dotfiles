@@ -39,10 +39,16 @@ if [ $generate_completions -eq 1 ]; then
     mv $HOME/$file $HOME/$file.bak
   fi
 
-  cmds=("flutter bash-completion" "kubectl completion zsh")
+  cmds=(
+    "flutter bash-completion"
+    "kubectl completion zsh"
+    "stern --completion=zsh"
+  )
+
   for cmd in "${cmds[@]}"; do
     if command -v $cmd &> /dev/null; then
       eval $cmd >> $HOME/$file
+      echo >> $HOME/$file
     fi
   done
 fi
