@@ -155,6 +155,8 @@ alias kcns='kubectl create namespace'
 alias kgns='kubectl get namespace'
 alias ksns='kubectl config set-context --current --namespace'
 
+alias kexpl='kubectl explain'
+
 alias krr='kubectl rollout restart'
 
 # -------------------------------------------------------------------
