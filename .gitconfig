@@ -96,11 +96,12 @@
 	################
 	s = status
 	################
-	st = stash --include-untracked
 	sta = stash apply
 	std = stash drop
 	stl = stash list
 	stp = stash pop
+	stps = stash push --include-untracked
+	stpss = stash push --staged
 	sts = stash show
 	################
 	t = tag

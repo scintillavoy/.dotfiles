@@ -257,11 +257,12 @@ alias grvnc='git revert --no-commit'
 
 alias gs='git status'
 
-alias gst='git stash --include-untracked'
 alias gsta='git stash apply'
 alias gstd='git stash drop'
 alias gstl='git stash list'
 alias gstp='git stash pop'
+alias gstps='git stash push --include-untracked'
+alias gstpss='git stash push --staged'
 alias gsts='git stash show'
 
 alias gt='git tag'
