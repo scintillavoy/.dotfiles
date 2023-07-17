@@ -308,6 +308,7 @@ ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)
 # Miscellaneous
 # -------------------------------------------------------------------
 
+alias g++='g++ -std=c++17'
 alias sss='sudo shutdown -s'
 
 # history
