@@ -217,6 +217,10 @@ alias glgt='git log --pretty=format:"%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<
 alias glgta='git log --pretty=format:"%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>" --abbrev-commit --graph --all'
 alias glgtA='git log --pretty=format:"%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>" --abbrev-commit --graph $(git rev-list -g --all)'
 alias glgtr='git log --pretty=format:"%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>" --abbrev-commit --reverse'
+alias glgT='TZ=UTC0 git log --pretty=format:"%C(auto)%h%d %s %Cgreen(%cd) %C(bold blue)<%an>" --abbrev-commit --graph --date=iso-local'
+alias glgTa='TZ=UTC0 git log --pretty=format:"%C(auto)%h%d %s %Cgreen(%cd) %C(bold blue)<%an>" --abbrev-commit --graph --all --date=iso-local'
+alias glgTA='TZ=UTC0 git log --pretty=format:"%C(auto)%h%d %s %Cgreen(%cd) %C(bold blue)<%an>" --abbrev-commit --graph $(git rev-list -g --all) --date=iso-local'
+alias glgTr='TZ=UTC0 git log --pretty=format:"%C(auto)%h%d %s %Cgreen(%cd) %C(bold blue)<%an>" --abbrev-commit --reverse --date=iso-local'
 
 alias gm='git merge'
 alias gma='git merge --abort'
