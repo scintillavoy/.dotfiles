@@ -61,11 +61,12 @@
 	ma = merge --abort
 	mc = merge --continue
 	mff = merge --ff-only
-	mnf = merge --no-ff
+	mnff = merge --no-ff
 	ms = merge --skip
 	################
 	pl = pull
 	plff = pull --ff-only
+	plnff = pull --no-ff
 	################
 	ps = push
 	psoc = push origin HEAD

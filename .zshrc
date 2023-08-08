@@ -226,11 +226,12 @@ alias gm='git merge'
 alias gma='git merge --abort'
 alias gmc='git merge --continue'
 alias gmff='git merge --ff-only'
-alias gmnf='git merge --no-ff'
+alias gmnff='git merge --no-ff'
 alias gms='git merge --skip'
 
 alias gpl='git pull'
 alias gplff='git pull --ff-only'
+alias gplnff='git pull --no-ff'
 
 alias gps='git push'
 alias gpsoc='git push origin HEAD'
