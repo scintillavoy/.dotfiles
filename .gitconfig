@@ -62,6 +62,7 @@
 	mc = merge --continue
 	mff = merge --ff-only
 	mnff = merge --no-ff
+	mnffnc = merge --no-ff --no-commit
 	ms = merge --skip
 	################
 	pl = pull
