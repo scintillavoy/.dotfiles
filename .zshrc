@@ -145,6 +145,9 @@ alias dk='docker'
 alias k='kubectl'
 alias kcf='kubectl config'
 
+alias kdcl='kubectl config delete-cluster'
+alias kgcl='kubectl config get-clusters'
+
 alias kdct='kubectl config delete-context'
 alias kgct='kubectl config get-contexts'
 alias krct='kubectl config rename-context'
