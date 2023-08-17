@@ -160,6 +160,8 @@ alias ksns='kubectl config set-context --current --namespace'
 
 alias kexpl='kubectl explain'
 
+alias kpf='kubectl port-forward'
+
 alias krr='kubectl rollout restart'
 
 # -------------------------------------------------------------------
