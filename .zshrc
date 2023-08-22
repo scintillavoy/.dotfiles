@@ -256,6 +256,8 @@ alias grbs='git rebase --skip'
 
 alias grs='git reset'
 alias grsl='git reset HEAD~'
+alias grss='git reset --soft'
+alias grssl='git reset HEAD~ --soft'
 
 alias grst='git restore'
 alias grsts='git restore --staged'

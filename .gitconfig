@@ -86,6 +86,8 @@
 	################
 	rs = reset
 	rsl = reset HEAD~
+	rss = reset --soft
+	rssl = reset HEAD~ --soft
 	################
 	rst = restore
 	rsts = restore --staged
