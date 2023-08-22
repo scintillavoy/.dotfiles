@@ -12,6 +12,8 @@
 	ba = branch --all
 	bd = branch --delete
 	bD = branch --delete --force
+	bm = branch --move
+	bM = branch --move --force
 	bnm = branch --no-merged
 	bnma = branch --no-merged --all
 	bnmr = branch --no-merged --remotes
