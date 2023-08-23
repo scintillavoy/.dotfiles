@@ -50,14 +50,14 @@
 	################
 	i = init
 	################
-	lg = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --abbrev-commit --graph
-	lga = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --abbrev-commit --graph --all
-	lgA = !git log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --abbrev-commit --graph $(git rev-list -g --all)
-	lgr = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%cr) %C(bold blue)<%an>' --abbrev-commit --reverse
-	lgt = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>' --abbrev-commit --graph
-	lgta = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>' --abbrev-commit --graph --all
-	lgtA = !git log --pretty=format:'%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>' --abbrev-commit --graph $(git rev-list -g --all)
-	lgtr = log --pretty=format:'%C(auto)%h%d %s %Cgreen(%ci) %C(bold blue)<%an>' --abbrev-commit --reverse
+	l = log --date=format:"%F %T" --format="%C(auto)%>|(24)%h %Cgreen%cd %C(auto)%<(70,trunc)%s %C(bold blue)%<(20,trunc)%an %C(auto)%D" --graph
+	la = log --date=format:"%F %T" --format="%C(auto)%>|(24)%h %Cgreen%cd %C(auto)%<(70,trunc)%s %C(bold blue)%<(20,trunc)%an %C(auto)%D" --graph --all
+	lA = !git log --date=format:"%F %T" --format="%C(auto)%>|(24)%h %Cgreen%cd %C(auto)%<(70,trunc)%s %C(bold blue)%<(20,trunc)%an %C(auto)%D" --graph $(git rev-list -g --all)
+	lr = log --date=format:"%F %T" --format="%C(auto)%>|(24)%h %Cgreen%cd %C(auto)%<(70,trunc)%s %C(bold blue)%<(20,trunc)%an %C(auto)%D" --reverse
+	lg = log --date=format:"%F %T" --format="%C(auto)%h %Cgreen%cd %C(auto)%s %C(bold blue)%an %C(auto)%D" --graph
+	lga = log --date=format:"%F %T" --format="%C(auto)%h %Cgreen%cd %C(auto)%s %C(bold blue)%an %C(auto)%D" --graph --all
+	lgA = !git log --date=format:"%F %T" --format="%C(auto)%h %Cgreen%cd %C(auto)%s %C(bold blue)%an %C(auto)%D" --graph $(git rev-list -g --all)
+	lgr = log --date=format:"%F %T" --format="%C(auto)%h %Cgreen%cd %C(auto)%s %C(bold blue)%an %C(auto)%D" --reverse
 	################
 	m = merge
 	ma = merge --abort
