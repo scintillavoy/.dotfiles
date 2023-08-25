@@ -50,14 +50,14 @@
 	################
 	i = init
 	################
-	l = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%d %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph
-	la = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%d %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph --all
-	lA = !git log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%d %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph $(git rev-list -g --all)
-	lr = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%d %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --reverse
-	lg = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%d %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph
-	lga = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%d %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph --all
-	lgA = !git log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%d %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph $(git rev-list -g --all)
-	lgr = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%d %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --reverse
+	l = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)% D %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph
+	la = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)% D %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph --all
+	lA = !git log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)% D %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph $(git rev-list -g --all)
+	lr = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)% D %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --reverse
+	lg = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)% D %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph
+	lga = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)% D %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph --all
+	lgA = !git log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)% D %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph $(git rev-list -g --all)
+	lgr = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)% D %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --reverse
 	################
 	m = merge
 	ma = merge --abort
