@@ -50,14 +50,14 @@
 	################
 	i = init
 	################
-	l = log --date=format:"%F %T" --format="%C(auto)%>|(24)%h %Cgreen%cd %C(auto)%<(70,trunc)%s %C(bold blue)%<(20,trunc)%an %C(auto)%D" --graph
-	la = log --date=format:"%F %T" --format="%C(auto)%>|(24)%h %Cgreen%cd %C(auto)%<(70,trunc)%s %C(bold blue)%<(20,trunc)%an %C(auto)%D" --graph --all
-	lA = !git log --date=format:"%F %T" --format="%C(auto)%>|(24)%h %Cgreen%cd %C(auto)%<(70,trunc)%s %C(bold blue)%<(20,trunc)%an %C(auto)%D" --graph $(git rev-list -g --all)
-	lr = log --date=format:"%F %T" --format="%C(auto)%>|(24)%h %Cgreen%cd %C(auto)%<(70,trunc)%s %C(bold blue)%<(20,trunc)%an %C(auto)%D" --reverse
-	lg = log --date=format:"%F %T" --format="%C(auto)%h %Cgreen%cd %C(auto)%s %C(bold blue)%an %C(auto)%D" --graph
-	lga = log --date=format:"%F %T" --format="%C(auto)%h %Cgreen%cd %C(auto)%s %C(bold blue)%an %C(auto)%D" --graph --all
-	lgA = !git log --date=format:"%F %T" --format="%C(auto)%h %Cgreen%cd %C(auto)%s %C(bold blue)%an %C(auto)%D" --graph $(git rev-list -g --all)
-	lgr = log --date=format:"%F %T" --format="%C(auto)%h %Cgreen%cd %C(auto)%s %C(bold blue)%an %C(auto)%D" --reverse
+	l = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%d %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph
+	la = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%d %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph --all
+	lA = !git log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%d %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph $(git rev-list -g --all)
+	lr = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%d %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --reverse
+	lg = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%d %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph
+	lga = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%d %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph --all
+	lgA = !git log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%d %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph $(git rev-list -g --all)
+	lgr = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%d %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --reverse
 	################
 	m = merge
 	ma = merge --abort
