@@ -277,6 +277,7 @@ alias grvnc='git revert --no-commit'
 
 alias gs='git status'
 
+alias gst='git stash'
 alias gsta='git stash apply'
 alias gstd='git stash drop'
 alias gstl='git stash list'

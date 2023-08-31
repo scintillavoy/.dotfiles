@@ -102,6 +102,7 @@
 	################
 	s = status
 	################
+	st = stash
 	sta = stash apply
 	std = stash drop
 	stl = stash list
