@@ -15,8 +15,8 @@
 	bm = branch --move
 	bM = branch --move --force
 	bnm = branch --no-merged
-	bnma = branch --no-merged --all
-	bnmr = branch --no-merged --remotes
+	bnma = branch --all --no-merged
+	bnmr = branch --remotes --no-merged
 	################
 	co = checkout
 	cob = checkout -b
