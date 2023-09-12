@@ -18,6 +18,8 @@
 	bnma = branch --all --no-merged
 	bnmr = branch --remotes --no-merged
 	################
+	bak = !git commit --message 'Backup commit' && git push --force && git reset HEAD~ --soft
+	################
 	co = checkout
 	cob = checkout -b
 	################

@@ -185,6 +185,8 @@ alias gbnm='git branch --no-merged'
 alias gbnma='git branch --all --no-merged'
 alias gbnmr='git branch --remotes --no-merged'
 
+alias gbak='git commit --message "Backup commit" && git push --force && git reset HEAD~ --soft'
+
 alias gco='git checkout'
 alias gcob='git checkout -b'
 
