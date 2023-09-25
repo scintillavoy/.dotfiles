@@ -242,6 +242,7 @@ alias gmc='git merge --continue'
 alias gmff='git merge --ff-only'
 alias gmnff='git merge --no-ff'
 alias gmnffnc='git merge --no-ff --no-commit'
+alias gmdry='git merge --no-ff --no-commit'
 alias gms='git merge --skip'
 
 alias gpl='git pull'
