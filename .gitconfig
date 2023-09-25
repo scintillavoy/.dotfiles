@@ -98,6 +98,8 @@
 	rmta = remote add
 	rmtr = remote rm
 	rmtv = remote -v
+	rmtsu = remote set-url
+	rmtgu = remote get-url
 	################
 	rv = revert
 	rvnc = revert --no-commit

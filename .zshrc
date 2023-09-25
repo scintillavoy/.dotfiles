@@ -273,6 +273,8 @@ alias grmt='git remote'
 alias grmta='git remote add'
 alias grmtr='git remote rm'
 alias grmtv='git remote -v'
+alias grmtsu='git remote set-url'
+alias grmtgu='git remote get-url'
 
 alias grv='git revert'
 alias grvnc='git revert --no-commit'
