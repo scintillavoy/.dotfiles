@@ -333,6 +333,7 @@ ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)
 
 alias g++='g++ -std=c++17'
 alias sss='sudo shutdown -s'
+alias json_pp="json_pp -json_opt=pretty,utf8"
 
 # history
 export HISTSIZE=999999
