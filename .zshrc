@@ -276,6 +276,8 @@ alias grmtv='git remote -v'
 alias grmtsu='git remote set-url'
 alias grmtgu='git remote get-url'
 
+alias groot='cd $(git rev-parse --show-toplevel)'
+
 alias grv='git revert'
 alias grvnc='git revert --no-commit'
 
