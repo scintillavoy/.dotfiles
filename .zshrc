@@ -189,6 +189,7 @@ alias gbak='git commit --message "Backup commit" && git push --force && git rese
 
 alias gco='git checkout'
 alias gcob='git checkout -b'
+alias gcoB='git checkout -B'
 
 alias gcf='git config'
 alias gcfl='git config --list'

@@ -22,6 +22,7 @@
 	################
 	co = checkout
 	cob = checkout -b
+	coB = checkout -B
 	################
 	cf = config
 	cfl = config --list
