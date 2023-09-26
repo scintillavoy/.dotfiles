@@ -1,3 +1,3 @@
 # .dotfiles
 
-Run `./install.sh`
+Run `./install`
