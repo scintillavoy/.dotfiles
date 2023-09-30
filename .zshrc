@@ -265,8 +265,8 @@ alias grbs='git rebase --skip'
 
 alias grs='git reset'
 alias grsl='git reset HEAD~'
+alias grsls='git reset HEAD~ --soft'
 alias grss='git reset --soft'
-alias grssl='git reset HEAD~ --soft'
 
 alias grst='git restore'
 alias grsts='git restore --staged'
@@ -278,10 +278,11 @@ alias grmtv='git remote -v'
 alias grmtsu='git remote set-url'
 alias grmtgu='git remote get-url'
 
-alias groot='cd $(git rev-parse --show-toplevel)'
+alias groot='cd "$(git rev-parse --show-toplevel)"'
 
 alias grv='git revert'
 alias grvnc='git revert --no-commit'
+alias grvdry='git revert --no-commit'
 
 alias gs='git status'
 
