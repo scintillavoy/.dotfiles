@@ -24,11 +24,11 @@ apply_patches=$?
 # Copy dotfiles.
 if [ $copy_dotfiles -eq 1 ]; then
   files=(.gitconfig .vimrc .zshrc .p10k.zsh)
-  for file in ${files[@]}; do
+  for file in "${files[@]}"; do
     if [ -f "$HOME/$file" ]; then
-      mv $HOME/$file $HOME/$file.bak
+      mv "$HOME/$file" "$HOME/$file.bak"
     fi
-    cp ./$file $HOME/$file
+    cp "./$file" "$HOME/$file"
   done
 fi
 
@@ -36,19 +36,19 @@ fi
 if [ $generate_completions -eq 1 ]; then
   file=.completions.zsh
   if [ -f "$HOME/$file" ]; then
-    mv $HOME/$file $HOME/$file.bak
+    mv "$HOME/$file" "$HOME/$file.bak"
   fi
 
-  cmds=(
+  commands=(
     "flutter bash-completion"
     "kubectl completion zsh"
     "stern --completion=zsh"
   )
 
-  for cmd in "${cmds[@]}"; do
-    if command -v $cmd &> /dev/null; then
-      eval $cmd >> $HOME/$file
-      echo >> $HOME/$file
+  for command in "${commands[@]}"; do
+    if command -v "$command" &> /dev/null; then
+      eval "$command" >> "$HOME/$file"
+      echo >> "$HOME/$file"
     fi
   done
 fi
@@ -56,7 +56,7 @@ fi
 # Apply patches.
 if [ $apply_patches -eq 1 ]; then
   file=$(brew --prefix fzf)/shell/key-bindings.zsh
-  if [ -f $file ]; then
-    patch -b $file ./fzf/shell/key-bindings.patch
+  if [ -f "$file" ]; then
+    patch -b "$file" ./fzf/shell/key-bindings.patch
   fi
 fi
