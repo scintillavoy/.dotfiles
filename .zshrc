@@ -342,6 +342,8 @@ alias g++='g++ -std=c++17'
 alias sss='sudo shutdown -s'
 alias json_pp="json_pp -json_opt=pretty,utf8"
 
+export PATH="$PATH:$HOME/.dotfiles/scripts"
+
 # history
 export HISTSIZE=999999
 export SAVEHIST=$HISTSIZE
