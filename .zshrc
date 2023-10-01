@@ -200,7 +200,7 @@ alias gcp='git cherry-pick'
 alias gcpa='git cherry-pick --abort'
 alias gcpc='git cherry-pick --continue'
 
-alias gccc='git clean -xdf'
+alias gccc='git reset --hard && git clean -xdf'
 
 alias gcl='git clone'
 
