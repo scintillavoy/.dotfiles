@@ -4,13 +4,13 @@ SCRIPT_PATH=$0
 TARGET_VERSION=$1
 DEVELOPMENT_VERSION=$2
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
-PROJECT_ROOT_DIR="${PROJECT_ROOT_DIR:-$(git rev-parse --show-toplevel)}"
-REMOTE_NAME="${REMOTE_NAME:-"origin"}"
-BRANCH_PREFIX="${BRANCH_PREFIX:-"hotfix"}"
-MAIN_BRANCH_NAME="${MAIN_BRANCH_NAME:-"main"}"
-DEVELOPMENT_BRANCH_NAME="${DEVELOPMENT_BRANCH_NAME:-"development"}"
+PROJECT_ROOT_DIR=${PROJECT_ROOT_DIR:-$(git rev-parse --show-toplevel)}
+REMOTE_NAME=${REMOTE_NAME:-"origin"}
+BRANCH_PREFIX=${BRANCH_PREFIX:-"hotfix"}
+MAIN_BRANCH_NAME=${MAIN_BRANCH_NAME:-"main"}
+DEVELOPMENT_BRANCH_NAME=${DEVELOPMENT_BRANCH_NAME:-"development"}
 
 usage() {
   echo "Usage: $(basename "$SCRIPT_PATH") <hotfix-version> <development-version> [--continue-from-main | --continue-from-development]"
