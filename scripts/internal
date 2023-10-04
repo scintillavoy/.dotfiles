@@ -109,6 +109,7 @@ check_merge_conflict() {
 }
 
 push_to_remote() {
+  echo "Pushing to $REMOTE_NAME..."
   git push "$REMOTE_NAME" "$MAIN_BRANCH_NAME" "$DEVELOPMENT_BRANCH_NAME" "$BRANCH_PREFIX/$TARGET_VERSION" "v$TARGET_VERSION"
 }
 
