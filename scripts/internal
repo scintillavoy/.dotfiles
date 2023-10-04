@@ -39,6 +39,11 @@ start() {
   fi
 
   git fetch "$REMOTE_NAME"
+  if [ "$(git branch --remote --list "$REMOTE_NAME/$BRANCH_PREFIX/$TARGET_VERSION" | wc -l)" -gt 0 ]; then
+    echo "Branch $REMOTE_NAME/$BRANCH_PREFIX/$TARGET_VERSION already exists."
+    echo "Aborted."
+    return 1
+  fi
   git checkout -B "$BRANCH_PREFIX/$TARGET_VERSION" "$REMOTE_NAME/$BASE_BRANCH"
   change_version "$TARGET_VERSION"
   git push -u "$REMOTE_NAME" "$BRANCH_PREFIX/$TARGET_VERSION"
