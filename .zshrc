@@ -260,6 +260,7 @@ alias grb='git rebase'
 alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbd='git rebase --reset-author-date'
+alias grbdi='git rebase --reset-author-date --interactive'
 alias grbi='git rebase --interactive'
 alias grbs='git rebase --skip'
 

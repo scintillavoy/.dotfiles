@@ -85,6 +85,7 @@
 	rba = rebase --abort
 	rbc = rebase --continue
 	rbd = rebase --reset-author-date
+	rbdi = rebase --reset-author-date --interactive
 	rbi = rebase --interactive
 	rbs = rebase --skip
 	################
