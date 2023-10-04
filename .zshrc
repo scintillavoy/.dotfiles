@@ -298,6 +298,7 @@ alias gsts='git stash show'
 
 alias gt='git tag'
 alias gtd='git tag --delete'
+alias gtr='git ls-remote --tags'
 
 # ------------------------------------------------------------------------------
 # Completion system

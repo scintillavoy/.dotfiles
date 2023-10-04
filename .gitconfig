@@ -121,3 +121,4 @@
 	################
 	t = tag
 	td = tag --delete
+	tr = ls-remote --tags
