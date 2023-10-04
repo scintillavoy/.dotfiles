@@ -117,6 +117,12 @@ start() {
 
   git fetch "$REMOTE_NAME"
 
+  check_if_remote_tag_does_not_exist "$REMOTE_NAME" "v$TARGET_VERSION"
+  return_value=$?
+  if [ $return_value -ne 0 ]; then
+    return $return_value
+  fi
+
   check_if_remote_branch_exists "$REMOTE_NAME/$BASE_BRANCH"
   return_value=$?
   if [ $return_value -ne 0 ]; then
