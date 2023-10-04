@@ -12,9 +12,13 @@ change_version() {
   elif [ -f "$PROJECT_ROOT_DIR/scripts/change_version" ]; then
     change_version_path=$PROJECT_ROOT_DIR/scripts/change_version
   fi
-  source "$change_version_path" "$version"
-  git add --all
-  git commit -m "Change version to $version"
+  if [ -f "$change_version_path" ]; then
+    source "$change_version_path" "$version"
+    git add --all
+  else
+    echo "Warning: cannot find a script to change version."
+  fi
+  git commit --allow-empty -m "Change version to $version"
 }
 
 check_local_changes() {
