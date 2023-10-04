@@ -23,7 +23,7 @@ change_version() {
 
 check_local_changes() {
   if [ "$(git status --porcelain | wc -l)" -gt 0 ]; then
-    echo "There are local changes in the working tree:"
+    echo "Error: There are local changes in the working tree:"
     git status --porcelain | sed -r "s|^(.*)$|\t\1|g"
     echo "Please commit your changes or stash them first."
     return 1
@@ -44,7 +44,7 @@ start() {
 
   git fetch "$REMOTE_NAME"
   if [ "$(git branch --remote --list "$REMOTE_NAME/$BRANCH_PREFIX/$TARGET_VERSION" | wc -l)" -gt 0 ]; then
-    echo "Branch $REMOTE_NAME/$BRANCH_PREFIX/$TARGET_VERSION already exists."
+    echo "Error: Branch $REMOTE_NAME/$BRANCH_PREFIX/$TARGET_VERSION already exists."
     echo "Aborted."
     return 1
   fi
@@ -62,7 +62,7 @@ check_merge_conflict() {
   local branch_name=$1
   local flag_name=$2
   if [ "$(git ls-files -u "$PROJECT_ROOT_DIR" | wc -l)" -gt 0 ]; then
-    echo "Merge conflict detected while merging into $branch_name."
+    echo "Error: Merge conflict detected while merging into $branch_name."
     echo "Resolve conflicts and run $SCRIPT_PATH $TARGET_VERSION $DEVELOPMENT_VERSION $flag_name"
     return 1
   fi
