@@ -112,7 +112,7 @@ start() {
   return_value=$?
   [ $return_value -ne 0 ] && return $return_value
 
-  check_remote_branch_exists "$REMOTE_NAME/$BASE_BRANCH"
+  check_remote_branch_exists "$REMOTE_NAME/$BASE_BRANCH_NAME"
   return_value=$?
   [ $return_value -ne 0 ] && return $return_value
 
@@ -120,7 +120,7 @@ start() {
   return_value=$?
   [ $return_value -ne 0 ] && return $return_value
 
-  git checkout -B "$BRANCH_PREFIX$TARGET_VERSION" "$REMOTE_NAME/$BASE_BRANCH"
+  git checkout -B "$BRANCH_PREFIX$TARGET_VERSION" "$REMOTE_NAME/$BASE_BRANCH_NAME"
   change_version "$TARGET_VERSION"
 
   echo "Pushing to $REMOTE_NAME..."

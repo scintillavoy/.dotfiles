@@ -9,7 +9,7 @@ PROJECT_ROOT_DIR=${PROJECT_ROOT_DIR:-$(git rev-parse --show-toplevel)}
 REMOTE_NAME=${REMOTE_NAME:-"origin"}
 BRANCH_PREFIX=${BRANCH_PREFIX:-"hotfix/"}
 TAG_PREFIX=${TAG_PREFIX:-"v"}
-BASE_BRANCH=${BASE_BRANCH:-"main"}
+BASE_BRANCH_NAME=${BASE_BRANCH_NAME:-"main"}
 
 usage() {
   echo "Usage: $(basename "$SCRIPT_PATH") <hotfix-version>"

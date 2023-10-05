@@ -9,7 +9,7 @@ PROJECT_ROOT_DIR=${PROJECT_ROOT_DIR:-$(git rev-parse --show-toplevel)}
 REMOTE_NAME=${REMOTE_NAME:-"origin"}
 BRANCH_PREFIX=${BRANCH_PREFIX:-"release/"}
 TAG_PREFIX=${TAG_PREFIX:-"v"}
-BASE_BRANCH=${BASE_BRANCH:-"development"}
+BASE_BRANCH_NAME=${BASE_BRANCH_NAME:-"development"}
 
 usage() {
   echo "Usage: $(basename "$SCRIPT_PATH") <release-version>"
