@@ -94,7 +94,7 @@ merge_into_development() {
 
 push_to_remote() {
   echo "Pushing to $REMOTE_NAME..."
-  git push "$REMOTE_NAME" "$MAIN_BRANCH_NAME" "$DEVELOPMENT_BRANCH_NAME" "$BRANCH_PREFIX$TARGET_VERSION" "v$TARGET_VERSION"
+  git push "$REMOTE_NAME" "$MAIN_BRANCH_NAME" "$DEVELOPMENT_BRANCH_NAME" "$BRANCH_PREFIX$TARGET_VERSION" "$TAG_PREFIX$TARGET_VERSION"
 }
 
 # ------------------------------------------------------------------------------
@@ -108,7 +108,7 @@ start() {
 
   git fetch "$REMOTE_NAME"
 
-  check_remote_tag_does_not_exist "$REMOTE_NAME" "v$TARGET_VERSION"
+  check_remote_tag_does_not_exist "$REMOTE_NAME" "$TAG_PREFIX$TARGET_VERSION"
   return_value=$?
   [ $return_value -ne 0 ] && return $return_value
 
@@ -166,7 +166,7 @@ finish() {
 
   git fetch "$REMOTE_NAME"
 
-  check_remote_tag_does_not_exist "$REMOTE_NAME" "v$TARGET_VERSION"
+  check_remote_tag_does_not_exist "$REMOTE_NAME" "$TAG_PREFIX$TARGET_VERSION"
   return_value=$?
   [ $return_value -ne 0 ] && return $return_value
 
@@ -182,7 +182,7 @@ finish() {
   return_value=$?
   [ $return_value -ne 0 ] && return $return_value
 
-  git tag -f "v$TARGET_VERSION" "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
+  git tag -f "$TAG_PREFIX$TARGET_VERSION" "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
   merge_into_main
   merge_into_development
   push_to_remote

@@ -9,6 +9,7 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 PROJECT_ROOT_DIR=${PROJECT_ROOT_DIR:-$(git rev-parse --show-toplevel)}
 REMOTE_NAME=${REMOTE_NAME:-"origin"}
 BRANCH_PREFIX=${BRANCH_PREFIX:-"release/"}
+TAG_PREFIX=${TAG_PREFIX:-"v"}
 MAIN_BRANCH_NAME=${MAIN_BRANCH_NAME:-"main"}
 DEVELOPMENT_BRANCH_NAME=${DEVELOPMENT_BRANCH_NAME:-"development"}
 
