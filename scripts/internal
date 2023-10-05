@@ -133,28 +133,23 @@ start() {
 # ------------------------------------------------------------------------------
 
 finish() {
-  if [ $# -gt 0 ]; then
+  if [ -n "$1" ]; then
     case $1 in
-      "--continue-from-main")
+      main)
         check_merge_conflict "$MAIN_BRANCH_NAME" "--continue-from-main"
         local return_value=$?
-        if [ $return_value -ne 0 ]; then
-          exit $return_value
-        fi
+        [ $return_value -ne 0 ] && exit $return_value
         git commit --no-edit
         merge_into_development
         ;;
-      "--continue-from-development")
+      development)
         check_merge_conflict "$DEVELOPMENT_BRANCH_NAME" "--continue-from-development"
         local return_value=$?
-        if [ $return_value -ne 0 ]; then
-          exit $return_value
-        fi
+        [ $return_value -ne 0 ] && exit $return_value
         git commit --no-edit
         ;;
       *)
         return 2
-        ;;
     esac
     push_to_remote
     return 0

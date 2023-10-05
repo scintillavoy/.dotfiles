@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
-SCRIPT_PATH=$0
-TARGET_VERSION=$1
-DEVELOPMENT_VERSION=$2
-
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
+# Variables which can be overridden by environment variables.
 PROJECT_ROOT_DIR=${PROJECT_ROOT_DIR:-$(git rev-parse --show-toplevel)}
 REMOTE_NAME=${REMOTE_NAME:-"origin"}
 BRANCH_PREFIX=${BRANCH_PREFIX:-"hotfix/"}
@@ -13,24 +10,56 @@ TAG_PREFIX=${TAG_PREFIX:-"v"}
 MAIN_BRANCH_NAME=${MAIN_BRANCH_NAME:-"main"}
 DEVELOPMENT_BRANCH_NAME=${DEVELOPMENT_BRANCH_NAME:-"development"}
 
-usage() {
-  echo "Usage: $(basename "$SCRIPT_PATH") <hotfix-version> <development-version> [--continue-from-main | --continue-from-development]"
+# Command line arguments.
+SCRIPT_PATH=$0
+TARGET_VERSION=
+DEVELOPMENT_VERSION=
+CONTINUE_FROM=
+
+show_help() {
+  echo "Usage: $(basename "$SCRIPT_PATH") <hotfix-version> <development-version> [options]"
+  echo
+  echo "Options:"
+  echo "  --continue-from-main         Continue from merging into main branch."
+  echo "  --continue-from-development  Continue from merging into development branch."
+  echo "  -h, --help                   Display this help and exit."
   exit 1
 }
 
-if [ $# -lt 2 ]; then
-  usage
-fi
+while :; do
+  case $1 in
+    --continue-from-main)
+      CONTINUE_FROM="main"
+      ;;
+    --continue-from-development)
+      CONTINUE_FROM="development"
+      ;;
+    -h|-\?|--help)
+      show_help
+      ;;
+    --)
+      ;;
+    -?*)
+      echo "Error: Unknown option '$1'"
+      show_help
+      ;;
+    ?*)
+      if [ -z "$TARGET_VERSION" ]; then
+        TARGET_VERSION=$1
+      elif [ -z "$DEVELOPMENT_VERSION" ]; then
+        DEVELOPMENT_VERSION=$1
+      else
+        show_help
+      fi
+      ;;
+    *)
+      [ -z "$TARGET_VERSION" ] && show_help
+      [ -z "$DEVELOPMENT_VERSION" ] && show_help
+      break
+  esac
+  shift
+done
 
 source "$SCRIPT_DIR/internal"
-
-if [ $# -gt 2 ]; then
-  finish "$3"
-  if [ $? -eq 2 ]; then
-    usage
-  fi
-  exit $?
-fi
-
-finish
+finish "$CONTINUE_FROM"
 exit $?

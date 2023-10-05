@@ -1,26 +1,51 @@
 #!/usr/bin/env bash
 
-SCRIPT_PATH=$0
-TARGET_VERSION=$1
-
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
+# Variables which can be overridden by environment variables.
 PROJECT_ROOT_DIR=${PROJECT_ROOT_DIR:-$(git rev-parse --show-toplevel)}
 REMOTE_NAME=${REMOTE_NAME:-"origin"}
 BRANCH_PREFIX=${BRANCH_PREFIX:-"hotfix/"}
 TAG_PREFIX=${TAG_PREFIX:-"v"}
 BASE_BRANCH_NAME=${BASE_BRANCH_NAME:-"main"}
 
-usage() {
-  echo "Usage: $(basename "$SCRIPT_PATH") <hotfix-version>"
+# Command line arguments.
+SCRIPT_PATH=$0
+TARGET_VERSION=
+
+show_help() {
+  echo "Usage: $(basename "$SCRIPT_PATH") <hotfix-version> [options]"
+  echo
+  echo "Options:"
+  echo "  -h, --help  Display this help and exit."
   exit 1
 }
 
-if [ $# -lt 1 ]; then
-  usage
-fi
+while :; do
+  case $1 in
+    -h|-\?|--help)
+      show_help
+      ;;
+    --)
+      ;;
+    -?*)
+      echo "Error: Unknown option '$1'"
+      show_help
+      ;;
+    ?*)
+      if [ -z "$TARGET_VERSION" ]; then
+        TARGET_VERSION=$1
+      else
+        show_help
+      fi
+      ;;
+    *)
+      [ -z "$TARGET_VERSION" ] && show_help
+      break
+  esac
+  shift
+done
 
 source "$SCRIPT_DIR/internal"
-
 start
 exit $?
