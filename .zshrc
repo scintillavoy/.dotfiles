@@ -334,7 +334,7 @@ ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-ch
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)
 
 # Additional completions
-[[ ! -f ~/.completions.zsh ]] || source ~/.completions.zsh
+[ -f ~/.completions.zsh ] && source ~/.completions.zsh
 
 # ------------------------------------------------------------------------------
 # Miscellaneous
@@ -342,7 +342,7 @@ ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)
 
 alias g++='g++ -std=c++17'
 alias sss='sudo shutdown -s'
-alias json_pp="json_pp -json_opt=pretty,utf8"
+alias json_pp='json_pp -json_opt=pretty,utf8'
 
 export PATH="$PATH:$HOME/.dotfiles/scripts"
 
