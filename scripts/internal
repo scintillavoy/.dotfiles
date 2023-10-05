@@ -122,6 +122,8 @@ start() {
 
   git checkout -B "$BRANCH_PREFIX/$TARGET_VERSION" "$REMOTE_NAME/$BASE_BRANCH"
   change_version "$TARGET_VERSION"
+
+  echo "Pushing to $REMOTE_NAME..."
   git push -u "$REMOTE_NAME" "$BRANCH_PREFIX/$TARGET_VERSION"
   return 0
 }
