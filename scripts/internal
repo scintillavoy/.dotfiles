@@ -1,25 +1,11 @@
 #!/usr/bin/env bash
 
 # ------------------------------------------------------------------------------
-# Helpers
+# Helper functions for checking conditions
+# - Functions in this section check whether conditions are satisfied or not.
+# - If the check succeeds, it returns 0.
+# - Otherwise, it returns some value other than 0.
 # ------------------------------------------------------------------------------
-
-change_version() {
-  local version=$1
-  local change_version_path=$SCRIPT_DIR/change_version
-  if [ -n "$CHANGE_VERSION_PATH" ]; then
-    change_version_path=$CHANGE_VERSION_PATH
-  elif [ -f "$PROJECT_ROOT_DIR/scripts/change_version" ]; then
-    change_version_path=$PROJECT_ROOT_DIR/scripts/change_version
-  fi
-  if [ -f "$change_version_path" ]; then
-    source "$change_version_path" "$version"
-    git add --all
-  else
-    echo "Warning: cannot find a script to change version."
-  fi
-  git commit --allow-empty -m "Change version to $version"
-}
 
 check_local_changes() {
   if [ "$(git status --porcelain | wc -l)" -gt 0 ]; then
@@ -31,7 +17,7 @@ check_local_changes() {
   return 0
 }
 
-check_if_remote_branch_exists() {
+check_remote_branch_exists() {
   local branch_name=$1
   if [ "$(git branch --remote --list "$branch_name" | wc -l)" -eq 0 ]; then
     echo "Error: Remote branch $branch_name does not exist."
@@ -41,7 +27,7 @@ check_if_remote_branch_exists() {
   return 0
 }
 
-check_if_remote_branch_does_not_exist() {
+check_remote_branch_does_not_exist() {
   local branch_name=$1
   if [ "$(git branch --remote --list "$branch_name" | wc -l)" -gt 0 ]; then
     echo "Error: Remote branch $branch_name already exists."
@@ -51,7 +37,7 @@ check_if_remote_branch_does_not_exist() {
   return 0
 }
 
-check_if_remote_tag_does_not_exist() {
+check_remote_tag_does_not_exist() {
   local remote_name=$1
   local tag_name=$2
   if [ "$(git ls-remote --tags "$remote_name" "$tag_name" | wc -l)" -gt 0 ]; then
@@ -71,6 +57,27 @@ check_merge_conflict() {
     return 1
   fi
   return 0
+}
+
+# ------------------------------------------------------------------------------
+# Helper functions for Git operations
+# ------------------------------------------------------------------------------
+
+change_version() {
+  local version=$1
+  local change_version_path=$SCRIPT_DIR/change_version
+  if [ -n "$CHANGE_VERSION_PATH" ]; then
+    change_version_path=$CHANGE_VERSION_PATH
+  elif [ -f "$PROJECT_ROOT_DIR/scripts/change_version" ]; then
+    change_version_path=$PROJECT_ROOT_DIR/scripts/change_version
+  fi
+  if [ -f "$change_version_path" ]; then
+    source "$change_version_path" "$version"
+    git add --all
+  else
+    echo "Warning: cannot find a script to change version."
+  fi
+  git commit --allow-empty -m "Change version to $version"
 }
 
 merge_into_main() {
@@ -117,19 +124,19 @@ start() {
 
   git fetch "$REMOTE_NAME"
 
-  check_if_remote_tag_does_not_exist "$REMOTE_NAME" "v$TARGET_VERSION"
+  check_remote_tag_does_not_exist "$REMOTE_NAME" "v$TARGET_VERSION"
   return_value=$?
   if [ $return_value -ne 0 ]; then
     return $return_value
   fi
 
-  check_if_remote_branch_exists "$REMOTE_NAME/$BASE_BRANCH"
+  check_remote_branch_exists "$REMOTE_NAME/$BASE_BRANCH"
   return_value=$?
   if [ $return_value -ne 0 ]; then
     return $return_value
   fi
 
-  check_if_remote_branch_does_not_exist "$REMOTE_NAME/$BRANCH_PREFIX/$TARGET_VERSION"
+  check_remote_branch_does_not_exist "$REMOTE_NAME/$BRANCH_PREFIX/$TARGET_VERSION"
   return_value=$?
   if [ $return_value -ne 0 ]; then
     return $return_value
@@ -181,25 +188,25 @@ finish() {
 
   git fetch "$REMOTE_NAME"
 
-  check_if_remote_tag_does_not_exist "$REMOTE_NAME" "v$TARGET_VERSION"
+  check_remote_tag_does_not_exist "$REMOTE_NAME" "v$TARGET_VERSION"
   return_value=$?
   if [ $return_value -ne 0 ]; then
     return $return_value
   fi
 
-  check_if_remote_branch_exists "$REMOTE_NAME/$MAIN_BRANCH_NAME"
+  check_remote_branch_exists "$REMOTE_NAME/$MAIN_BRANCH_NAME"
   return_value=$?
   if [ $return_value -ne 0 ]; then
     return $return_value
   fi
 
-  check_if_remote_branch_exists "$REMOTE_NAME/$DEVELOPMENT_BRANCH_NAME"
+  check_remote_branch_exists "$REMOTE_NAME/$DEVELOPMENT_BRANCH_NAME"
   return_value=$?
   if [ $return_value -ne 0 ]; then
     return $return_value
   fi
 
-  check_if_remote_branch_exists "$REMOTE_NAME/$BRANCH_PREFIX/$TARGET_VERSION"
+  check_remote_branch_exists "$REMOTE_NAME/$BRANCH_PREFIX/$TARGET_VERSION"
   return_value=$?
   if [ $return_value -ne 0 ]; then
     return $return_value
