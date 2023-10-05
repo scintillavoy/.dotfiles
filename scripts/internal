@@ -73,20 +73,20 @@ change_version() {
 merge_into_main() {
   git checkout -B "$MAIN_BRANCH_NAME" "$REMOTE_NAME/$MAIN_BRANCH_NAME"
   git pull --ff-only
-  git merge --no-ff --no-edit "$REMOTE_NAME/$BRANCH_PREFIX/$TARGET_VERSION"
+  git merge --no-ff --no-edit "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
   check_merge_conflict "$MAIN_BRANCH_NAME" "--continue-from-main"
   local return_value=$?
   [ $return_value -ne 0 ] && exit $return_value
 }
 
 merge_into_development() {
-  git checkout -B "$BRANCH_PREFIX/$TARGET_VERSION" "$REMOTE_NAME/$BRANCH_PREFIX/$TARGET_VERSION"
+  git checkout -B "$BRANCH_PREFIX$TARGET_VERSION" "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
   git pull --ff-only
   change_version "$DEVELOPMENT_VERSION"
 
   git checkout -B "$DEVELOPMENT_BRANCH_NAME" "$REMOTE_NAME/$DEVELOPMENT_BRANCH_NAME"
   git pull --ff-only
-  git merge --no-ff --no-edit "$BRANCH_PREFIX/$TARGET_VERSION"
+  git merge --no-ff --no-edit "$BRANCH_PREFIX$TARGET_VERSION"
   check_merge_conflict "$DEVELOPMENT_BRANCH_NAME" "--continue-from-development"
   local return_value=$?
   [ $return_value -ne 0 ] && exit $return_value
@@ -94,7 +94,7 @@ merge_into_development() {
 
 push_to_remote() {
   echo "Pushing to $REMOTE_NAME..."
-  git push "$REMOTE_NAME" "$MAIN_BRANCH_NAME" "$DEVELOPMENT_BRANCH_NAME" "$BRANCH_PREFIX/$TARGET_VERSION" "v$TARGET_VERSION"
+  git push "$REMOTE_NAME" "$MAIN_BRANCH_NAME" "$DEVELOPMENT_BRANCH_NAME" "$BRANCH_PREFIX$TARGET_VERSION" "v$TARGET_VERSION"
 }
 
 # ------------------------------------------------------------------------------
@@ -116,15 +116,15 @@ start() {
   return_value=$?
   [ $return_value -ne 0 ] && return $return_value
 
-  check_remote_branch_does_not_exist "$REMOTE_NAME/$BRANCH_PREFIX/$TARGET_VERSION"
+  check_remote_branch_does_not_exist "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
   return_value=$?
   [ $return_value -ne 0 ] && return $return_value
 
-  git checkout -B "$BRANCH_PREFIX/$TARGET_VERSION" "$REMOTE_NAME/$BASE_BRANCH"
+  git checkout -B "$BRANCH_PREFIX$TARGET_VERSION" "$REMOTE_NAME/$BASE_BRANCH"
   change_version "$TARGET_VERSION"
 
   echo "Pushing to $REMOTE_NAME..."
-  git push -u "$REMOTE_NAME" "$BRANCH_PREFIX/$TARGET_VERSION"
+  git push -u "$REMOTE_NAME" "$BRANCH_PREFIX$TARGET_VERSION"
   return 0
 }
 
@@ -178,11 +178,11 @@ finish() {
   return_value=$?
   [ $return_value -ne 0 ] && return $return_value
 
-  check_remote_branch_exists "$REMOTE_NAME/$BRANCH_PREFIX/$TARGET_VERSION"
+  check_remote_branch_exists "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
   return_value=$?
   [ $return_value -ne 0 ] && return $return_value
 
-  git tag -f "v$TARGET_VERSION" "$REMOTE_NAME/$BRANCH_PREFIX/$TARGET_VERSION"
+  git tag -f "v$TARGET_VERSION" "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
   merge_into_main
   merge_into_development
   push_to_remote
