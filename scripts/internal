@@ -133,6 +133,30 @@ start() {
 # ------------------------------------------------------------------------------
 
 finish() {
+  if [ -z "$1" ]; then
+    check_local_changes
+    local return_value=$?
+    [ $return_value -ne 0 ] && return $return_value
+  fi
+
+  git fetch "$REMOTE_NAME"
+
+  check_remote_tag_does_not_exist "$REMOTE_NAME" "$TAG_PREFIX$TARGET_VERSION"
+  return_value=$?
+  [ $return_value -ne 0 ] && return $return_value
+
+  check_remote_branch_exists "$REMOTE_NAME/$MAIN_BRANCH_NAME"
+  return_value=$?
+  [ $return_value -ne 0 ] && return $return_value
+
+  check_remote_branch_exists "$REMOTE_NAME/$DEVELOPMENT_BRANCH_NAME"
+  return_value=$?
+  [ $return_value -ne 0 ] && return $return_value
+
+  check_remote_branch_exists "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
+  return_value=$?
+  [ $return_value -ne 0 ] && return $return_value
+
   if [ -n "$1" ]; then
     case $1 in
       main)
@@ -154,28 +178,6 @@ finish() {
     push_to_remote
     return 0
   fi
-
-  check_local_changes
-  local return_value=$?
-  [ $return_value -ne 0 ] && return $return_value
-
-  git fetch "$REMOTE_NAME"
-
-  check_remote_tag_does_not_exist "$REMOTE_NAME" "$TAG_PREFIX$TARGET_VERSION"
-  return_value=$?
-  [ $return_value -ne 0 ] && return $return_value
-
-  check_remote_branch_exists "$REMOTE_NAME/$MAIN_BRANCH_NAME"
-  return_value=$?
-  [ $return_value -ne 0 ] && return $return_value
-
-  check_remote_branch_exists "$REMOTE_NAME/$DEVELOPMENT_BRANCH_NAME"
-  return_value=$?
-  [ $return_value -ne 0 ] && return $return_value
-
-  check_remote_branch_exists "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
-  return_value=$?
-  [ $return_value -ne 0 ] && return $return_value
 
   git tag -f "$TAG_PREFIX$TARGET_VERSION" "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
   merge_into_main
