@@ -28,11 +28,8 @@ show_help() {
 
 while :; do
   case $1 in
-    --continue-from-main)
-      CONTINUE_FROM="main"
-      ;;
-    --continue-from-development)
-      CONTINUE_FROM="development"
+    --continue-from-main|--continue-from-development)
+      CONTINUE_FROM=$1
       ;;
     -h|-\?|--help)
       show_help

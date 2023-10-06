@@ -133,7 +133,9 @@ start() {
 # ------------------------------------------------------------------------------
 
 finish() {
-  if [ -z "$1" ]; then
+  local continue_from=$1
+
+  if [ -z "$continue_from" ]; then
     check_local_changes
     local return_value=$?
     [ $return_value -ne 0 ] && return $return_value
@@ -157,17 +159,17 @@ finish() {
   return_value=$?
   [ $return_value -ne 0 ] && return $return_value
 
-  if [ -n "$1" ]; then
-    case $1 in
-      main)
-        check_merge_conflict "$MAIN_BRANCH_NAME" "--continue-from-main"
+  if [ -n "$continue_from" ]; then
+    case "$continue_from" in
+      --continue-from-main)
+        check_merge_conflict "$MAIN_BRANCH_NAME" "$continue_from"
         local return_value=$?
         [ $return_value -ne 0 ] && exit $return_value
         git commit --no-edit
         merge_into_development
         ;;
-      development)
-        check_merge_conflict "$DEVELOPMENT_BRANCH_NAME" "--continue-from-development"
+      --continue-from-development)
+        check_merge_conflict "$DEVELOPMENT_BRANCH_NAME" "$continue_from"
         local return_value=$?
         [ $return_value -ne 0 ] && exit $return_value
         git commit --no-edit
