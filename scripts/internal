@@ -93,8 +93,9 @@ merge_into_development() {
 }
 
 push_to_remote() {
+  local arguments=("$@")
   echo "Pushing to $REMOTE_NAME..."
-  git push "$REMOTE_NAME" "$MAIN_BRANCH_NAME" "$DEVELOPMENT_BRANCH_NAME" "$BRANCH_PREFIX$TARGET_VERSION" "$TAG_PREFIX$TARGET_VERSION"
+  git push "${arguments[@]}"
 }
 
 # ------------------------------------------------------------------------------
@@ -123,8 +124,8 @@ start() {
   git checkout -B "$BRANCH_PREFIX$TARGET_VERSION" "$REMOTE_NAME/$BASE_BRANCH_NAME"
   change_version "$TARGET_VERSION"
 
-  echo "Pushing to $REMOTE_NAME..."
-  git push -u "$REMOTE_NAME" "$BRANCH_PREFIX$TARGET_VERSION"
+  local arguments=(-u "$REMOTE_NAME" "$BRANCH_PREFIX$TARGET_VERSION")
+  push_to_remote "${arguments[@]}"
   return 0
 }
 
@@ -134,10 +135,11 @@ start() {
 
 finish() {
   local continue_from=$1
+  local return_value
 
   if [ -z "$continue_from" ]; then
     check_local_changes
-    local return_value=$?
+    return_value=$?
     [ $return_value -ne 0 ] && return $return_value
   fi
 
@@ -163,27 +165,29 @@ finish() {
     case "$continue_from" in
       --continue-from-main)
         check_merge_conflict "$MAIN_BRANCH_NAME" "$continue_from"
-        local return_value=$?
+        return_value=$?
         [ $return_value -ne 0 ] && exit $return_value
         git commit --no-edit
         merge_into_development
         ;;
       --continue-from-development)
         check_merge_conflict "$DEVELOPMENT_BRANCH_NAME" "$continue_from"
-        local return_value=$?
+        return_value=$?
         [ $return_value -ne 0 ] && exit $return_value
         git commit --no-edit
         ;;
       *)
         return 2
     esac
-    push_to_remote
+    local arguments=("$REMOTE_NAME" "$MAIN_BRANCH_NAME" "$DEVELOPMENT_BRANCH_NAME" "$BRANCH_PREFIX$TARGET_VERSION" "$TAG_PREFIX$TARGET_VERSION")
+    push_to_remote "${arguments[@]}"
     return 0
   fi
 
   git tag -f "$TAG_PREFIX$TARGET_VERSION" "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
   merge_into_main
   merge_into_development
-  push_to_remote
+  local arguments=("$REMOTE_NAME" "$MAIN_BRANCH_NAME" "$DEVELOPMENT_BRANCH_NAME" "$BRANCH_PREFIX$TARGET_VERSION" "$TAG_PREFIX$TARGET_VERSION")
+  push_to_remote "${arguments[@]}"
   return 0
 }
