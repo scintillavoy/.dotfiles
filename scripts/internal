@@ -94,6 +94,9 @@ merge_into_development() {
 
 push_to_remote() {
   local arguments=("$@")
+  if [ -n "$FORCE" ]; then
+    arguments=("$FORCE" "${arguments[@]}")
+  fi
   echo "Pushing to $REMOTE_NAME..."
   git push "${arguments[@]}"
 }
@@ -109,15 +112,17 @@ start() {
 
   git fetch "$REMOTE_NAME"
 
-  check_remote_tag_does_not_exist "$REMOTE_NAME" "$TAG_PREFIX$TARGET_VERSION"
-  return_value=$?
-  [ $return_value -ne 0 ] && return $return_value
+  if [ -z "$FORCE" ]; then
+    check_remote_tag_does_not_exist "$REMOTE_NAME" "$TAG_PREFIX$TARGET_VERSION"
+    return_value=$?
+    [ $return_value -ne 0 ] && return $return_value
+
+    check_remote_branch_does_not_exist "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
+    return_value=$?
+    [ $return_value -ne 0 ] && return $return_value
+  fi
 
   check_remote_branch_exists "$REMOTE_NAME/$BASE_BRANCH_NAME"
-  return_value=$?
-  [ $return_value -ne 0 ] && return $return_value
-
-  check_remote_branch_does_not_exist "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
   return_value=$?
   [ $return_value -ne 0 ] && return $return_value
 
@@ -145,9 +150,11 @@ finish() {
 
   git fetch "$REMOTE_NAME"
 
-  check_remote_tag_does_not_exist "$REMOTE_NAME" "$TAG_PREFIX$TARGET_VERSION"
-  return_value=$?
-  [ $return_value -ne 0 ] && return $return_value
+  if [ -z "$FORCE" ]; then
+    check_remote_tag_does_not_exist "$REMOTE_NAME" "$TAG_PREFIX$TARGET_VERSION"
+    return_value=$?
+    [ $return_value -ne 0 ] && return $return_value
+  fi
 
   check_remote_branch_exists "$REMOTE_NAME/$MAIN_BRANCH_NAME"
   return_value=$?

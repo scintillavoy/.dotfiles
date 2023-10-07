@@ -13,18 +13,23 @@ BASE_BRANCH_NAME=${BASE_BRANCH_NAME:-"main"}
 # Command line arguments.
 arguments=()
 TARGET_VERSION=
+FORCE=
 
 show_help() {
   echo "Usage: $(basename "$SCRIPT_PATH") <hotfix-version> [options]"
   echo
   echo "Options:"
-  echo "  -h, --help  Display this help and exit."
-  echo "  --          Do not interpret any more arguments as options."
+  echo "  -f, --force  Push to the remote repository forcefully."
+  echo "  -h, --help   Display this help and exit."
+  echo "  --           Do not interpret any more arguments as options."
   exit 1
 }
 
 while :; do
   case $1 in
+    -f|--force)
+      FORCE=$1
+      ;;
     -h|-\?|--help)
       show_help
       ;;

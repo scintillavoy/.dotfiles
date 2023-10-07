@@ -16,6 +16,7 @@ arguments=()
 TARGET_VERSION=
 DEVELOPMENT_VERSION=
 CONTINUE_FROM=
+FORCE=
 
 show_help() {
   echo "Usage: $(basename "$SCRIPT_PATH") <release-version> <development-version> [options]"
@@ -23,6 +24,7 @@ show_help() {
   echo "Options:"
   echo "  -m, --continue-from-main         Continue from merging into main branch."
   echo "  -d, --continue-from-development  Continue from merging into development branch."
+  echo "  -f, --force                      Push to the remote repository forcefully."
   echo "  -h, --help                       Display this help and exit."
   echo "  --                               Do not interpret any more arguments as options."
   exit 1
@@ -35,6 +37,9 @@ while :; do
       ;;
     -d|--continue-from-development)
       CONTINUE_FROM="--continue-from-development"
+      ;;
+    -f|--force)
+      FORCE=$1
       ;;
     -h|-\?|--help)
       show_help
