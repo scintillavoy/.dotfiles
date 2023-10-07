@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+SCRIPT_PATH=$0
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 # Variables which can be overridden by environment variables.
@@ -11,7 +12,7 @@ MAIN_BRANCH_NAME=${MAIN_BRANCH_NAME:-"main"}
 DEVELOPMENT_BRANCH_NAME=${DEVELOPMENT_BRANCH_NAME:-"development"}
 
 # Command line arguments.
-SCRIPT_PATH=$0
+arguments=()
 TARGET_VERSION=
 DEVELOPMENT_VERSION=
 CONTINUE_FROM=
@@ -23,6 +24,7 @@ show_help() {
   echo "  --continue-from-main         Continue from merging into main branch."
   echo "  --continue-from-development  Continue from merging into development branch."
   echo "  -h, --help                   Display this help and exit."
+  echo "  --                           Do not interpret any more arguments as options."
   exit 1
 }
 
@@ -35,26 +37,43 @@ while :; do
       show_help
       ;;
     --)
+      shift
+      break
       ;;
     -?*)
       echo "Error: Unknown option '$1'"
       show_help
       ;;
     ?*)
-      if [ -z "$TARGET_VERSION" ]; then
-        TARGET_VERSION=$1
-      elif [ -z "$DEVELOPMENT_VERSION" ]; then
-        DEVELOPMENT_VERSION=$1
-      else
-        show_help
-      fi
+      arguments+=("$1")
       ;;
     *)
-      [ -z "$TARGET_VERSION" ] && show_help
-      [ -z "$DEVELOPMENT_VERSION" ] && show_help
       break
   esac
   shift
+done
+
+while :; do
+  case $1 in
+    ?*)
+      arguments+=("$1")
+      ;;
+    *)
+      break
+  esac
+  shift
+done
+
+[ ${#arguments[@]} -ne 2 ] && show_help
+
+for argument in "${arguments[@]}"; do
+  if [ -z "$TARGET_VERSION" ]; then
+    TARGET_VERSION=$argument
+  elif [ -z "$DEVELOPMENT_VERSION" ]; then
+    DEVELOPMENT_VERSION=$argument
+  else
+    show_help
+  fi
 done
 
 source "$SCRIPT_DIR/internal"

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+SCRIPT_PATH=$0
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 # Variables which can be overridden by environment variables.
@@ -10,7 +11,7 @@ TAG_PREFIX=${TAG_PREFIX:-"v"}
 BASE_BRANCH_NAME=${BASE_BRANCH_NAME:-"main"}
 
 # Command line arguments.
-SCRIPT_PATH=$0
+arguments=()
 TARGET_VERSION=
 
 show_help() {
@@ -18,6 +19,7 @@ show_help() {
   echo
   echo "Options:"
   echo "  -h, --help  Display this help and exit."
+  echo "  --          Do not interpret any more arguments as options."
   exit 1
 }
 
@@ -27,23 +29,41 @@ while :; do
       show_help
       ;;
     --)
+      shift
+      break
       ;;
     -?*)
       echo "Error: Unknown option '$1'"
       show_help
       ;;
     ?*)
-      if [ -z "$TARGET_VERSION" ]; then
-        TARGET_VERSION=$1
-      else
-        show_help
-      fi
+      arguments+=("$1")
       ;;
     *)
-      [ -z "$TARGET_VERSION" ] && show_help
       break
   esac
   shift
+done
+
+while :; do
+  case $1 in
+    ?*)
+      arguments+=("$1")
+      ;;
+    *)
+      break
+  esac
+  shift
+done
+
+[ ${#arguments[@]} -ne 1 ] && show_help
+
+for argument in "${arguments[@]}"; do
+  if [ -z "$TARGET_VERSION" ]; then
+    TARGET_VERSION=$argument
+  else
+    show_help
+  fi
 done
 
 source "$SCRIPT_DIR/internal"
