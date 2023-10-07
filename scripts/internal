@@ -138,8 +138,12 @@ start() {
   git checkout -B "$BRANCH_PREFIX$TARGET_VERSION" "$REMOTE_NAME/$BASE_BRANCH_NAME"
   change_version "$TARGET_VERSION"
 
-  local arguments=(-u "$REMOTE_NAME" "$BRANCH_PREFIX$TARGET_VERSION")
-  push_to_remote "${arguments[@]}"
+  local push_arguments=(
+    -u
+    "$REMOTE_NAME"
+    "$BRANCH_PREFIX$TARGET_VERSION"
+  )
+  push_to_remote "${push_arguments[@]}"
   return 0
 }
 
@@ -176,6 +180,14 @@ finish() {
   return_value=$?
   [ $return_value -ne 0 ] && return $return_value
 
+  local push_arguments=(
+    "$REMOTE_NAME"
+    "$MAIN_BRANCH_NAME"
+    "$DEVELOPMENT_BRANCH_NAME"
+    "$BRANCH_PREFIX$TARGET_VERSION"
+    "$TAG_PREFIX$TARGET_VERSION"
+  )
+
   if [ -n "$CONTINUE" ]; then
     case "$CONTINUE" in
       --continue-from-main)
@@ -194,15 +206,13 @@ finish() {
       *)
         return 2
     esac
-    local arguments=("$REMOTE_NAME" "$MAIN_BRANCH_NAME" "$DEVELOPMENT_BRANCH_NAME" "$BRANCH_PREFIX$TARGET_VERSION" "$TAG_PREFIX$TARGET_VERSION")
-    push_to_remote "${arguments[@]}"
+    push_to_remote "${push_arguments[@]}"
     return 0
   fi
 
   git tag -f "$TAG_PREFIX$TARGET_VERSION" "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
   merge_into_main
   merge_into_development
-  local arguments=("$REMOTE_NAME" "$MAIN_BRANCH_NAME" "$DEVELOPMENT_BRANCH_NAME" "$BRANCH_PREFIX$TARGET_VERSION" "$TAG_PREFIX$TARGET_VERSION")
-  push_to_remote "${arguments[@]}"
+  push_to_remote "${push_arguments[@]}"
   return 0
 }
