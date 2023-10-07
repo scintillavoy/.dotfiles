@@ -15,7 +15,7 @@ DEVELOPMENT_BRANCH_NAME=${DEVELOPMENT_BRANCH_NAME:-"development"}
 arguments=()
 TARGET_VERSION=
 DEVELOPMENT_VERSION=
-CONTINUE_FROM=
+CONTINUE=
 FORCE=
 
 show_help() {
@@ -33,10 +33,10 @@ show_help() {
 while :; do
   case $1 in
     -m|--continue-from-main)
-      CONTINUE_FROM="--continue-from-main"
+      CONTINUE="--continue-from-main"
       ;;
     -d|--continue-from-development)
-      CONTINUE_FROM="--continue-from-development"
+      CONTINUE="--continue-from-development"
       ;;
     -f|--force)
       FORCE=$1
@@ -85,5 +85,5 @@ for argument in "${arguments[@]}"; do
 done
 
 source "$SCRIPT_DIR/internal"
-finish "$CONTINUE_FROM"
+finish
 exit $?
