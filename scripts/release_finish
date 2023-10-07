@@ -21,17 +21,20 @@ show_help() {
   echo "Usage: $(basename "$SCRIPT_PATH") <release-version> <development-version> [options]"
   echo
   echo "Options:"
-  echo "  --continue-from-main         Continue from merging into main branch."
-  echo "  --continue-from-development  Continue from merging into development branch."
-  echo "  -h, --help                   Display this help and exit."
-  echo "  --                           Do not interpret any more arguments as options."
+  echo "  -m, --continue-from-main         Continue from merging into main branch."
+  echo "  -d, --continue-from-development  Continue from merging into development branch."
+  echo "  -h, --help                       Display this help and exit."
+  echo "  --                               Do not interpret any more arguments as options."
   exit 1
 }
 
 while :; do
   case $1 in
-    --continue-from-main|--continue-from-development)
-      CONTINUE_FROM=$1
+    -m|--continue-from-main)
+      CONTINUE_FROM="--continue-from-main"
+      ;;
+    -d|--continue-from-development)
+      CONTINUE_FROM="--continue-from-development"
       ;;
     -h|-\?|--help)
       show_help
