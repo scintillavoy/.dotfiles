@@ -85,7 +85,7 @@ merge_into_main() {
   git merge --no-ff --no-edit "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
   check_merge_conflict "$MAIN_BRANCH_NAME" "--continue-from-main"
   local return_value=$?
-  [ $return_value -ne 0 ] && exit $return_value
+  [ $return_value -ne 0 ] && return $return_value
 }
 
 merge_into_development() {
@@ -98,7 +98,7 @@ merge_into_development() {
   git merge --no-ff --no-edit "$BRANCH_PREFIX$TARGET_VERSION"
   check_merge_conflict "$DEVELOPMENT_BRANCH_NAME" "--continue-from-development"
   local return_value=$?
-  [ $return_value -ne 0 ] && exit $return_value
+  [ $return_value -ne 0 ] && return $return_value
 }
 
 push_to_remote() {
@@ -193,26 +193,35 @@ finish() {
       --continue-from-main)
         check_merge_conflict "$MAIN_BRANCH_NAME" "$CONTINUE"
         return_value=$?
-        [ $return_value -ne 0 ] && exit $return_value
+        [ $return_value -ne 0 ] && return $return_value
         git commit --no-edit
         merge_into_development
+        return_value=$?
+        [ $return_value -ne 0 ] && return $return_value
         ;;
       --continue-from-development)
         check_merge_conflict "$DEVELOPMENT_BRANCH_NAME" "$CONTINUE"
         return_value=$?
-        [ $return_value -ne 0 ] && exit $return_value
+        [ $return_value -ne 0 ] && return $return_value
         git commit --no-edit
         ;;
       *)
-        return 2
+        return 1
     esac
     push_to_remote "${push_arguments[@]}"
     return 0
   fi
 
   git tag -f "$TAG_PREFIX$TARGET_VERSION" "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
+
   merge_into_main
+  return_value=$?
+  [ $return_value -ne 0 ] && return $return_value
+
   merge_into_development
+  return_value=$?
+  [ $return_value -ne 0 ] && return $return_value
+
   push_to_remote "${push_arguments[@]}"
   return 0
 }
