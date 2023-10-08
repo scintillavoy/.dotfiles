@@ -133,7 +133,11 @@ start() {
 
   check_remote_branch_exists "$REMOTE_NAME/$BASE_BRANCH_NAME"
   return_value=$?
-  [ $return_value -ne 0 ] && return $return_value
+  if [ $return_value -ne 0 ]; then
+    printf "%bHint: The name of the base branch can be overridden by setting an environment variable.%b\n" "${ORANGE}" "${NO_COLOR}"
+    printf "%bHint: For example, try 'export BASE_BRANCH_NAME=<base_branch_name>'.%b\n" "${ORANGE}" "${NO_COLOR}"
+    return $return_value
+  fi
 
   git checkout -B "$BRANCH_PREFIX$TARGET_VERSION" "$REMOTE_NAME/$BASE_BRANCH_NAME"
   change_version "$TARGET_VERSION"
@@ -170,11 +174,19 @@ finish() {
 
   check_remote_branch_exists "$REMOTE_NAME/$MAIN_BRANCH_NAME"
   return_value=$?
-  [ $return_value -ne 0 ] && return $return_value
+  if [ $return_value -ne 0 ]; then
+    printf "%bHint: The name of the main branch can be overridden by setting an environment variable.%b\n" "${ORANGE}" "${NO_COLOR}"
+    printf "%bHint: For example, try 'export MAIN_BRANCH_NAME=<main_branch_name>'.%b\n" "${ORANGE}" "${NO_COLOR}"
+    return $return_value
+  fi
 
   check_remote_branch_exists "$REMOTE_NAME/$DEVELOPMENT_BRANCH_NAME"
   return_value=$?
-  [ $return_value -ne 0 ] && return $return_value
+  if [ $return_value -ne 0 ]; then
+    printf "%bHint: The name of the development branch can be overridden by setting an environment variable.%b\n" "${ORANGE}" "${NO_COLOR}"
+    printf "%bHint: For example, try 'export DEVELOPMENT_BRANCH_NAME=<development_branch_name>'.%b\n" "${ORANGE}" "${NO_COLOR}"
+    return $return_value
+  fi
 
   check_remote_branch_exists "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
   return_value=$?
