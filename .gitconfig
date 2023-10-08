@@ -23,6 +23,7 @@
 	co = checkout
 	cob = checkout -b
 	coB = checkout -B
+	col = checkout -
 	################
 	cf = config
 	cfl = config --list
@@ -90,9 +91,9 @@
 	rbs = rebase --skip
 	################
 	rs = reset
+	rss = reset --soft
 	rsl = reset HEAD~
 	rsls = reset HEAD~ --soft
-	rss = reset --soft
 	################
 	rst = restore
 	rsts = restore --staged

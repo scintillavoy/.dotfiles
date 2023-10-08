@@ -190,6 +190,7 @@ alias gbak='git commit --message "Backup commit" && git push --force && git rese
 alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gcoB='git checkout -B'
+alias gcol='git checkout -'
 
 alias gcf='git config'
 alias gcfl='git config --list'
@@ -265,9 +266,9 @@ alias grbi='git rebase --interactive'
 alias grbs='git rebase --skip'
 
 alias grs='git reset'
+alias grss='git reset --soft'
 alias grsl='git reset HEAD~'
 alias grsls='git reset HEAD~ --soft'
-alias grss='git reset --soft'
 
 alias grst='git restore'
 alias grsts='git restore --staged'
