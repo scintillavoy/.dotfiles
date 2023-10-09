@@ -10,7 +10,19 @@ BLUE="\033[0;34m"
 NO_COLOR="\033[0m"
 
 # ------------------------------------------------------------------------------
-# Helper functions for checking conditions
+# Functions for printing messages
+# ------------------------------------------------------------------------------
+
+print_missing_argument_message() {
+  printf "Error: '%s' requires a non-empty option argument.\n" "$1"
+}
+
+print_unknown_option_message() {
+  printf "Error: Unknown option '%s'\n" "$1"
+}
+
+# ------------------------------------------------------------------------------
+# Functions for checking conditions
 # - Functions in this section check whether conditions are satisfied or not.
 # - If the check succeeds, it returns 0.
 # - Otherwise, it returns some value other than 0.
@@ -59,7 +71,7 @@ check_merge_conflict() {
 }
 
 # ------------------------------------------------------------------------------
-# Helper functions for Git operations
+# Functions for Git operations
 # ------------------------------------------------------------------------------
 
 change_version() {

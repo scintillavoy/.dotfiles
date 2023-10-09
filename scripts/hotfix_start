@@ -4,7 +4,7 @@ SCRIPT_PATH=$0
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 SCRIPT_NAME=$(basename "$SCRIPT_PATH")
 
-# Variables which can be overridden by environment variables.
+# Variables which can be overridden by setting options or environment variables.
 PROJECT_ROOT_DIR=${PROJECT_ROOT_DIR:-$(git rev-parse --show-toplevel)}
 REMOTE_NAME=${REMOTE_NAME:-"origin"}
 BRANCH_PREFIX=${BRANCH_PREFIX:-"hotfix/"}
@@ -16,31 +16,92 @@ arguments=()
 TARGET_VERSION=
 FORCE=
 
-show_help() {
+print_help() {
   printf "Usage: %s <hotfix-version> [options]\n" "$SCRIPT_NAME"
   printf "\n"
   printf "Options:\n"
-  printf "  -f, --force  Push to the remote repository forcefully.\n"
-  printf "  -h, --help   Display this help and exit.\n"
-  printf "  --           Do not interpret any more arguments as options.\n"
+  printf "  -p, --project-root-dir <path>    Path to the project root directory.\n"
+  printf "  -r, --remote-name <remote>       The name of the remote to be used.\n"
+  printf "  -B, --branch-prefix <prefix>     A prefix for the hotfix branch name.\n"
+  printf "  -t, --tag-prefix <prefix>        A prefix for the version tag name.\n"
+  printf "  -b, --base-branch-name <branch>  The name of the base branch.\n"
+  printf "  -f, --force                      Push to the remote repository forcefully.\n"
+  printf "  -h, --help                       Display this help and exit.\n"
+  printf "  --                               Do not interpret any more arguments as options.\n"
   exit 1
 }
 
+source "$SCRIPT_DIR/internal"
+
 while :; do
   case $1 in
+    -p|--project-root-dir)
+      [ -z "$2" ] && print_missing_argument_message "$1" && print_help
+      PROJECT_ROOT_DIR=$2
+      shift
+      ;;
+    --project-root-dir=?*)
+      PROJECT_ROOT_DIR=${1#*=}
+      ;;
+    --project-root-dir=)
+      print_missing_argument_message "${1%=}" && print_help
+      ;;
+    -r|--remote-name)
+      [ -z "$2" ] && print_missing_argument_message "$1" && print_help
+      REMOTE_NAME=$2
+      shift
+      ;;
+    --remote-name=?*)
+      REMOTE_NAME=${1#*=}
+      ;;
+    --remote-name=)
+      print_missing_argument_message "${1%=}" && print_help
+      ;;
+    -B|--branch-prefix)
+      [ -z "$2" ] && print_missing_argument_message "$1" && print_help
+      BRANCH_PREFIX=$2
+      shift
+      ;;
+    --branch-prefix=?*)
+      BRANCH_PREFIX=${1#*=}
+      ;;
+    --branch-prefix=)
+      print_missing_argument_message "${1%=}" && print_help
+      ;;
+    -t|--tag-prefix)
+      [ -z "$2" ] && print_missing_argument_message "$1" && print_help
+      TAG_PREFIX=$2
+      shift
+      ;;
+    --tag-prefix=?*)
+      TAG_PREFIX=${1#*=}
+      ;;
+    --tag-prefix=)
+      print_missing_argument_message "${1%=}" && print_help
+      ;;
+    -b|--base-branch-name)
+      [ -z "$2" ] && print_missing_argument_message "$1" && print_help
+      BASE_BRANCH_NAME=$2
+      shift
+      ;;
+    --base-branch-name=?*)
+      BASE_BRANCH_NAME=${1#*=}
+      ;;
+    --base-branch-name=)
+      print_missing_argument_message "${1%=}" && print_help
+      ;;
     -f|--force)
       FORCE=$1
       ;;
     -h|-\?|--help)
-      show_help
+      print_help
       ;;
     --)
       shift
       break
       ;;
     -?*)
-      printf "Error: Unknown option '%s'\n" "$1"
-      show_help
+      print_unknown_option_message "$1" && print_help
       ;;
     ?*)
       arguments+=("$1")
@@ -62,16 +123,15 @@ while :; do
   shift
 done
 
-[ ${#arguments[@]} -ne 1 ] && show_help
+[ ${#arguments[@]} -ne 1 ] && print_help
 
 for argument in "${arguments[@]}"; do
   if [ -z "$TARGET_VERSION" ]; then
     TARGET_VERSION=$argument
   else
-    show_help
+    print_help
   fi
 done
 
-source "$SCRIPT_DIR/internal"
 start
 exit $?

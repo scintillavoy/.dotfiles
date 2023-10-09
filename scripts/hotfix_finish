@@ -4,7 +4,7 @@ SCRIPT_PATH=$0
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 SCRIPT_NAME=$(basename "$SCRIPT_PATH")
 
-# Variables which can be overridden by environment variables.
+# Variables which can be overridden by setting options or environment variables.
 PROJECT_ROOT_DIR=${PROJECT_ROOT_DIR:-$(git rev-parse --show-toplevel)}
 REMOTE_NAME=${REMOTE_NAME:-"origin"}
 BRANCH_PREFIX=${BRANCH_PREFIX:-"hotfix/"}
@@ -19,39 +19,109 @@ DEVELOPMENT_VERSION=
 CONTINUE=
 FORCE=
 
-show_help() {
+print_help() {
   printf "Usage: %s <hotfix-version> <development-version> [options]\n" "$SCRIPT_NAME"
   printf "\n"
   printf "Options:\n"
-  printf "  -m, --continue-from-main         Continue from merging into the main branch.\n"
-  printf "  -d, --continue-from-development  Continue from merging into the development branch.\n"
-  printf "  -f, --force                      Push to the remote repository forcefully.\n"
-  printf "  -h, --help                       Display this help and exit.\n"
-  printf "  --                               Do not interpret any more arguments as options.\n"
+  printf "  -p, --project-root-dir <path>           Path to the project root directory.\n"
+  printf "  -r, --remote-name <remote>              The name of the remote to be used.\n"
+  printf "  -B, --branch-prefix <prefix>            A prefix for the hotfix branch name.\n"
+  printf "  -t, --tag-prefix <prefix>               A prefix for the version tag name.\n"
+  printf "  -m, --main-branch-name <branch>         The name of the main branch.\n"
+  printf "  -d, --development-branch-name <branch>  The name of the development branch.\n"
+  printf "  --continue-from-main                    Continue from merging into the main branch.\n"
+  printf "  --continue-from-development             Continue from merging into the development branch.\n"
+  printf "  -f, --force                             Push to the remote repository forcefully.\n"
+  printf "  -h, --help                              Display this help and exit.\n"
+  printf "  --                                      Do not interpret any more arguments as options.\n"
   exit 1
 }
 
+source "$SCRIPT_DIR/internal"
+
 while :; do
   case $1 in
-    -m|--continue-from-main)
-      CONTINUE="--continue-from-main"
+    -p|--project-root-dir)
+      [ -z "$2" ] && print_missing_argument_message "$1" && print_help
+      PROJECT_ROOT_DIR=$2
+      shift
       ;;
-    -d|--continue-from-development)
-      CONTINUE="--continue-from-development"
+    --project-root-dir=?*)
+      PROJECT_ROOT_DIR=${1#*=}
+      ;;
+    --project-root-dir=)
+      print_missing_argument_message "${1%=}" && print_help
+      ;;
+    -r|--remote-name)
+      [ -z "$2" ] && print_missing_argument_message "$1" && print_help
+      REMOTE_NAME=$2
+      shift
+      ;;
+    --remote-name=?*)
+      REMOTE_NAME=${1#*=}
+      ;;
+    --remote-name=)
+      print_missing_argument_message "${1%=}" && print_help
+      ;;
+    -B|--branch-prefix)
+      [ -z "$2" ] && print_missing_argument_message "$1" && print_help
+      BRANCH_PREFIX=$2
+      shift
+      ;;
+    --branch-prefix=?*)
+      BRANCH_PREFIX=${1#*=}
+      ;;
+    --branch-prefix=)
+      print_missing_argument_message "${1%=}" && print_help
+      ;;
+    -t|--tag-prefix)
+      [ -z "$2" ] && print_missing_argument_message "$1" && print_help
+      TAG_PREFIX=$2
+      shift
+      ;;
+    --tag-prefix=?*)
+      TAG_PREFIX=${1#*=}
+      ;;
+    --tag-prefix=)
+      print_missing_argument_message "${1%=}" && print_help
+      ;;
+    -m|--main-branch-name)
+      [ -z "$2" ] && print_missing_argument_message "$1" && print_help
+      MAIN_BRANCH_NAME=$2
+      shift
+      ;;
+    --main-branch-name=?*)
+      MAIN_BRANCH_NAME=${1#*=}
+      ;;
+    --main-branch-name=)
+      print_missing_argument_message "${1%=}" && print_help
+      ;;
+    -d|--development-branch-name)
+      [ -z "$2" ] && print_missing_argument_message "$1" && print_help
+      DEVELOPMENT_BRANCH_NAME=$2
+      shift
+      ;;
+    --development-branch-name=?*)
+      DEVELOPMENT_BRANCH_NAME=${1#*=}
+      ;;
+    --development-branch-name=)
+      print_missing_argument_message "${1%=}" && print_help
+      ;;
+    --continue-from-main|--continue-from-development)
+      CONTINUE=$1
       ;;
     -f|--force)
       FORCE=$1
       ;;
     -h|-\?|--help)
-      show_help
+      print_help
       ;;
     --)
       shift
       break
       ;;
     -?*)
-      printf "Error: Unknown option '%s'\n" "$1"
-      show_help
+      print_unknown_option_message "$1" && print_help
       ;;
     ?*)
       arguments+=("$1")
@@ -73,7 +143,7 @@ while :; do
   shift
 done
 
-[ ${#arguments[@]} -ne 2 ] && show_help
+[ ${#arguments[@]} -ne 2 ] && print_help
 
 for argument in "${arguments[@]}"; do
   if [ -z "$TARGET_VERSION" ]; then
@@ -81,10 +151,9 @@ for argument in "${arguments[@]}"; do
   elif [ -z "$DEVELOPMENT_VERSION" ]; then
     DEVELOPMENT_VERSION=$argument
   else
-    show_help
+    print_help
   fi
 done
 
-source "$SCRIPT_DIR/internal"
 finish
 exit $?
