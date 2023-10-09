@@ -18,25 +18,25 @@ NO_COLOR="\033[0m"
 
 check_local_changes() {
   [ "$(git status --porcelain | wc -l)" -eq 0 ] && return 0
-  printf "%bError: There are local changes in the working tree:%b\n" "${RED}" "${NO_COLOR}"
+  printf "%bError: There are local changes in the working tree:%b\n" "$RED" "$NO_COLOR"
   git status --porcelain | sed -r "s|^(.*)$|\t\1|g"
-  printf "%bPlease commit your changes or stash them first.%b\n" "${RED}" "${NO_COLOR}"
+  printf "%bPlease commit your changes or stash them first.%b\n" "$RED" "$NO_COLOR"
   return 1
 }
 
 check_remote_branch_exists() {
   local branch_name=$1
   [ "$(git branch --remote --list "$branch_name" | wc -l)" -gt 0 ] && return 0
-  printf "%bError: Remote branch $branch_name does not exist.%b\n" "${RED}" "${NO_COLOR}"
-  printf "%bAborted.%b\n" "${RED}" "${NO_COLOR}"
+  printf "%bError: Remote branch %s does not exist.%b\n" "$RED" "$branch_name" "$NO_COLOR"
+  printf "%bAborted.%b\n" "$RED" "$NO_COLOR"
   return 1
 }
 
 check_remote_branch_does_not_exist() {
   local branch_name=$1
   [ "$(git branch --remote --list "$branch_name" | wc -l)" -eq 0 ] && return 0
-  printf "%bError: Remote branch $branch_name already exists.%b\n" "${RED}" "${NO_COLOR}"
-  printf "%bAborted.%b\n" "${RED}" "${NO_COLOR}"
+  printf "%bError: Remote branch %s already exists.%b\n" "$RED" "$branch_name" "$NO_COLOR"
+  printf "%bAborted.%b\n" "$RED" "$NO_COLOR"
   return 1
 }
 
@@ -44,8 +44,8 @@ check_remote_tag_does_not_exist() {
   local remote_name=$1
   local tag_name=$2
   [ "$(git ls-remote --tags "$remote_name" "$tag_name" | wc -l)" -eq 0 ] && return 0
-  printf "%bError: Tag $tag_name already exists in remote $remote_name.%b\n" "${RED}" "${NO_COLOR}"
-  printf "%bAborted.%b\n" "${RED}" "${NO_COLOR}"
+  printf "%bError: Tag %s already exists in remote %s.%b\n" "$RED" "$tag_name" "$remote_name" "$NO_COLOR"
+  printf "%bAborted.%b\n" "$RED" "$NO_COLOR"
   return 1
 }
 
@@ -53,8 +53,8 @@ check_merge_conflict() {
   local branch_name=$1
   local flag_name=$2
   [ "$(git ls-files -u "$PROJECT_ROOT_DIR" | wc -l)" -eq 0 ] && return 0
-  printf "%bError: Merge conflict detected while merging into $branch_name.%b\n" "${RED}" "${NO_COLOR}"
-  printf "%bResolve conflicts and run $SCRIPT_PATH $TARGET_VERSION $DEVELOPMENT_VERSION $flag_name%b\n" "${RED}" "${NO_COLOR}"
+  printf "%bError: Merge conflict detected while merging into %s.%b\n" "$RED" "$branch_name" "$NO_COLOR"
+  printf "%bResolve conflicts and run %s%b\n" "$RED" "$SCRIPT_NAME $TARGET_VERSION $DEVELOPMENT_VERSION $flag_name" "$NO_COLOR"
   return 1
 }
 
@@ -74,7 +74,7 @@ change_version() {
     source "$change_version_path" "$version"
     git add --all
   else
-    printf "%bWarning: Cannot find a script to change version.%b\n" "${ORANGE}" "${NO_COLOR}"
+    printf "%bWarning: Cannot find a script to change version.%b\n" "$ORANGE" "$NO_COLOR"
   fi
   git commit --allow-empty -m "Change version to $version"
 }
@@ -106,7 +106,7 @@ push_to_remote() {
   if [ -n "$FORCE" ]; then
     arguments=("$FORCE" "${arguments[@]}")
   fi
-  printf "%bPushing to $REMOTE_NAME...%b\n" "${BLUE}" "${NO_COLOR}"
+  printf "%bPushing to %s...%b\n" "$BLUE" "$REMOTE_NAME" "$NO_COLOR"
   git push "${arguments[@]}"
 }
 
@@ -134,8 +134,8 @@ start() {
   check_remote_branch_exists "$REMOTE_NAME/$BASE_BRANCH_NAME"
   return_value=$?
   if [ $return_value -ne 0 ]; then
-    printf "%bHint: The name of the base branch can be overridden by setting an environment variable.%b\n" "${ORANGE}" "${NO_COLOR}"
-    printf "%bHint: For example, try 'export BASE_BRANCH_NAME=<base_branch_name>'.%b\n" "${ORANGE}" "${NO_COLOR}"
+    printf "%bHint: The name of the base branch can be overridden by setting an environment variable.%b\n" "$ORANGE" "$NO_COLOR"
+    printf "%bHint: For example, try 'export BASE_BRANCH_NAME=<base_branch_name>'.%b\n" "$ORANGE" "$NO_COLOR"
     return $return_value
   fi
 
@@ -175,16 +175,16 @@ finish() {
   check_remote_branch_exists "$REMOTE_NAME/$MAIN_BRANCH_NAME"
   return_value=$?
   if [ $return_value -ne 0 ]; then
-    printf "%bHint: The name of the main branch can be overridden by setting an environment variable.%b\n" "${ORANGE}" "${NO_COLOR}"
-    printf "%bHint: For example, try 'export MAIN_BRANCH_NAME=<main_branch_name>'.%b\n" "${ORANGE}" "${NO_COLOR}"
+    printf "%bHint: The name of the main branch can be overridden by setting an environment variable.%b\n" "$ORANGE" "$NO_COLOR"
+    printf "%bHint: For example, try 'export MAIN_BRANCH_NAME=<main_branch_name>'.%b\n" "$ORANGE" "$NO_COLOR"
     return $return_value
   fi
 
   check_remote_branch_exists "$REMOTE_NAME/$DEVELOPMENT_BRANCH_NAME"
   return_value=$?
   if [ $return_value -ne 0 ]; then
-    printf "%bHint: The name of the development branch can be overridden by setting an environment variable.%b\n" "${ORANGE}" "${NO_COLOR}"
-    printf "%bHint: For example, try 'export DEVELOPMENT_BRANCH_NAME=<development_branch_name>'.%b\n" "${ORANGE}" "${NO_COLOR}"
+    printf "%bHint: The name of the development branch can be overridden by setting an environment variable.%b\n" "$ORANGE" "$NO_COLOR"
+    printf "%bHint: For example, try 'export DEVELOPMENT_BRANCH_NAME=<development_branch_name>'.%b\n" "$ORANGE" "$NO_COLOR"
     return $return_value
   fi
 

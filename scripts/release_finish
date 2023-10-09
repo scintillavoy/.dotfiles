@@ -2,6 +2,7 @@
 
 SCRIPT_PATH=$0
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+SCRIPT_NAME=$(basename "$SCRIPT_PATH")
 
 # Variables which can be overridden by environment variables.
 PROJECT_ROOT_DIR=${PROJECT_ROOT_DIR:-$(git rev-parse --show-toplevel)}
@@ -19,7 +20,7 @@ CONTINUE=
 FORCE=
 
 show_help() {
-  printf "Usage: %s <release-version> <development-version> [options]\n" "$(basename "$SCRIPT_PATH")"
+  printf "Usage: %s <release-version> <development-version> [options]\n" "$SCRIPT_NAME"
   printf "\n"
   printf "Options:\n"
   printf "  -m, --continue-from-main         Continue from merging into the main branch.\n"
