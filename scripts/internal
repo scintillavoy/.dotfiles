@@ -96,8 +96,7 @@ merge_into_main() {
   git pull --ff-only
   git merge --no-ff --no-edit "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
   check_merge_conflict "$MAIN_BRANCH_NAME" "--continue-from-main"
-  local return_value=$?
-  [ $return_value -ne 0 ] && return $return_value
+  return $?
 }
 
 merge_into_development() {
@@ -109,8 +108,7 @@ merge_into_development() {
   git pull --ff-only
   git merge --no-ff --no-edit "$BRANCH_PREFIX$TARGET_VERSION"
   check_merge_conflict "$DEVELOPMENT_BRANCH_NAME" "--continue-from-development"
-  local return_value=$?
-  [ $return_value -ne 0 ] && return $return_value
+  return $?
 }
 
 push_to_remote() {
