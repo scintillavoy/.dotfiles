@@ -74,6 +74,22 @@ check_merge_conflict() {
 # Functions for Git operations
 # ------------------------------------------------------------------------------
 
+change_directory() {
+  local directory=$1
+  if ! cd "$directory"; then
+    printf "%bError: Could not change the current directory to '%s'.%b\n" "$RED" "$directory" "$NO_COLOR"
+    printf "%bPlease make sure the specified project root directory exists.%b\n" "$RED" "$NO_COLOR"
+    return 1
+  fi
+  if [ -z "$(git rev-parse --show-toplevel 2> /dev/null)" ]; then
+    printf "%bError: '%s' is not a git repository.%b\n" "$RED" "$(pwd)" "$NO_COLOR"
+    printf "%bPlease make sure you are in a git repository%b\n" "$RED" "$NO_COLOR"
+    printf "%bor the specified project root directory is a git repository.%b\n" "$RED" "$NO_COLOR"
+    return 1
+  fi
+  return 0
+}
+
 change_version() {
   local version=$1
   local change_version_path=$SCRIPT_DIR/change_version
@@ -86,7 +102,7 @@ change_version() {
     source "$change_version_path" "$version"
     git add --all
   else
-    printf "%bWarning: Cannot find a script to change version.%b\n" "$ORANGE" "$NO_COLOR"
+    printf "%bWarning: Could not find a script to change version.%b\n" "$ORANGE" "$NO_COLOR"
   fi
   git commit --allow-empty -m "Change version to $version"
 }
@@ -125,8 +141,12 @@ push_to_remote() {
 # ------------------------------------------------------------------------------
 
 start() {
-  check_local_changes
+  change_directory "$PROJECT_ROOT_DIR"
   local return_value=$?
+  [ $return_value -ne 0 ] && return $return_value
+
+  check_local_changes
+  return_value=$?
   [ $return_value -ne 0 ] && return $return_value
 
   git fetch "$REMOTE_NAME"
@@ -166,7 +186,9 @@ start() {
 # ------------------------------------------------------------------------------
 
 finish() {
-  local return_value
+  change_directory "$PROJECT_ROOT_DIR"
+  local return_value=$?
+  [ $return_value -ne 0 ] && return $return_value
 
   if [ -z "$CONTINUE" ]; then
     check_local_changes
