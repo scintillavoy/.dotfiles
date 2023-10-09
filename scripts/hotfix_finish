@@ -17,6 +17,7 @@ DEVELOPMENT_BRANCH_NAME=${DEVELOPMENT_BRANCH_NAME:-"development"}
 arguments=()
 TARGET_VERSION=
 DEVELOPMENT_VERSION=
+ASSUME_YES=
 CONTINUE=
 FORCE=
 
@@ -31,6 +32,7 @@ print_help() {
   printf "  -t, --tag-prefix <prefix>               A prefix for the version tag name.\n"
   printf "  -m, --main-branch-name <branch>         The name of the main branch.\n"
   printf "  -d, --development-branch-name <branch>  The name of the development branch.\n"
+  printf "  -y, --assume-yes                        Answer yes for all questions.\n"
   printf "  --continue-from-main                    Continue from merging into the main branch.\n"
   printf "  --continue-from-development             Continue from merging into the development branch.\n"
   printf "  -f, --force                             Push to the remote repository forcefully.\n"
@@ -120,8 +122,11 @@ while :; do
     --development-branch-name=)
       print_missing_argument_message "${1%=}" && print_help
       ;;
+    -y|--assume-yes)
+      ASSUME_YES=$1
+      ;;
     --continue-from-main|--continue-from-development)
-      CONTINUE=$1
+      CONTINUE=${1##*-}
       ;;
     -f|--force)
       FORCE=$1

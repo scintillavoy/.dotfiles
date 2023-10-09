@@ -10,7 +10,7 @@ BLUE="\033[0;34m"
 NO_COLOR="\033[0m"
 
 # ------------------------------------------------------------------------------
-# Functions for printing messages
+# Functions for printing messages and confirmation
 # ------------------------------------------------------------------------------
 
 print_missing_argument_message() {
@@ -19,6 +19,19 @@ print_missing_argument_message() {
 
 print_unknown_option_message() {
   printf "Error: Unknown option '%s'\n" "$1"
+}
+
+ask() {
+  local prompt=$1
+  while :; do
+    read -p "$prompt [y/N]: " -r
+    REPLY=${REPLY:-"n"}
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      return 0
+    elif [[ $REPLY =~ ^[Nn]$ ]]; then
+      return 1
+    fi
+  done
 }
 
 # ------------------------------------------------------------------------------
@@ -63,10 +76,10 @@ check_remote_tag_does_not_exist() {
 
 check_merge_conflict() {
   local branch_name=$1
-  local flag_name=$2
+  local continue=$2
   [ "$(git ls-files -u "$PROJECT_ROOT_DIR" | wc -l)" -eq 0 ] && return 0
   printf "%bError: Merge conflict detected while merging into %s.%b\n" "$RED" "$branch_name" "$NO_COLOR"
-  printf "%bResolve conflicts and run %s%b\n" "$RED" "$SCRIPT_NAME $TARGET_VERSION $DEVELOPMENT_VERSION $flag_name" "$NO_COLOR"
+  printf "%bResolve conflicts and run %s%b\n" "$RED" "$SCRIPT_NAME $TARGET_VERSION $DEVELOPMENT_VERSION --continue-from-$continue" "$NO_COLOR"
   return 1
 }
 
@@ -90,16 +103,20 @@ change_directory() {
   return 0
 }
 
+set_change_version_path() {
+  if [ -n "$CHANGE_VERSION_PATH" ]; then
+    return 0
+  elif [ -f "$PROJECT_ROOT_DIR/scripts/change_version" ]; then
+    CHANGE_VERSION_PATH=$PROJECT_ROOT_DIR/scripts/change_version
+  else
+    CHANGE_VERSION_PATH=$SCRIPT_DIR/change_version
+  fi
+}
+
 change_version() {
   local version=$1
-  local change_version_path=$SCRIPT_DIR/change_version
-  if [ -n "$CHANGE_VERSION_PATH" ]; then
-    change_version_path=$CHANGE_VERSION_PATH
-  elif [ -f "$PROJECT_ROOT_DIR/scripts/change_version" ]; then
-    change_version_path=$PROJECT_ROOT_DIR/scripts/change_version
-  fi
-  if [ -f "$change_version_path" ]; then
-    source "$change_version_path" "$version"
+  if [ -f "$CHANGE_VERSION_PATH" ]; then
+    source "$CHANGE_VERSION_PATH" "$version"
     git add --all
   else
     printf "%bWarning: Could not find a script to change version.%b\n" "$ORANGE" "$NO_COLOR"
@@ -111,7 +128,7 @@ merge_into_main() {
   git checkout -B "$MAIN_BRANCH_NAME" "$REMOTE_NAME/$MAIN_BRANCH_NAME"
   git pull --ff-only
   git merge --no-ff --no-edit "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
-  check_merge_conflict "$MAIN_BRANCH_NAME" "--continue-from-main"
+  check_merge_conflict "$MAIN_BRANCH_NAME" "main"
   return $?
 }
 
@@ -123,7 +140,7 @@ merge_into_development() {
   git checkout -B "$DEVELOPMENT_BRANCH_NAME" "$REMOTE_NAME/$DEVELOPMENT_BRANCH_NAME"
   git pull --ff-only
   git merge --no-ff --no-edit "$BRANCH_PREFIX$TARGET_VERSION"
-  check_merge_conflict "$DEVELOPMENT_BRANCH_NAME" "--continue-from-development"
+  check_merge_conflict "$DEVELOPMENT_BRANCH_NAME" "development"
   return $?
 }
 
@@ -141,6 +158,22 @@ push_to_remote() {
 # ------------------------------------------------------------------------------
 
 start() {
+  set_change_version_path
+
+  if [ -z "$ASSUME_YES" ]; then
+    printf "Confirm the values before proceeding:\n"
+    printf "  Script name:\t\t\t%s\n" "$SCRIPT_NAME"
+    printf "  Target version:\t\t%s\n" "$TARGET_VERSION"
+    printf "  Project root directory:\t%s\n" "$PROJECT_ROOT_DIR"
+    printf "  Change version path:\t\t%s\n" "$CHANGE_VERSION_PATH"
+    printf "  Remote name:\t\t\t%s\n" "$REMOTE_NAME"
+    printf "  Branch prefix:\t\t%s\n" "$BRANCH_PREFIX"
+    printf "  Tag prefix:\t\t\t%s\n" "$TAG_PREFIX"
+    printf "  Base branch name:\t\t%s\n" "$BASE_BRANCH_NAME"
+    [ -n "$FORCE" ] && printf "%b  ! Force push enabled.%b\n" "$ORANGE" "$NO_COLOR"
+    ask "Proceed?" || return 0
+  fi
+
   change_directory "$PROJECT_ROOT_DIR"
   local return_value=$?
   [ $return_value -ne 0 ] && return $return_value
@@ -186,6 +219,25 @@ start() {
 # ------------------------------------------------------------------------------
 
 finish() {
+  set_change_version_path
+
+  if [ -z "$ASSUME_YES" ]; then
+    printf "Confirm the values before proceeding:\n"
+    printf "  Script name:\t\t\t%s\n" "$SCRIPT_NAME"
+    printf "  Target version:\t\t%s\n" "$TARGET_VERSION"
+    printf "  Development version:\t\t%s\n" "$DEVELOPMENT_VERSION"
+    printf "  Project root directory:\t%s\n" "$PROJECT_ROOT_DIR"
+    printf "  Change version path:\t\t%s\n" "$CHANGE_VERSION_PATH"
+    printf "  Remote name:\t\t\t%s\n" "$REMOTE_NAME"
+    printf "  Branch prefix:\t\t%s\n" "$BRANCH_PREFIX"
+    printf "  Tag prefix:\t\t\t%s\n" "$TAG_PREFIX"
+    printf "  Main branch name:\t\t%s\n" "$MAIN_BRANCH_NAME"
+    printf "  Development branch name:\t%s\n" "$DEVELOPMENT_BRANCH_NAME"
+    [ -n "$CONTINUE" ] && printf "%b  ! Continue from merging into the %s branch.%b\n" "$ORANGE" "$CONTINUE" "$NO_COLOR"
+    [ -n "$FORCE" ] && printf "%b  ! Force push enabled.%b\n" "$ORANGE" "$NO_COLOR"
+    ask "Proceed?" || return 0
+  fi
+
   change_directory "$PROJECT_ROOT_DIR"
   local return_value=$?
   [ $return_value -ne 0 ] && return $return_value
@@ -234,7 +286,7 @@ finish() {
 
   if [ -n "$CONTINUE" ]; then
     case "$CONTINUE" in
-      --continue-from-main)
+      main)
         check_merge_conflict "$MAIN_BRANCH_NAME" "$CONTINUE"
         return_value=$?
         [ $return_value -ne 0 ] && return $return_value
@@ -243,7 +295,7 @@ finish() {
         return_value=$?
         [ $return_value -ne 0 ] && return $return_value
         ;;
-      --continue-from-development)
+      development)
         check_merge_conflict "$DEVELOPMENT_BRANCH_NAME" "$CONTINUE"
         return_value=$?
         [ $return_value -ne 0 ] && return $return_value

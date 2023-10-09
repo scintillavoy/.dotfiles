@@ -15,6 +15,7 @@ BASE_BRANCH_NAME=${BASE_BRANCH_NAME:-"development"}
 # Command line arguments.
 arguments=()
 TARGET_VERSION=
+ASSUME_YES=
 FORCE=
 
 print_help() {
@@ -27,6 +28,7 @@ print_help() {
   printf "  -B, --branch-prefix <prefix>      A prefix for the release branch name.\n"
   printf "  -t, --tag-prefix <prefix>         A prefix for the version tag name.\n"
   printf "  -b, --base-branch-name <branch>   The name of the base branch.\n"
+  printf "  -y, --assume-yes                  Answer yes for all questions.\n"
   printf "  -f, --force                       Push to the remote repository forcefully.\n"
   printf "  -h, --help                        Display this help and exit.\n"
   printf "  --                                Do not interpret any more arguments as options.\n"
@@ -102,6 +104,9 @@ while :; do
       ;;
     --base-branch-name=)
       print_missing_argument_message "${1%=}" && print_help
+      ;;
+    -y|--assume-yes)
+      ASSUME_YES=$1
       ;;
     -f|--force)
       FORCE=$1
