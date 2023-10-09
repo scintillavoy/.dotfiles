@@ -79,7 +79,7 @@ check_merge_conflict() {
   local continue=$2
   [ "$(git ls-files -u "$PROJECT_ROOT_DIR" | wc -l)" -eq 0 ] && return 0
   printf "%bError: Merge conflict detected while merging into %s.%b\n" "$RED" "$branch_name" "$NO_COLOR"
-  printf "%bResolve conflicts and run %s%b\n" "$RED" "$SCRIPT_NAME $TARGET_VERSION $DEVELOPMENT_VERSION --continue-from-$continue" "$NO_COLOR"
+  printf "%bResolve conflicts and run the script with '%s' option.%b\n" "$RED" "--continue-from-$continue" "$NO_COLOR"
   return 1
 }
 
