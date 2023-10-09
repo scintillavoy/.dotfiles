@@ -21,7 +21,7 @@ print_help() {
   printf "\n"
   printf "Options:\n"
   printf "  -p, --project-root-dir <path>    Path to the project root directory.\n"
-  printf "  -r, --remote-name <remote>       The name of the remote to be used.\n"
+  printf "  -r, --remote-name <remote>       The name of the remote repository.\n"
   printf "  -B, --branch-prefix <prefix>     A prefix for the hotfix branch name.\n"
   printf "  -t, --tag-prefix <prefix>        A prefix for the version tag name.\n"
   printf "  -b, --base-branch-name <branch>  The name of the base branch.\n"
