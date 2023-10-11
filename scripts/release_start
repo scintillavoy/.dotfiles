@@ -4,20 +4,6 @@ SCRIPT_PATH=$0
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 SCRIPT_NAME=$(basename "$SCRIPT_PATH")
 
-# Variables which can be overridden by setting options or environment variables.
-PROJECT_ROOT_DIR=${PROJECT_ROOT_DIR:-$(git rev-parse --show-toplevel 2> /dev/null)}
-CHANGE_VERSION_PATH=${CHANGE_VERSION_PATH:-""}
-REMOTE_NAME=${REMOTE_NAME:-"origin"}
-BRANCH_PREFIX=${BRANCH_PREFIX:-"release/"}
-TAG_PREFIX=${TAG_PREFIX:-"v"}
-BASE_BRANCH_NAME=${BASE_BRANCH_NAME:-"development"}
-
-# Command line arguments.
-arguments=()
-TARGET_VERSION=
-ASSUME_YES=
-FORCE=
-
 print_help() {
   printf "Usage: %s <release-version> [options]\n" "$SCRIPT_NAME"
   printf "\n"
@@ -25,9 +11,9 @@ print_help() {
   printf "  -p, --project-root-dir <path>     Path to the project root directory.\n"
   printf "  -c, --change-version-path <path>  Path to the script executed when changing version.\n"
   printf "  -r, --remote-name <remote>        The name of the remote repository.\n"
-  printf "  -B, --branch-prefix <prefix>      A prefix for the release branch name.\n"
+  printf "  -b, --branch-prefix <prefix>      A prefix for the release branch name.\n"
   printf "  -t, --tag-prefix <prefix>         A prefix for the version tag name.\n"
-  printf "  -b, --base-branch-name <branch>   The name of the base branch.\n"
+  printf "  -s, --start-point <arg>           The start point of the release branch.\n"
   printf "  -y, --assume-yes                  Answer yes for all questions.\n"
   printf "  -f, --force                       Push to the remote repository forcefully.\n"
   printf "  -h, --help                        Display this help and exit.\n"
@@ -36,6 +22,12 @@ print_help() {
 }
 
 source "$SCRIPT_DIR/internal"
+
+# Command line arguments.
+arguments=()
+TARGET_VERSION=
+ASSUME_YES=
+FORCE=
 
 while :; do
   case $1 in
@@ -72,7 +64,7 @@ while :; do
     --remote-name=)
       print_missing_argument_message "${1%=}" && print_help
       ;;
-    -B|--branch-prefix)
+    -b|--branch-prefix)
       [ -z "$2" ] && print_missing_argument_message "$1" && print_help
       BRANCH_PREFIX=$2
       shift
@@ -94,15 +86,15 @@ while :; do
     --tag-prefix=)
       print_missing_argument_message "${1%=}" && print_help
       ;;
-    -b|--base-branch-name)
+    -s|--start-point)
       [ -z "$2" ] && print_missing_argument_message "$1" && print_help
-      BASE_BRANCH_NAME=$2
+      START_POINT=$2
       shift
       ;;
-    --base-branch-name=?*)
-      BASE_BRANCH_NAME=${1#*=}
+    --start-point=?*)
+      START_POINT=${1#*=}
       ;;
-    --base-branch-name=)
+    --start-point=)
       print_missing_argument_message "${1%=}" && print_help
       ;;
     -y|--assume-yes)
@@ -150,6 +142,14 @@ for argument in "${arguments[@]}"; do
     print_help
   fi
 done
+
+# Variables which can be overridden by setting options or environment variables.
+PROJECT_ROOT_DIR=${PROJECT_ROOT_DIR:-$(git rev-parse --show-toplevel 2>/dev/null)}
+CHANGE_VERSION_PATH=${CHANGE_VERSION_PATH:-""}
+REMOTE_NAME=${REMOTE_NAME:-"origin"}
+BRANCH_PREFIX=${BRANCH_PREFIX:-"release/"}
+TAG_PREFIX=${TAG_PREFIX:-"v"}
+START_POINT=${START_POINT:-"$REMOTE_NAME/development"}
 
 start
 exit $?

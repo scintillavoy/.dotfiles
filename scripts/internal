@@ -74,6 +74,14 @@ check_remote_tag_does_not_exist() {
   return 1
 }
 
+check_commit_exists() {
+  local arg=$1
+  [ "$(git rev-parse --verify "$arg^{commit}" 2>/dev/null | wc -l)" -gt 0 ] && return 0
+  printf "%bError: %s cannot be dereferenced to a commit.%b\n" "$RED" "$arg" "$NO_COLOR"
+  printf "%bAborted.%b\n" "$RED" "$NO_COLOR"
+  return 1
+}
+
 check_merge_conflict() {
   local branch_name=$1
   local continue=$2
@@ -94,7 +102,7 @@ change_directory() {
     printf "%bPlease make sure the specified project root directory exists.%b\n" "$RED" "$NO_COLOR"
     return 1
   fi
-  if [ -z "$(git rev-parse --show-toplevel 2> /dev/null)" ]; then
+  if [ -z "$(git rev-parse --show-toplevel 2>/dev/null)" ]; then
     printf "%bError: '%s' is not a git repository.%b\n" "$RED" "$(pwd)" "$NO_COLOR"
     printf "%bPlease make sure you are in a git repository%b\n" "$RED" "$NO_COLOR"
     printf "%bor the specified project root directory is a git repository.%b\n" "$RED" "$NO_COLOR"
@@ -163,7 +171,7 @@ start() {
     printf "  Remote name:\t\t\t%s\n" "$REMOTE_NAME"
     printf "  Branch prefix:\t\t%s\n" "$BRANCH_PREFIX"
     printf "  Tag prefix:\t\t\t%s\n" "$TAG_PREFIX"
-    printf "  Base branch name:\t\t%s\n" "$BASE_BRANCH_NAME"
+    printf "  Start point:\t\t\t%s\n" "$START_POINT"
     [ -n "$FORCE" ] && printf "%b  ! Force push enabled.%b\n" "$ORANGE" "$NO_COLOR"
     ask "Proceed?" || return 0
   fi
@@ -188,15 +196,16 @@ start() {
     [ $return_value -ne 0 ] && return $return_value
   fi
 
-  check_remote_branch_exists "$REMOTE_NAME/$BASE_BRANCH_NAME"
+  check_commit_exists "$START_POINT"
   return_value=$?
   if [ $return_value -ne 0 ]; then
-    printf "%bHint: The name of the base branch can be overridden by setting an option.%b\n" "$ORANGE" "$NO_COLOR"
-    printf "%bHint: For example, try '%s --base-branch-name <branch>'.%b\n" "$ORANGE" "$SCRIPT_NAME" "$NO_COLOR"
+    printf "%bHint: The start point can be overridden by setting an option.%b\n" "$ORANGE" "$NO_COLOR"
+    printf "%bHint: For example, try '%s --start-point <arg>'.%b\n" "$ORANGE" "$SCRIPT_NAME" "$NO_COLOR"
+    printf "%bHint: <arg> may be given as a branch name, a commit-id, or a tag.%b\n" "$ORANGE" "$NO_COLOR"
     return $return_value
   fi
 
-  git checkout -B "$BRANCH_PREFIX$TARGET_VERSION" "$REMOTE_NAME/$BASE_BRANCH_NAME"
+  git checkout -B "$BRANCH_PREFIX$TARGET_VERSION" "$START_POINT"
   change_version "$TARGET_VERSION"
 
   local push_arguments=(

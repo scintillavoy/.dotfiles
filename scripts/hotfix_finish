@@ -4,23 +4,6 @@ SCRIPT_PATH=$0
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 SCRIPT_NAME=$(basename "$SCRIPT_PATH")
 
-# Variables which can be overridden by setting options or environment variables.
-PROJECT_ROOT_DIR=${PROJECT_ROOT_DIR:-$(git rev-parse --show-toplevel 2> /dev/null)}
-CHANGE_VERSION_PATH=${CHANGE_VERSION_PATH:-""}
-REMOTE_NAME=${REMOTE_NAME:-"origin"}
-BRANCH_PREFIX=${BRANCH_PREFIX:-"hotfix/"}
-TAG_PREFIX=${TAG_PREFIX:-"v"}
-MAIN_BRANCH_NAME=${MAIN_BRANCH_NAME:-"main"}
-DEVELOPMENT_BRANCH_NAME=${DEVELOPMENT_BRANCH_NAME:-"development"}
-
-# Command line arguments.
-arguments=()
-TARGET_VERSION=
-DEVELOPMENT_VERSION=
-ASSUME_YES=
-CONTINUE=
-FORCE=
-
 print_help() {
   printf "Usage: %s <hotfix-version> <development-version> [options]\n" "$SCRIPT_NAME"
   printf "\n"
@@ -28,7 +11,7 @@ print_help() {
   printf "  -p, --project-root-dir <path>           Path to the project root directory.\n"
   printf "  -c, --change-version-path <path>        Path to the script executed when changing version.\n"
   printf "  -r, --remote-name <remote>              The name of the remote repository.\n"
-  printf "  -B, --branch-prefix <prefix>            A prefix for the hotfix branch name.\n"
+  printf "  -b, --branch-prefix <prefix>            A prefix for the hotfix branch name.\n"
   printf "  -t, --tag-prefix <prefix>               A prefix for the version tag name.\n"
   printf "  -m, --main-branch-name <branch>         The name of the main branch.\n"
   printf "  -d, --development-branch-name <branch>  The name of the development branch.\n"
@@ -42,6 +25,14 @@ print_help() {
 }
 
 source "$SCRIPT_DIR/internal"
+
+# Command line arguments.
+arguments=()
+TARGET_VERSION=
+DEVELOPMENT_VERSION=
+ASSUME_YES=
+CONTINUE=
+FORCE=
 
 while :; do
   case $1 in
@@ -78,7 +69,7 @@ while :; do
     --remote-name=)
       print_missing_argument_message "${1%=}" && print_help
       ;;
-    -B|--branch-prefix)
+    -b|--branch-prefix)
       [ -z "$2" ] && print_missing_argument_message "$1" && print_help
       BRANCH_PREFIX=$2
       shift
@@ -172,6 +163,15 @@ for argument in "${arguments[@]}"; do
     print_help
   fi
 done
+
+# Variables which can be overridden by setting options or environment variables.
+PROJECT_ROOT_DIR=${PROJECT_ROOT_DIR:-$(git rev-parse --show-toplevel 2>/dev/null)}
+CHANGE_VERSION_PATH=${CHANGE_VERSION_PATH:-""}
+REMOTE_NAME=${REMOTE_NAME:-"origin"}
+BRANCH_PREFIX=${BRANCH_PREFIX:-"hotfix/"}
+TAG_PREFIX=${TAG_PREFIX:-"v"}
+MAIN_BRANCH_NAME=${MAIN_BRANCH_NAME:-"main"}
+DEVELOPMENT_BRANCH_NAME=${DEVELOPMENT_BRANCH_NAME:-"development"}
 
 finish
 exit $?
