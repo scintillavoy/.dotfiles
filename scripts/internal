@@ -130,7 +130,6 @@ change_version() {
 
 merge_into_main() {
   git checkout -B "$MAIN_BRANCH_NAME" "$REMOTE_NAME/$MAIN_BRANCH_NAME"
-  git pull --ff-only
   git merge --no-ff --no-edit "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
   check_merge_conflict "$MAIN_BRANCH_NAME" "main"
   return $?
@@ -138,11 +137,9 @@ merge_into_main() {
 
 merge_into_development() {
   git checkout -B "$BRANCH_PREFIX$TARGET_VERSION" "$REMOTE_NAME/$BRANCH_PREFIX$TARGET_VERSION"
-  git pull --ff-only
   change_version "$DEVELOPMENT_VERSION"
 
   git checkout -B "$DEVELOPMENT_BRANCH_NAME" "$REMOTE_NAME/$DEVELOPMENT_BRANCH_NAME"
-  git pull --ff-only
   git merge --no-ff --no-edit "$BRANCH_PREFIX$TARGET_VERSION"
   check_merge_conflict "$DEVELOPMENT_BRANCH_NAME" "development"
   return $?
