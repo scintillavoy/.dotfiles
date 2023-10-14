@@ -24,13 +24,16 @@ print_unknown_option_message() {
 ask() {
   local prompt=$1
   while :; do
-    read -p "$prompt [y/N]: " -r
-    REPLY=${REPLY:-"n"}
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-      return 0
-    elif [[ $REPLY =~ ^[Nn]$ ]]; then
-      return 1
-    fi
+    read -p "$prompt (yes/[no]): " -r
+    REPLY=${REPLY:-"no"}
+    case "$REPLY" in
+      [yY]|[yY][eE][sS])
+        return 0
+        ;;
+      [nN]|[nN][oO])
+        return 1
+        ;;
+    esac
   done
 }
 
