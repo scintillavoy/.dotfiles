@@ -2,13 +2,16 @@
 
 ask() {
   while true; do
-    read -p "$1 ([y]/n) " -r
-    REPLY=${REPLY:-"y"}
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-      return 1
-    elif [[ $REPLY =~ ^[Nn]$ ]]; then
-      return 0
-    fi
+    read -p "$1 ([yes]/no): " -r
+    REPLY=${REPLY:-"yes"}
+    case "$REPLY" in
+      [yY]|[yY][eE][sS])
+        return 1
+        ;;
+      [nN]|[nN][oO])
+        return 0
+        ;;
+    esac
   done
 }
 
