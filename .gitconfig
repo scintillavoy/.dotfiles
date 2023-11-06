@@ -34,7 +34,8 @@
 	cpa = cherry-pick --abort
 	cpc = cherry-pick --continue
 	################
-	ccc = !git reset --hard && git clean -xdf
+	ccc = !git reset --hard && git clean -df
+	cccx = !git reset --hard && git clean -xdf
 	################
 	cl = clone
 	################
