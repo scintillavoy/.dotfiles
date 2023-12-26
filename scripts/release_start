@@ -145,7 +145,13 @@ done
 
 # Variables which can be overridden by setting options or environment variables.
 PROJECT_ROOT_DIR=${PROJECT_ROOT_DIR:-$(git rev-parse --show-toplevel 2>/dev/null)}
-CHANGE_VERSION_PATH=${CHANGE_VERSION_PATH:-""}
+if [ -z "$CHANGE_VERSION_PATH" ]; then
+  if [ -f "$PROJECT_ROOT_DIR/scripts/change_version" ]; then
+    CHANGE_VERSION_PATH=$PROJECT_ROOT_DIR/scripts/change_version
+  else
+    CHANGE_VERSION_PATH=$SCRIPT_DIR/change_version
+  fi
+fi
 REMOTE_NAME=${REMOTE_NAME:-"origin"}
 BRANCH_PREFIX=${BRANCH_PREFIX:-"release/"}
 TAG_PREFIX=${TAG_PREFIX:-"v"}

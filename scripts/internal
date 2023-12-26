@@ -116,14 +116,8 @@ change_directory() {
 
 change_version() {
   local version=$1
-  local change_version_path=$SCRIPT_DIR/change_version
-  if [ -n "$CHANGE_VERSION_PATH" ]; then
-    change_version_path=$CHANGE_VERSION_PATH
-  elif [ -f "$PROJECT_ROOT_DIR/scripts/change_version" ]; then
-    change_version_path=$PROJECT_ROOT_DIR/scripts/change_version
-  fi
-  if [ -f "$change_version_path" ]; then
-    source "$change_version_path" "$version"
+  if [ -f "$CHANGE_VERSION_PATH" ]; then
+    source "$CHANGE_VERSION_PATH" "$version"
     git add --all
   else
     printf "%bWarning: Could not find a script to change version.%b\n" "$ORANGE" "$NO_COLOR"
@@ -167,7 +161,7 @@ start() {
     printf "  Script name:\t\t\t%s\n" "$SCRIPT_NAME"
     printf "  Target version:\t\t%s\n" "$TARGET_VERSION"
     printf "  Project root directory:\t%s\n" "$PROJECT_ROOT_DIR"
-    printf "  Change version path:\t\t%s\n" "${CHANGE_VERSION_PATH:-"Not specified. The default path will be used."}"
+    printf "  Change version path:\t\t%s\n" "$CHANGE_VERSION_PATH"
     printf "  Remote name:\t\t\t%s\n" "$REMOTE_NAME"
     printf "  Branch prefix:\t\t%s\n" "$BRANCH_PREFIX"
     printf "  Tag prefix:\t\t\t%s\n" "$TAG_PREFIX"
@@ -228,7 +222,7 @@ finish() {
     printf "  Target version:\t\t%s\n" "$TARGET_VERSION"
     printf "  Development version:\t\t%s\n" "$DEVELOPMENT_VERSION"
     printf "  Project root directory:\t%s\n" "$PROJECT_ROOT_DIR"
-    printf "  Change version path:\t\t%s\n" "${CHANGE_VERSION_PATH:-"Not specified. The default path will be used."}"
+    printf "  Change version path:\t\t%s\n" "$CHANGE_VERSION_PATH"
     printf "  Remote name:\t\t\t%s\n" "$REMOTE_NAME"
     printf "  Branch prefix:\t\t%s\n" "$BRANCH_PREFIX"
     printf "  Tag prefix:\t\t\t%s\n" "$TAG_PREFIX"
