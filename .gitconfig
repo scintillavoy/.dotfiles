@@ -1,6 +1,6 @@
 [user]
 	email = scintillavoy@gmail.com
-	name = Dongyoung Moon
+	name = Moon Dongyoung
 [init]
 	defaultBranch = main
 [alias]
@@ -28,7 +28,7 @@
 	cf = config
 	cfl = config --list
 	cfll = config --list --local
-	cfuser = !git config user.email 'scintillavoy@gmail.com' && git config user.name 'Dongyoung Moon'
+	cfuser = !git config user.email 'scintillavoy@gmail.com' && git config user.name 'Moon Dongyoung'
 	################
 	cp = cherry-pick
 	cpa = cherry-pick --abort
