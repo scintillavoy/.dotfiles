@@ -4,6 +4,12 @@ SCRIPT_PATH=$0
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 SCRIPT_NAME=$(basename "$SCRIPT_PATH")
 
+source "$SCRIPT_DIR/messages"
+
+# ------------------------------------------------------------------------------
+# Argument parsing
+# ------------------------------------------------------------------------------
+
 print_help() {
   printf "Usage: %s <hotfix-version> [options]\n" "$SCRIPT_NAME"
   printf "\n"
@@ -20,8 +26,6 @@ print_help() {
   printf "  --                                Do not interpret any more arguments as options.\n"
   exit 1
 }
-
-source "$SCRIPT_DIR/internal"
 
 # Command line arguments.
 arguments=()
@@ -157,5 +161,6 @@ BRANCH_PREFIX=${BRANCH_PREFIX:-"hotfix/"}
 TAG_PREFIX=${TAG_PREFIX:-"v"}
 START_POINT=${START_POINT:-"$REMOTE_NAME/main"}
 
+source "$SCRIPT_DIR/internal"
 start
 exit $?

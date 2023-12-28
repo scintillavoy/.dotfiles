@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+print_missing_argument_message() {
+  printf "Error: '%s' requires a non-empty option argument.\n" "$1"
+}
+
+print_unknown_option_message() {
+  printf "Error: Unknown option '%s'\n" "$1"
+}
+
+ask() {
+  local prompt=$1
+  while :; do
+    read -p "$prompt (yes/[no]): " -r
+    REPLY=${REPLY:-"no"}
+    case "$REPLY" in
+      [yY]|[yY][eE][sS])
+        return 0
+        ;;
+      [nN]|[nN][oO])
+        return 1
+        ;;
+    esac
+  done
+}

@@ -10,6 +10,7 @@
 	################
 	b = branch
 	ba = branch --all
+	br = branch --remotes
 	bd = branch --delete
 	bD = branch --delete --force
 	bm = branch --move
@@ -36,6 +37,7 @@
 	################
 	ccc = !git reset --hard && git clean -df
 	cccx = !git reset --hard && git clean -xdf
+	cccb = !delete_merged_branches
 	################
 	cl = clone
 	################
@@ -53,16 +55,27 @@
 	f = fetch
 	fp = fetch --prune
 	################
+	hfs = !hotfix_start
+	hff = !hotfix_finish
+	################
 	i = init
 	################
 	l = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)% D %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph
 	la = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)% D %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph --all
 	lA = !git log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)% D %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph $(git rev-list -g --all)
 	lr = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)% D %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --reverse
+	# lt
+	# lta
+	# ltA
+	# ltr
 	lg = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)% D %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph
 	lga = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)% D %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph --all
 	lgA = !git log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)% D %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --graph $(git rev-list -g --all)
 	lgr = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)% D %s %Cgreen%cd %C(auto)%h %C(bold blue)%an' --reverse
+	# lgt
+	# lgta
+	# lgtA
+	# lgtr
 	################
 	m = merge
 	ma = merge --abort
@@ -91,6 +104,9 @@
 	rbi = rebase --interactive
 	rbs = rebase --skip
 	################
+	rls = !release_start
+	rlf = !release_finish
+	################
 	rs = reset
 	rss = reset --soft
 	rsl = reset HEAD~
@@ -105,6 +121,8 @@
 	rmtv = remote -v
 	rmtsu = remote set-url
 	rmtgu = remote get-url
+	################
+	# root
 	################
 	rv = revert
 	rvnc = revert --no-commit

@@ -177,6 +177,7 @@ alias gai='git add -i'
 
 alias gb='git branch'
 alias gba='git branch --all'
+alias gbr='git branch --remotes'
 alias gbd='git branch --delete'
 alias gbD='git branch --delete --force'
 alias gbm='git branch --move'
@@ -203,6 +204,7 @@ alias gcpc='git cherry-pick --continue'
 
 alias gccc='git reset --hard && git clean -df'
 alias gcccx='git reset --hard && git clean -xdf'
+alias gcccb='delete_merged_branches'
 
 alias gcl='git clone'
 
@@ -219,6 +221,9 @@ alias gcem='git commit --allow-empty --message'
 
 alias gf='git fetch'
 alias gfp='git fetch --prune'
+
+alias ghfs='hotfix_start'
+alias ghff='hotfix_finish'
 
 alias gi='git init'
 
@@ -265,6 +270,9 @@ alias grbd='git rebase --reset-author-date'
 alias grbdi='git rebase --reset-author-date --interactive'
 alias grbi='git rebase --interactive'
 alias grbs='git rebase --skip'
+
+alias grls='release_start'
+alias grlf='release_finish'
 
 alias grs='git reset'
 alias grss='git reset --soft'

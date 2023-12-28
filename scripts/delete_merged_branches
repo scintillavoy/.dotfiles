@@ -1,0 +1,171 @@
+#!/usr/bin/env bash
+
+SCRIPT_PATH=$0
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+SCRIPT_NAME=$(basename "$SCRIPT_PATH")
+
+source "$SCRIPT_DIR/colors"
+source "$SCRIPT_DIR/messages"
+
+# ------------------------------------------------------------------------------
+# Argument parsing
+# ------------------------------------------------------------------------------
+
+print_help() {
+  printf "Usage: %s <merge-point> [options]\n" "$SCRIPT_NAME"
+  printf "\n"
+  printf "Options:\n"
+  printf "  -e, --exclude <pattern>  Add a glob pattern to exclude matching branches (repeatable).\n"
+  printf "  -c, --clear-patterns     Clear patterns to exclude matching branches (including defaults).\n"
+  printf "  -y, --assume-yes         Answer yes for all questions.\n"
+  printf "  -h, --help               Display this help and exit.\n"
+  printf "  --                       Do not interpret any more arguments as options.\n"
+  exit 1
+}
+
+# Command line arguments.
+arguments=()
+merge_point=
+exclusion_patterns=(
+  "HEAD"
+  "main"
+  "master"
+  "dev"
+  "develop"
+  "development"
+  "release/*"
+  "hotfix/*"
+  "support/*"
+)
+assume_yes=
+
+while :; do
+  case $1 in
+    -e|--exclude)
+      [ -z "$2" ] && print_missing_argument_message "$1" && print_help
+      exclusion_patterns+=("$2")
+      shift
+      ;;
+    --exclude=?*)
+      exclusion_patterns+=("${1#*=}")
+      ;;
+    --exclude=)
+      print_missing_argument_message "${1%=}" && print_help
+      ;;
+    -c|--clear-patterns)
+      exclusion_patterns=(
+        "HEAD"
+      )
+      ;;
+    -y|--assume-yes)
+      assume_yes=$1
+      ;;
+    -h|-\?|--help)
+      print_help
+      ;;
+    --)
+      shift
+      break
+      ;;
+    -?*)
+      print_unknown_option_message "$1" && print_help
+      ;;
+    ?*)
+      arguments+=("$1")
+      ;;
+    *)
+      break
+  esac
+  shift
+done
+
+while :; do
+  case $1 in
+    ?*)
+      arguments+=("$1")
+      ;;
+    *)
+      break
+  esac
+  shift
+done
+
+[ ${#arguments[@]} -ne 1 ] && print_help
+
+for argument in "${arguments[@]}"; do
+  if [ -z "$merge_point" ]; then
+    merge_point=$argument
+  else
+    print_help
+  fi
+done
+
+# ------------------------------------------------------------------------------
+
+local_branches=()
+while IFS='' read -r line; do
+  excluded=false
+  for pattern in "${exclusion_patterns[@]}"; do
+    # shellcheck disable=SC2053
+    if [[ $line == $pattern ]]; then
+      excluded=true
+      break
+    fi
+  done
+  if [[ $excluded = false ]]; then
+    local_branches+=("$line")
+  fi
+done < <(git branch --merged "$merge_point" --format="%(refname:short)")
+
+remote_branches=()
+while IFS='' read -r line; do
+  branch=${line#*/}
+  excluded=false
+  for pattern in "${exclusion_patterns[@]}"; do
+    # shellcheck disable=SC2053
+    if [[ $branch == $pattern ]]; then
+      excluded=true
+      break
+    fi
+  done
+  if [[ $excluded = false ]]; then
+    remote_branches+=("$line")
+  fi
+done < <(git branch --remotes --merged "$merge_point" --format="%(refname:short)")
+
+if [ -z "$assume_yes" ]; then
+  printf "Confirm the branches before proceeding.\n"
+  printf "Local branches to be deleted:\n"
+  for branch in "${local_branches[@]}"; do
+    printf "  %s\n" "$branch"
+  done
+  printf "Remote branches to be deleted:\n"
+  for branch in "${remote_branches[@]}"; do
+    printf "  %s\n" "$branch"
+  done
+  ask "Proceed?" || exit 0
+fi
+
+# Delete local branches.
+for branch in "${local_branches[@]}"; do
+  git branch --delete "${local_branches[@]}"
+done
+
+# Delete remote branches.
+if [ ${#remote_branches[@]} -gt 0 ]; then
+  remote=${remote_branches[0]%%/*}
+fi
+branches=()
+for ref in "${remote_branches[@]}"; do
+  branch=${ref#*/}
+  if [[ $remote == "${ref%%/*}" ]]; then
+    branches+=("$branch")
+  else
+    git push "$remote" --delete "${branches[@]}"
+    remote=${ref%%/*}
+    branches=("$branch")
+  fi
+done
+if [ ${#branches[@]} -gt 0 ]; then
+  git push "$remote" --delete "${branches[@]}"
+fi

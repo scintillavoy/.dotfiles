@@ -4,6 +4,12 @@ SCRIPT_PATH=$0
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 SCRIPT_NAME=$(basename "$SCRIPT_PATH")
 
+source "$SCRIPT_DIR/messages"
+
+# ------------------------------------------------------------------------------
+# Argument parsing
+# ------------------------------------------------------------------------------
+
 print_help() {
   printf "Usage: %s <release-version> <development-version> [options]\n" "$SCRIPT_NAME"
   printf "\n"
@@ -23,8 +29,6 @@ print_help() {
   printf "  --                                      Do not interpret any more arguments as options.\n"
   exit 1
 }
-
-source "$SCRIPT_DIR/internal"
 
 # Command line arguments.
 arguments=()
@@ -179,5 +183,6 @@ TAG_PREFIX=${TAG_PREFIX:-"v"}
 MAIN_BRANCH_NAME=${MAIN_BRANCH_NAME:-"main"}
 DEVELOPMENT_BRANCH_NAME=${DEVELOPMENT_BRANCH_NAME:-"development"}
 
+source "$SCRIPT_DIR/internal"
 finish
 exit $?

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+RED="\033[0;31m"
+ORANGE="\033[0;33m"
+BLUE="\033[0;34m"
+NO_COLOR="\033[0m"
