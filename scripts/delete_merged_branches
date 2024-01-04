@@ -8,7 +8,7 @@ source "$SCRIPT_DIR/colors"
 source "$SCRIPT_DIR/messages"
 
 # ------------------------------------------------------------------------------
-# Argument parsing
+# Parsing arguments
 # ------------------------------------------------------------------------------
 
 print_help() {
