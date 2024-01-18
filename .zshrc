@@ -356,6 +356,10 @@ alias json_pp='json_pp -json_opt=pretty,utf8'
 
 export PATH="$PATH:$HOME/.dotfiles/scripts"
 
+# Go
+export PATH="$PATH:$HOME/go/bin"
+export GO_ROOT_PREFIX="$HOME/sdk/go"
+
 # history
 export HISTSIZE=999999
 export SAVEHIST=$HISTSIZE
