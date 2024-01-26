@@ -19,7 +19,7 @@
 	bnma = branch --all --no-merged
 	bnmr = branch --remotes --no-merged
 	################
-	bak = !git commit --message 'Backup commit' && git push --force-with-lease && git reset HEAD~ --soft
+	bak = !git commit --allow-empty -m 'Backup commit (staged)' && git add -A && git commit --allow-empty -m 'Backup commit (unstaged)' && git push --force-with-lease && git reset HEAD~ && git reset HEAD~ --soft
 	################
 	co = checkout
 	cob = checkout -b
