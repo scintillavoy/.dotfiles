@@ -4,7 +4,7 @@ SCRIPT_PATH=$0
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 SCRIPT_NAME=$(basename "$SCRIPT_PATH")
 
-source "$SCRIPT_DIR/messages"
+source "$SCRIPT_DIR/internal/messages"
 
 # ------------------------------------------------------------------------------
 # Parsing arguments
@@ -183,6 +183,6 @@ TAG_PREFIX=${TAG_PREFIX:-"v"}
 MAIN_BRANCH_NAME=${MAIN_BRANCH_NAME:-"main"}
 DEVELOPMENT_BRANCH_NAME=${DEVELOPMENT_BRANCH_NAME:-"development"}
 
-source "$SCRIPT_DIR/internal"
+source "$SCRIPT_DIR/internal/brancher"
 finish
 exit $?

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source "$SCRIPT_DIR/colors"
+source "$SCRIPT_DIR/internal/colors"
 
 # ------------------------------------------------------------------------------
 # Functions for checking conditions
