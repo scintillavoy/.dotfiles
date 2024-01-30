@@ -147,9 +147,9 @@ if [ -z "$assume_yes" ]; then
 fi
 
 # Delete local branches.
-for branch in "${local_branches[@]}"; do
+if [ ${#local_branches[@]} -gt 0 ]; then
   git branch --delete "${local_branches[@]}"
-done
+fi
 
 # Delete remote branches.
 if [ ${#remote_branches[@]} -gt 0 ]; then
