@@ -140,10 +140,11 @@ alias flv='flutter --version'
 alias dk='docker'
 alias dkc='docker container'
 alias dkcls='docker container ls'
+alias dkcrmA='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 alias dki='docker image'
 alias dkils='docker image ls'
-alias dkrmA='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
-alias dkrmiA='docker rmi $(docker images -q)'
+alias dkirm='docker image rm'
+alias dkirmA='docker image rm $(docker images -q)'
 
 # ------------------------------------------------------------------------------
 # kubectl
