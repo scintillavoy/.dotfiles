@@ -11,13 +11,19 @@
 	b = branch
 	ba = branch --all
 	br = branch --remotes
+	bnm = branch --no-merged
+	banm = branch --all --no-merged
+	brnm = branch --remotes --no-merged
+	bv = branch -vv
+	bva = branch -vv --all
+	bvr = branch -vv --remotes
+	bvnm = branch -vv --no-merged
+	bvanm = branch -vv --all --no-merged
+	bvrnm = branch -vv --remotes --no-merged
 	bd = branch --delete
 	bD = branch --delete --force
 	bm = branch --move
 	bM = branch --move --force
-	bnm = branch --no-merged
-	bnma = branch --all --no-merged
-	bnmr = branch --remotes --no-merged
 	################
 	bak = !git commit --allow-empty -m 'Backup commit (staged)' && git add -A && git commit --allow-empty -m 'Backup commit (unstaged)' && git push --force-with-lease && git reset HEAD~ && git reset HEAD~ --soft
 	################
