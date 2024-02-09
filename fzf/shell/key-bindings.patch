@@ -1,12 +1,12 @@
-101c101
+102c102
 <     FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} ${FZF_DEFAULT_OPTS-} -n2..,.. --scheme=history --bind=ctrl-r:toggle-sort,ctrl-z:ignore ${FZF_CTRL_R_OPTS-} --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
 ---
 >     FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} ${FZF_DEFAULT_OPTS-} -n2..,.. --scheme=history --bind=ctrl-r:toggle-sort,ctrl-z:ignore --expect=enter ${FZF_CTRL_R_OPTS-} --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
-103a104,108
+104a105,109
 >     local accept=0
 >     if [[ $selected[1] = enter ]]; then
 >       accept=1
 >       shift selected
 >     fi
-106a112
+107a113
 >       [[ $accept = 1 ]] && zle accept-line
