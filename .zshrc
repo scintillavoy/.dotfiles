@@ -379,7 +379,7 @@ ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)
 # Miscellaneous
 # ------------------------------------------------------------------------------
 
-alias g++='g++ -std=c++17'
+alias g++='g++ -std=c++20'
 alias sss='sudo shutdown -s'
 alias json_pp='json_pp -json_opt=pretty,utf8'
 
