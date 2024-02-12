@@ -25,7 +25,9 @@ generate_completions=$?
 ask "Do you want to apply patches?"
 apply_patches=$?
 
+# ------------------------------------------------------------------------------
 # Copy dotfiles.
+# ------------------------------------------------------------------------------
 if [ $copy_dotfiles -eq 0 ]; then
   files=(.gitconfig .vimrc .zshrc .p10k.zsh)
   for file in "${files[@]}"; do
@@ -36,7 +38,9 @@ if [ $copy_dotfiles -eq 0 ]; then
   done
 fi
 
+# ------------------------------------------------------------------------------
 # Generate shell completion setup scripts.
+# ------------------------------------------------------------------------------
 if [ $generate_completions -eq 0 ]; then
   file=.completions.zsh
   if [ -f "$HOME/$file" ]; then
@@ -57,7 +61,9 @@ if [ $generate_completions -eq 0 ]; then
   done
 fi
 
+# ------------------------------------------------------------------------------
 # Apply patches.
+# ------------------------------------------------------------------------------
 if [ $apply_patches -eq 0 ]; then
   file=$(brew --prefix fzf)/shell/key-bindings.zsh
   if [ -f "$file" ]; then
