@@ -79,7 +79,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(fzf-tab zsh-autosuggestions zsh-syntax-highlighting)
 
-# Homebrew shell completion
+# Load completion files before compinit is called in oh-my-zsh.sh.
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
 source $ZSH/oh-my-zsh.sh
@@ -148,6 +148,12 @@ alias dki='docker image'
 alias dkils='docker image ls'
 alias dkirm='docker image rm'
 alias dkirmA='docker image rm $(docker images -q)'
+
+alias dkcomp='docker-compose'
+alias dkcompup='docker-compose up'
+alias dkcompupwait='docker-compose up --wait'
+alias dkcompdown='docker-compose down'
+alias dkcompdownv='docker-compose down -v'
 
 # ------------------------------------------------------------------------------
 # kubectl
