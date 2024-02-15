@@ -103,7 +103,7 @@ done
 # ------------------------------------------------------------------------------
 
 local_branches=()
-while IFS='' read -r line; do
+while IFS="" read -r line; do
   excluded=false
   for pattern in "${exclusion_patterns[@]}"; do
     # shellcheck disable=SC2053
@@ -118,7 +118,7 @@ while IFS='' read -r line; do
 done < <(git branch --merged "$merge_point" --format="%(refname:short)")
 
 remote_branches=()
-while IFS='' read -r line; do
+while IFS="" read -r line; do
   branch=${line#*/}
   excluded=false
   for pattern in "${exclusion_patterns[@]}"; do
