@@ -111,6 +111,18 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # ------------------------------------------------------------------------------
+# ArgoCD
+# ------------------------------------------------------------------------------
+
+alias argo='argocd'
+alias argoa='argocd app'
+alias argoadiff='argocd app diff'
+alias argoals='argocd app list'
+alias argoasync='argocd app sync'
+alias argopdiff='argocd_proj_diff'
+alias argopsync='argocd app sync --project'
+
+# ------------------------------------------------------------------------------
 # Dart & Flutter
 # ------------------------------------------------------------------------------
 
