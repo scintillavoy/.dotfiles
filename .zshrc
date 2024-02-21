@@ -308,6 +308,7 @@ alias gps='git push'
 alias gpsoc='git push origin HEAD'
 alias gpsuoc='git push -u origin HEAD'
 alias gpsd='git push --delete'
+alias gpsdo='git push --delete origin'
 alias gpst='git push --tags'
 
 alias grb='git rebase'

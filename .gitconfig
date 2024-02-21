@@ -108,6 +108,7 @@
 	psoc = push origin HEAD
 	psuoc = push -u origin HEAD
 	psd = push --delete
+	psdo = push --delete origin
 	pst = push --tags
 	################
 	rb = rebase
