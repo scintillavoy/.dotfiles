@@ -16,55 +16,74 @@ ask() {
   done
 }
 
-ask "Do you want to copy dotfiles?"
-copy_dotfiles=$?
-
-ask "Do you want to generate shell completion setup scripts?"
-generate_completions=$?
-
-ask "Do you want to apply patches?"
-apply_patches=$?
-
 # ------------------------------------------------------------------------------
 # Copy dotfiles.
 # ------------------------------------------------------------------------------
-if [ $copy_dotfiles -eq 0 ]; then
-  files=(.gitconfig .vimrc .zshrc .p10k.zsh)
-  for file in "${files[@]}"; do
+
+files=(
+  .gitconfig
+  .vimrc
+  .zshrc
+  .p10k.zsh
+)
+
+for file in "${files[@]}"; do
+  if ask "Do you want to copy $file?"; then
     if [ -f "$HOME/$file" ]; then
       mv "$HOME/$file" "$HOME/$file.bak"
     fi
     cp "./$file" "$HOME/$file"
-  done
+  fi
+done
+
+# ------------------------------------------------------------------------------
+# Generate shell completions.
+# ------------------------------------------------------------------------------
+
+completion_file=$HOME/.completions.zsh
+
+if ask "Do you want to generate shell completion for flutter?"; then
+  if command -v flutter &> /dev/null; then
+    flutter bash-completion >> "$completion_file.temp"
+  fi
 fi
 
-# ------------------------------------------------------------------------------
-# Generate shell completion setup scripts.
-# ------------------------------------------------------------------------------
-if [ $generate_completions -eq 0 ]; then
-  file=.completions.zsh
-  if [ -f "$HOME/$file" ]; then
-    mv "$HOME/$file" "$HOME/$file.bak"
+if [ -f "$completion_file.temp" ]; then
+  if [ -f "$completion_file" ]; then
+    mv "$completion_file" "$completion_file.bak"
   fi
+  mv "$completion_file.temp" "$completion_file"
+fi
 
-  commands=(
-    "flutter bash-completion"
-    "kubectl completion zsh"
-    "stern --completion=zsh"
-  )
+zsh_functions=$HOME/.zsh-functions
+mkdir -p "$zsh_functions"
 
-  for command in "${commands[@]}"; do
-    if command -v "${command%% *}" &> /dev/null; then
-      eval "$command" >> "$HOME/$file"
-      echo >> "$HOME/$file"
-    fi
-  done
+if ask "Do you want to generate shell completion for rustup?"; then
+  if command -v rustup &> /dev/null; then
+    rustup completions zsh > "$zsh_functions/_rustup"
+  fi
+fi
+
+if ask "Do you want to generate shell completion for cargo?"; then
+  if command -v rustup &> /dev/null; then
+    rustup completions zsh cargo > "$zsh_functions/_cargo"
+  fi
+fi
+
+if ask "Do you want to generate shell completion for docker and docker-compose?"; then
+  etc=/Applications/Docker.app/Contents/Resources/etc
+  if [ -d $etc ]; then
+    ln -s $etc/docker.zsh-completion "$zsh_functions/_docker"
+    ln -s $etc/docker-compose.zsh-completion "$zsh_functions/_docker-compose"
+  fi
 fi
 
 # ------------------------------------------------------------------------------
 # Apply patches.
 # ------------------------------------------------------------------------------
-if [ $apply_patches -eq 0 ]; then
+
+if ask "Do you want to apply a patch for fzf?"; then
+  # The patch should be applied to fzf with version <= 0.43.0
   file=$(brew --prefix fzf)/shell/key-bindings.zsh
   if [ -f "$file" ]; then
     patch -b "$file" ./fzf/shell/key-bindings.patch

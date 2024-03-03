@@ -79,8 +79,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(fzf-tab zsh-autosuggestions zsh-syntax-highlighting)
 
-# Load completion files before compinit is called in oh-my-zsh.sh.
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+# Load completions before compinit is called in `oh-my-zsh.sh`.
+FPATH="$HOME/.zsh-functions:$(brew --prefix)/share/zsh/site-functions:$FPATH"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -391,7 +391,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-char}")
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)
 
-# Additional completions
+# Load completions after compinit is called.
 [ -f ~/.completions.zsh ] && source ~/.completions.zsh
 
 # ------------------------------------------------------------------------------
@@ -400,7 +400,7 @@ ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)
 
 alias g++='g++ -std=c++20'
 alias sss='sudo shutdown -s'
-alias json_pp='json_pp -json_opt=pretty,utf8'
+alias jspp='json_pp -json_opt=pretty,utf8'
 
 export PATH="$PATH:$HOME/.dotfiles/scripts"
 
