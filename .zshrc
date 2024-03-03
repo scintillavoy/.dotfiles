@@ -359,6 +359,29 @@ alias gtd='git tag --delete'
 alias gtr='git ls-remote --tags'
 
 # ------------------------------------------------------------------------------
+# Rust & Cargo
+# ------------------------------------------------------------------------------
+
+alias cg='cargo'
+alias cgb='cargo build'
+alias cgc='cargo check'
+alias cgd='cargo doc'
+alias cgn='cargo new'
+alias cgpub='cargo publish'
+alias cgr='cargo run'
+alias cgt='cargo test'
+alias cgup='cargo update'
+alias cgv='cargo --version'
+
+alias rsc='rustc'
+alias rscv='rustc --version'
+
+alias rsup='rustup'
+alias rsupd='rustup doc'
+alias rsupup='rustup update'
+alias rsupv='rustup --version'
+
+# ------------------------------------------------------------------------------
 # Completion system
 # ------------------------------------------------------------------------------
 
