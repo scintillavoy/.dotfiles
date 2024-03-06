@@ -161,6 +161,10 @@ alias dkils='docker image ls'
 alias dkirm='docker image rm'
 alias dkirmA='docker image rm $(docker images -q)'
 
+alias dkpl='docker pull'
+alias dkps='docker push'
+alias dkt='docker tag'
+
 alias dkcomp='docker-compose'
 alias dkcompup='docker-compose up'
 alias dkcompupwait='docker-compose up --wait'
