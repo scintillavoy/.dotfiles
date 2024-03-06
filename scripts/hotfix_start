@@ -147,6 +147,8 @@ for argument in "${arguments[@]}"; do
   fi
 done
 
+# ------------------------------------------------------------------------------
+
 # Variables which can be overridden by setting options or environment variables.
 PROJECT_ROOT_DIR=${PROJECT_ROOT_DIR:-$(git rev-parse --show-toplevel 2>/dev/null)}
 if [ -z "$CHANGE_VERSION_PATH" ]; then
