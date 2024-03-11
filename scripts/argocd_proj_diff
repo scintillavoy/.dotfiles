@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-project=$1
-
 apps=()
 while IFS="" read -r line; do
   apps+=("$line")
-done < <(argocd app list -p "$project" -o name)
+done < <(argocd app list -o name -p "$@")
 
 for app in "${apps[@]}"; do
   argocd app diff "$app" --refresh

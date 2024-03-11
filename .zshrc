@@ -114,13 +114,16 @@ source $ZSH/oh-my-zsh.sh
 # ArgoCD
 # ------------------------------------------------------------------------------
 
-alias argo='argocd'
-alias argoa='argocd app'
-alias argoadiff='argocd app diff'
-alias argoals='argocd app list'
-alias argoasync='argocd app sync'
-alias argopdiff='argocd_proj_diff'
-alias argopsync='argocd app sync --project'
+alias ag='argocd'
+alias aga='argocd app'
+alias agadiff='argocd app diff'
+alias agals='argocd app list'
+alias agasync='argocd app sync'
+alias agctx='argocd context'
+alias agp='argocd proj'
+alias agpdiff='argocd_proj_diff'
+alias agpls='argocd proj list'
+alias agpsync='argocd app sync --project'
 
 # ------------------------------------------------------------------------------
 # Dart & Flutter
@@ -181,11 +184,11 @@ alias kcf='kubectl config'
 alias kdcl='kubectl config delete-cluster'
 alias kgcl='kubectl config get-clusters'
 
-alias kdct='kubectl config delete-context'
-alias kgct='kubectl config get-contexts'
-alias krct='kubectl config rename-context'
-alias ksct='kubectl config set-context'
-alias kuct='kubectl config use-context'
+alias kdctx='kubectl config delete-context'
+alias kgctx='kubectl config get-contexts'
+alias krctx='kubectl config rename-context'
+alias ksctx='kubectl config set-context'
+alias kuctx='kubectl config use-context'
 
 alias kcns='kubectl create namespace'
 alias kgns='kubectl get namespace'
