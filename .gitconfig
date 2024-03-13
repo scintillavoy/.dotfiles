@@ -78,12 +78,12 @@
 	# ltf
 	# ltr
 	# ltu
-	lg = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph
-	lga = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph --all
-	lgA = !git log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph $(git rev-list -g --all)
-	lgf = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph --first-parent
-	lgr = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --reverse
-	lgu = log --date=format:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph @{upstream}
+	lg = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph
+	lga = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph --all
+	lgA = !git log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph $(git rev-list -g --all)
+	lgf = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph --first-parent
+	lgr = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --reverse
+	lgu = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph @{upstream}
 	# lgt
 	# lgta
 	# lgtA
