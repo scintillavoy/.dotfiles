@@ -72,24 +72,48 @@
 	# lf
 	# lr
 	# lu
+	# lv
+	# lav
+	# lAv
+	# lfv
+	# lrv
+	# luv
 	# lt
-	# lta
-	# ltA
-	# ltf
-	# ltr
-	# ltu
+	# lat
+	# lAt
+	# lft
+	# lrt
+	# lut
+	# lvt
+	# latv
+	# lAtv
+	# lftv
+	# lrtv
+	# lutv
 	lg = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph
 	lga = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph --all
 	lgA = !git log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph $(git rev-list -g --all)
 	lgf = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph --first-parent
 	lgr = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --reverse
 	lgu = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph @{upstream}
+	lgv = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --graph
+	lgav = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --graph --all
+	lgAv = !git log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --graph $(git rev-list -g --all)
+	lgfv = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --graph --first-parent
+	lgrv = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --reverse
+	lguv = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --graph @{upstream}
 	# lgt
-	# lgta
-	# lgtA
-	# lgtf
-	# lgtr
-	# lgtu
+	# lgat
+	# lgAt
+	# lgft
+	# lgrt
+	# lgut
+	# lgtv
+	# lgatv
+	# lgAtv
+	# lgftv
+	# lgrtv
+	# lgutv
 	################
 	m = merge
 	ma = merge --abort
@@ -144,6 +168,8 @@
 	rvdry = revert --no-commit
 	################
 	s = status
+	################
+	sh = show
 	################
 	st = stash
 	sta = stash apply
