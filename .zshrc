@@ -196,6 +196,7 @@ alias ksns='kubectl config set-context --current --namespace'
 
 alias kdbg='kubectl debug'
 alias kexpl='kubectl explain'
+alias kg='kubectl get'
 alias kpf='kubectl port-forward'
 alias krr='kubectl rollout restart'
 
