@@ -69,51 +69,66 @@
 	# l
 	# la
 	# lA
-	# lf
 	# lr
 	# lu
-	# lv
-	# lav
-	# lAv
-	# lfv
-	# lrv
-	# luv
-	# lt
-	# lat
-	# lAt
+
+	# lf
+	# lfu
 	# lft
-	# lrt
-	# lut
-	# lvt
-	# latv
-	# lAtv
+	# lftu
 	# lftv
-	# lrtv
-	# lutv
+	# lftvu
+	# lfv
+	# lfvu
+
+	# lt
+	# lta
+	# ltA
+	# ltr
+	# ltu
+	# ltv
+	# ltva
+	# ltvA
+	# ltvr
+	# ltvu
+
+	# lv
+	# lva
+	# lvA
+	# lvr
+	# lvu
+
 	lg = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph
 	lga = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph --all
 	lgA = !git log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph $(git rev-list -g --all)
-	lgf = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph --first-parent
 	lgr = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --reverse
 	lgu = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph @{upstream}
-	lgv = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --graph
-	lgav = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --graph --all
-	lgAv = !git log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --graph $(git rev-list -g --all)
-	lgfv = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --graph --first-parent
-	lgrv = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --reverse
-	lguv = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --graph @{upstream}
-	# lgt
-	# lgat
-	# lgAt
+
+	lgf = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph --first-parent
+	lgfu = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an' --graph --first-parent @{upstream}
 	# lgft
-	# lgrt
-	# lgut
-	# lgtv
-	# lgatv
-	# lgAtv
+	# lgftu
 	# lgftv
-	# lgrtv
-	# lgutv
+	# lgftvu
+	lgfv = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --graph --first-parent
+	lgfvu = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --graph --first-parent @{upstream}
+
+	# lgt
+	# lgta
+	# lgtA
+	# lgtr
+	# lgtu
+	# lgtv
+	# lgtva
+	# lgtvA
+	# lgtvr
+	# lgtvu
+
+	lgv = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --graph
+	lgva = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --graph --all
+	lgvA = !git log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --graph $(git rev-list -g --all)
+	lgvr = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --reverse
+	lgvu = log --date=format-local:'%y-%m-%d %H:%M' --format='%C(auto)%h%d %s %Cgreen%cd %C(bold blue)%an%n%w(0,2,2)%C(auto)%b' --graph @{upstream}
 	################
 	m = merge
 	ma = merge --abort
