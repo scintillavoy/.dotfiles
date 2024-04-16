@@ -411,6 +411,7 @@ alias gtr='git ls-remote --tags'
 # ------------------------------------------------------------------------------
 
 alias cg='cargo'
+alias cga='cargo add'
 alias cgb='cargo build'
 alias cgc='cargo check'
 alias cgd='cargo doc'
