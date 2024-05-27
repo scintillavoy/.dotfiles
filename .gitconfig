@@ -163,8 +163,13 @@
 	################
 	rs = reset
 	rss = reset --soft
+	rsh = reset --hard
 	rsl = reset HEAD~
-	rsls = reset HEAD~ --soft
+	rssl = reset --soft HEAD~
+	rshl = reset --hard HEAD~
+	rsu = reset @{upstream}
+	rssu = reset --soft @{upstream}
+	rshu = reset --hard @{upstream}
 	################
 	rst = restore
 	rsts = restore --staged
