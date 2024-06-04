@@ -268,9 +268,6 @@ alias gcem='git commit --allow-empty --message'
 alias gf='git fetch'
 alias gfp='git fetch --prune'
 
-alias ghfs='hotfix_start'
-alias ghff='hotfix_finish'
-
 alias gi='git init'
 
 alias gl='git log --date=format-local:"%y-%m-%d %H:%M" --format="%C(auto)%<|($((COLUMNS/3.4+5)))%D %<|($((COLUMNS/1.15-23)),trunc)%s %Cgreen%cd %C(auto)%h %C(bold blue)%<|(-1,trunc)%an" --graph'
@@ -364,9 +361,6 @@ alias grbd='git rebase --reset-author-date'
 alias grbdi='git rebase --reset-author-date --interactive'
 alias grbi='git rebase --interactive'
 alias grbs='git rebase --skip'
-
-alias grls='release_start'
-alias grlf='release_finish'
 
 alias grs='git reset'
 alias grss='git reset --soft'

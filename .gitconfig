@@ -61,9 +61,6 @@
 	f = fetch
 	fp = fetch --prune
 	################
-	hfs = !hotfix_start
-	hff = !hotfix_finish
-	################
 	i = init
 	################
 	# l
@@ -157,9 +154,6 @@
 	rbdi = rebase --reset-author-date --interactive
 	rbi = rebase --interactive
 	rbs = rebase --skip
-	################
-	rls = !release_start
-	rlf = !release_finish
 	################
 	rs = reset
 	rss = reset --soft

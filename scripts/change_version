@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-VERSION=$1
-
-# Add commands to change the version.
-# Example: echo "version=$VERSION" > "$PROJECT_ROOT_DIR/gradle.properties"
