@@ -27,6 +27,19 @@
 	################
 	bak = !git commit --allow-empty -m 'Backup commit (staged)' && git add -A && git commit --allow-empty -m 'Backup commit (unstaged)' && git push --force-with-lease && git reset HEAD~ && git reset HEAD~ --soft
 	################
+	bs = bisect
+	bss = bisect start
+	bssf = bisect start --first-parent
+	bsg = bisect good
+	bsb = bisect bad
+	bsn = bisect new
+	bso = bisect old
+	bsr = bisect run
+	bsrp = bisect replay
+	bsrs = bisect reset
+	bsl = bisect log
+	bssk = bisect skip
+	################
 	co = checkout
 	cob = checkout -b
 	coB = checkout -B
@@ -134,7 +147,7 @@
 	mnff = merge --no-ff
 	mnffnc = merge --no-ff --no-commit
 	mdry = merge --no-ff --no-commit
-	ms = merge --skip
+	msk = merge --skip
 	################
 	pl = pull
 	plff = pull --ff-only
@@ -153,7 +166,7 @@
 	rbd = rebase --reset-author-date
 	rbdi = rebase --reset-author-date --interactive
 	rbi = rebase --interactive
-	rbs = rebase --skip
+	rbsk = rebase --skip
 	################
 	rs = reset
 	rss = reset --soft
