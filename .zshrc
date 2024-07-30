@@ -255,7 +255,7 @@ alias gcol='git checkout -'
 alias gcf='git config'
 alias gcfl='git config --list'
 alias gcfll='git config --list --local'
-alias gcfuser='git config user.email "scintillavoy@gmail.com" && git config user.name "Moon Dongyoung"'
+alias gcfuser='git config user.email "scintillavoy@gmail.com" && git config user.name "Dongyoung Moon"'
 
 alias gcp='git cherry-pick'
 alias gcpa='git cherry-pick --abort'
