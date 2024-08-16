@@ -68,6 +68,8 @@
 	cda = commit --amend --all
 	cdm = commit --amend --message
 	cdam = commit --amend --all --message
+	cdned= commit --amend --no-edit
+	cdneda= commit --amend --no-edit --all
 	ce = commit --allow-empty
 	cem = commit --allow-empty --message
 	################

@@ -275,6 +275,8 @@ alias gcd='git commit --amend'
 alias gcda='git commit --amend --all'
 alias gcdm='git commit --amend --message'
 alias gcdam='git commit --amend --all --message'
+alias gcdned='git commit --amend --no-edit'
+alias gcdneda='git commit --amend --no-edit --all'
 alias gce='git commit --allow-empty'
 alias gcem='git commit --allow-empty --message'
 
