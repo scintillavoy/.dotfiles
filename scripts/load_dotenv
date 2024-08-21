@@ -1,5 +1,19 @@
 #!/usr/bin/env bash
 
+# Caution!
+#
+# Execute
+#   . load_dotenv <file>
+# or
+#   source load_dotenv <file>
+# to set environment variables in the current shell.
+#
+# If you execute
+#   bash load_dotenv <file>
+# or
+#   ./load_dotenv <file>
+# , it will be executed in a sub-shell, which may not be the desired outcome.
+
 envFilePath="${1:-.env}"
 
 if [ ! -f "$envFilePath" ]; then
