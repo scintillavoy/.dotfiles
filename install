@@ -70,6 +70,12 @@ if ask "Do you want to generate shell completion for cargo?"; then
   fi
 fi
 
+if ask "Do you want to generate shell completion for mise?"; then
+  if command -v mise &> /dev/null; then
+    mise completion zsh > "$zsh_functions/_mise"
+  fi
+fi
+
 if ask "Do you want to generate shell completion for docker and docker-compose?"; then
   etc=/Applications/Docker.app/Contents/Resources/etc
   if [ -d $etc ]; then
