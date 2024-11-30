@@ -450,7 +450,12 @@ alias rsupv='rustup --version'
 
 eval "$($HOME/.local/bin/mise activate zsh)"
 
+alias m='mise'
+alias mi='mise install'
+alias mls='mise ls'
+alias mlsr='mise ls-remote'
 alias mr='mise run'
+alias mui='mise uninstall'
 alias mx='mise exec'
 
 # ------------------------------------------------------------------------------
@@ -501,7 +506,6 @@ export PATH="$PATH:$HOME/.dotfiles/scripts"
 
 # Go
 export PATH="$PATH:$HOME/go/bin"
-export GO_ROOT_PREFIX="$HOME/sdk/go"
 
 # history
 export HISTSIZE=999999
