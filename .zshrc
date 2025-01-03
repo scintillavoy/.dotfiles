@@ -455,7 +455,10 @@ alias mi='mise install'
 alias mls='mise ls'
 alias mlsr='mise ls-remote'
 alias mr='mise run'
+alias mreg='mise registry'
+alias mug='mise use --global'
 alias mui='mise uninstall'
+alias mup='mise upgrade'
 alias mx='mise exec'
 
 # ------------------------------------------------------------------------------
