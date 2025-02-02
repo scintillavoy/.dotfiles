@@ -156,9 +156,14 @@ alias flv='flutter --version'
 # ------------------------------------------------------------------------------
 
 alias dk='docker'
+alias dka='docker attach'
+alias dkstr='docker start'
+
 alias dkc='docker container'
 alias dkcls='docker container ls'
+alias dkclsa='docker container -a'
 alias dkcrmA='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+
 alias dki='docker image'
 alias dkils='docker image ls'
 alias dkirm='docker image rm'
