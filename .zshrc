@@ -203,6 +203,7 @@ alias kdbg='kubectl debug'
 alias kexpl='kubectl explain'
 alias kg='kubectl get'
 alias kpf='kubectl port-forward'
+alias kpx='kubectl proxy'
 alias krr='kubectl rollout restart'
 
 # ------------------------------------------------------------------------------
