@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+if [ $# -lt 2 ]; then
+  script_name=$(basename "$0")
+  echo "Usage: $script_name <command> <project> [<args>...]"
+  echo "Example: $script_name diff my-project --refresh"
+  echo "         $script_name sync my-project --preview-changes"
+  echo "         $script_name rollback my-project"
+  exit 1
+fi
+
+command=$1
+project=$2
+shift 2
+
+apps=()
+while IFS="" read -r line; do
+  apps+=("$line")
+done < <(argocd app list -o name -p "$project")
+
+for app in "${apps[@]}"; do
+  argocd app "$command" "$app" "$@"
+done

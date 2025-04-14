@@ -121,7 +121,7 @@ alias agals='argocd app list'
 alias agasync='argocd app sync'
 alias agctx='argocd context'
 alias agp='argocd proj'
-alias agpdiff='argocd_proj_diff'
+alias agpiter='argocd_proj_iter'
 alias agpls='argocd proj list'
 alias agpsync='argocd app sync --project'
 
