@@ -426,6 +426,10 @@ alias gt='git tag'
 alias gtd='git tag --delete'
 alias gtr='git ls-remote --tags'
 
+alias gui='git update-index'
+alias guiskw='git update-index --skip-worktree'
+alias guinskw='git update-index --no-skip-worktree'
+
 # ------------------------------------------------------------------------------
 # Rust & Cargo
 # ------------------------------------------------------------------------------

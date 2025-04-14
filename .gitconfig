@@ -212,3 +212,7 @@
 	t = tag
 	td = tag --delete
 	tr = ls-remote --tags
+	################
+	ui = update-index
+	uiskw = update-index --skip-worktree
+	uinskw = update-index --no-skip-worktree
