@@ -364,6 +364,7 @@ alias gmnff='git merge --no-ff'
 alias gmnffnc='git merge --no-ff --no-commit'
 alias gmdry='git merge --no-ff --no-commit'
 alias gmsk='git merge --skip'
+alias gmsq='git merge --squash'
 
 alias gpl='git pull'
 alias gplff='git pull --ff-only'

@@ -150,6 +150,7 @@
 	mnffnc = merge --no-ff --no-commit
 	mdry = merge --no-ff --no-commit
 	msk = merge --skip
+	msq = merge --squash
 	################
 	pl = pull
 	plff = pull --ff-only
