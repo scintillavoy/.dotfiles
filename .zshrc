@@ -174,11 +174,11 @@ alias dkpl='docker pull'
 alias dkps='docker push'
 alias dkt='docker tag'
 
-alias dkcomp='docker-compose'
-alias dkcompup='docker-compose up'
-alias dkcompupwait='docker-compose up --wait'
-alias dkcompdown='docker-compose down'
-alias dkcompdownv='docker-compose down -v'
+alias dkcomp='docker compose'
+alias dkcompup='docker compose up'
+alias dkcompupwait='docker compose up --wait'
+alias dkcompdown='docker compose down'
+alias dkcompdownv='docker compose down -v'
 
 # ------------------------------------------------------------------------------
 # kubectl

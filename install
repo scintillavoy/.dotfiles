@@ -76,11 +76,10 @@ if ask "Do you want to generate shell completion for mise?"; then
   fi
 fi
 
-if ask "Do you want to generate shell completion for docker and docker-compose?"; then
+if ask "Do you want to generate shell completion for docker?"; then
   etc=/Applications/Docker.app/Contents/Resources/etc
   if [ -d $etc ]; then
     ln -s $etc/docker.zsh-completion "$zsh_functions/_docker"
-    ln -s $etc/docker-compose.zsh-completion "$zsh_functions/_docker-compose"
   fi
 fi
 
