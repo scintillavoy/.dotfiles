@@ -111,7 +111,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # ------------------------------------------------------------------------------
-# ArgoCD
+# Argo CD
 # ------------------------------------------------------------------------------
 
 alias ag='argocd'
@@ -469,6 +469,7 @@ alias mls='mise ls'
 alias mlsr='mise ls-remote'
 alias mr='mise run'
 alias mreg='mise registry'
+alias mt='mise tasks'
 alias mug='mise use --global'
 alias mui='mise uninstall'
 alias mup='mise upgrade'
