@@ -56,7 +56,6 @@
 	################
 	ccc = !git reset --hard && git clean -df
 	cccx = !git reset --hard && git clean -xdf
-	cccb = !delete_merged_branches
 	################
 	cl = clone
 	################

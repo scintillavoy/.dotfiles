@@ -270,7 +270,6 @@ alias gcpc='git cherry-pick --continue'
 
 alias gccc='git reset --hard && git clean -df'
 alias gcccx='git reset --hard && git clean -xdf'
-alias gcccb='delete_merged_branches'
 
 alias gcl='git clone'
 
