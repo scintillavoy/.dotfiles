@@ -92,7 +92,7 @@
       "float" : 0
     },
     "hapticFeedbackOnSnap" : {
-      "int" : 0
+      "int" : 2
     },
     "hideMenubarIcon" : {
       "bool" : true
@@ -215,7 +215,7 @@
 
     },
     "todo" : {
-      "int" : 0
+      "int" : 2
     },
     "todoApplication" : {
 
@@ -233,7 +233,10 @@
       "int" : 0
     },
     "unsnapRestore" : {
-      "int" : 0
+      "int" : 2
+    },
+    "widthStepSize" : {
+      "float" : 30
     },
     "windowSnapping" : {
       "int" : 0
@@ -381,5 +384,5 @@
       "modifierFlags" : 786432
     }
   },
-  "version" : "97"
+  "version" : "98"
 }
