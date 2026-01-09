@@ -25,6 +25,7 @@ files=(
   .vimrc
   .zshrc
   .p10k.zsh
+  .default-npm-packages # For mise.
 )
 
 for file in "${files[@]}"; do
@@ -88,7 +89,7 @@ fi
 # ------------------------------------------------------------------------------
 
 if ask "Do you want to apply a patch for fzf?"; then
-  # The patch should be applied to fzf with version <= 0.43.0
+  # The patch should be applied to fzf with version <= 0.43.0.
   file=$(brew --prefix fzf)/shell/key-bindings.zsh
   if [ -f "$file" ]; then
     patch -b "$file" ./fzf/shell/key-bindings.patch
