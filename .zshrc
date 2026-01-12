@@ -116,13 +116,12 @@ source $ZSH/oh-my-zsh.sh
 
 alias ag='argocd'
 alias aga='argocd app'
-alias agadiff='argocd app diff'
+alias agaiter='argocd_app_iter'
+agadiff() { argocd_app_iter $@ -- diff --refresh }
 alias agals='argocd app list'
 alias agasync='argocd app sync'
 alias agctx='argocd context'
 alias agp='argocd proj'
-alias agpiter='argocd_proj_iter'
-agpdiff() { argocd_proj_iter diff $1 --refresh }
 alias agpls='argocd proj list'
 alias agpsync='argocd app sync --project'
 

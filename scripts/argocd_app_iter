@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+if [ $# -lt 2 ]; then
+  script_name=$(basename "$0")
+  echo "Usage: $script_name [--dry-run] [<list-flags>...] -- <command> [<command-args>...]"
+  echo "Examples:"
+  echo "  $script_name --dry-run -p my-project -- diff --refresh"
+  echo "  $script_name -p my-project -- sync --preview-changes"
+  echo "  $script_name -p my-project -- rollback"
+  exit 1
+fi
+
+# Collect list flags until `--`.
+list_flags=()
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --dry-run)
+      dry_run=true
+      shift
+      ;;
+    --)
+      shift
+      break
+      ;;
+    *)
+      list_flags+=("$1")
+      shift
+      ;;
+  esac
+done
+
+# Collect command and its arguments.
+if [[ $# -lt 1 ]]; then
+  echo "Error: missing <command> after --"
+  exit 1
+fi
+
+command=$1
+shift
+command_args=("$@")
+
+# Gather applications based on the provided list flags.
+apps=()
+while IFS="" read -r line; do
+  apps+=("$line")
+done < <(argocd app list -o name "${list_flags[@]}")
+
+# Execute the specified command for each application.
+for app in "${apps[@]}"; do
+  if [[ $dry_run == true ]]; then
+    echo argocd app "$command" "$app" "${command_args[@]}"
+  else
+    argocd app "$command" "$app" "${command_args[@]}"
+  fi
+done
