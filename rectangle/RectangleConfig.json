@@ -97,6 +97,9 @@
     "hideMenubarIcon" : {
       "bool" : true
     },
+    "horizontalSplitRatio" : {
+      "float" : 50
+    },
     "ignoreDragSnapToo" : {
       "int" : 0
     },
@@ -104,7 +107,7 @@
       "int" : 0
     },
     "landscapeSnapAreas" : {
-      "string" : "[4,{\"compound\":-2},2,{\"action\":2},6,{\"action\":13},1,{\"action\":15},8,{\"action\":14},3,{\"action\":16},5,{\"compound\":-3},7,{\"compound\":-4}]"
+      "string" : "[4,{\"compound\":-2},5,{\"compound\":-3},8,{\"action\":14},6,{\"action\":13},1,{\"action\":15},7,{\"compound\":-4},3,{\"action\":16}]"
     },
     "launchOnLogin" : {
       "bool" : true
@@ -175,6 +178,9 @@
     "showAllActionsInMenu" : {
       "int" : 0
     },
+    "showEighthsInMenu" : {
+      "int" : 2
+    },
     "sixthsSnapArea" : {
       "int" : 0
     },
@@ -235,14 +241,25 @@
     "unsnapRestore" : {
       "int" : 2
     },
+    "verticalSplitRatio" : {
+      "float" : 50
+    },
     "widthStepSize" : {
       "float" : 30
     },
     "windowSnapping" : {
-      "int" : 0
+      "int" : 1
     }
   },
   "shortcuts" : {
+    "bottomCenterLeftEighth" : {
+      "keyCode" : 43,
+      "modifierFlags" : 786432
+    },
+    "bottomCenterRightEighth" : {
+      "keyCode" : 47,
+      "modifierFlags" : 786432
+    },
     "bottomCenterSixth" : {
       "keyCode" : 8,
       "modifierFlags" : 786432
@@ -252,7 +269,11 @@
       "modifierFlags" : 786432
     },
     "bottomLeft" : {
-      "keyCode" : 43,
+      "keyCode" : 11,
+      "modifierFlags" : 786432
+    },
+    "bottomLeftEighth" : {
+      "keyCode" : 46,
       "modifierFlags" : 786432
     },
     "bottomLeftSixth" : {
@@ -260,7 +281,11 @@
       "modifierFlags" : 786432
     },
     "bottomRight" : {
-      "keyCode" : 47,
+      "keyCode" : 45,
+      "modifierFlags" : 786432
+    },
+    "bottomRightEighth" : {
+      "keyCode" : 44,
       "modifierFlags" : 786432
     },
     "bottomRightSixth" : {
@@ -320,11 +345,11 @@
       "modifierFlags" : 917504
     },
     "moveDown" : {
-      "keyCode" : 44,
+      "keyCode" : 6,
       "modifierFlags" : 786432
     },
     "moveUp" : {
-      "keyCode" : 41,
+      "keyCode" : 0,
       "modifierFlags" : 786432
     },
     "nextDisplay" : {
@@ -359,6 +384,14 @@
       "keyCode" : 11,
       "modifierFlags" : 786432
     },
+    "topCenterLeftEighth" : {
+      "keyCode" : 40,
+      "modifierFlags" : 786432
+    },
+    "topCenterRightEighth" : {
+      "keyCode" : 37,
+      "modifierFlags" : 786432
+    },
     "topCenterSixth" : {
       "keyCode" : 2,
       "modifierFlags" : 786432
@@ -368,7 +401,11 @@
       "modifierFlags" : 786432
     },
     "topLeft" : {
-      "keyCode" : 40,
+      "keyCode" : 5,
+      "modifierFlags" : 786432
+    },
+    "topLeftEighth" : {
+      "keyCode" : 38,
       "modifierFlags" : 786432
     },
     "topLeftSixth" : {
@@ -376,7 +413,11 @@
       "modifierFlags" : 786432
     },
     "topRight" : {
-      "keyCode" : 37,
+      "keyCode" : 4,
+      "modifierFlags" : 786432
+    },
+    "topRightEighth" : {
+      "keyCode" : 41,
       "modifierFlags" : 786432
     },
     "topRightSixth" : {
@@ -384,5 +425,5 @@
       "modifierFlags" : 786432
     }
   },
-  "version" : "98"
+  "version" : "100"
 }
