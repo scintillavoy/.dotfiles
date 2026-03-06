@@ -199,6 +199,7 @@
 	s = status
 	################
 	sh = show
+	shrd = show --remerge-diff
 	################
 	st = stash
 	sta = stash apply

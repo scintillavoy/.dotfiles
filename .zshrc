@@ -412,6 +412,7 @@ alias grvdry='git revert --no-commit'
 alias gs='git status'
 
 alias gsh='git show'
+alias gshrd='git show --remerge-diff'
 
 alias gst='git stash'
 alias gsta='git stash apply'
