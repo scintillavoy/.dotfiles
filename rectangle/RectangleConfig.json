@@ -52,6 +52,15 @@
     "cycleSizesIsChanged" : {
       "bool" : true
     },
+    "cyclingOverlapMaxCascade" : {
+      "int" : 1
+    },
+    "cyclingOverlapOffset" : {
+      "int" : 2
+    },
+    "cyclingOverlapOffsetSize" : {
+      "float" : 11
+    },
     "disabledApps" : {
 
     },
@@ -133,6 +142,9 @@
     "moveCursorAcrossDisplays" : {
       "int" : 2
     },
+    "moveFixedSizeToEdge" : {
+      "int" : 0
+    },
     "notifiedOfProblemApps" : {
       "bool" : false
     },
@@ -175,11 +187,11 @@
     "shortEdgeSnapAreaSize" : {
       "float" : 145
     },
+    "showAdditionalSizesInMenu" : {
+      "int" : 2
+    },
     "showAllActionsInMenu" : {
       "int" : 0
-    },
-    "showEighthsInMenu" : {
-      "int" : 2
     },
     "sixthsSnapArea" : {
       "int" : 0
@@ -253,15 +265,15 @@
   },
   "shortcuts" : {
     "bottomCenterLeftEighth" : {
-      "keyCode" : 43,
+      "keyCode" : 11,
       "modifierFlags" : 786432
     },
     "bottomCenterRightEighth" : {
-      "keyCode" : 47,
+      "keyCode" : 45,
       "modifierFlags" : 786432
     },
     "bottomCenterSixth" : {
-      "keyCode" : 8,
+      "keyCode" : 7,
       "modifierFlags" : 786432
     },
     "bottomHalf" : {
@@ -269,67 +281,67 @@
       "modifierFlags" : 786432
     },
     "bottomLeft" : {
-      "keyCode" : 11,
+      "keyCode" : 43,
       "modifierFlags" : 786432
     },
     "bottomLeftEighth" : {
-      "keyCode" : 46,
-      "modifierFlags" : 786432
-    },
-    "bottomLeftSixth" : {
-      "keyCode" : 7,
-      "modifierFlags" : 786432
-    },
-    "bottomRight" : {
-      "keyCode" : 45,
-      "modifierFlags" : 786432
-    },
-    "bottomRightEighth" : {
-      "keyCode" : 44,
-      "modifierFlags" : 786432
-    },
-    "bottomRightSixth" : {
       "keyCode" : 9,
       "modifierFlags" : 786432
     },
+    "bottomLeftSixth" : {
+      "keyCode" : 6,
+      "modifierFlags" : 786432
+    },
+    "bottomRight" : {
+      "keyCode" : 47,
+      "modifierFlags" : 786432
+    },
+    "bottomRightEighth" : {
+      "keyCode" : 46,
+      "modifierFlags" : 786432
+    },
+    "bottomRightSixth" : {
+      "keyCode" : 8,
+      "modifierFlags" : 786432
+    },
     "centerHalf" : {
-      "keyCode" : 25,
+      "keyCode" : 22,
       "modifierFlags" : 786432
     },
     "centerThird" : {
-      "keyCode" : 14,
-      "modifierFlags" : 786432
-    },
-    "firstFourth" : {
-      "keyCode" : 32,
-      "modifierFlags" : 786432
-    },
-    "firstThird" : {
       "keyCode" : 13,
       "modifierFlags" : 786432
     },
-    "firstThreeFourths" : {
-      "keyCode" : 16,
-      "modifierFlags" : 786432
-    },
-    "firstTwoThirds" : {
-      "keyCode" : 12,
-      "modifierFlags" : 786432
-    },
-    "lastFourth" : {
-      "keyCode" : 35,
-      "modifierFlags" : 786432
-    },
-    "lastThird" : {
+    "firstFourth" : {
       "keyCode" : 15,
       "modifierFlags" : 786432
     },
+    "firstThird" : {
+      "keyCode" : 12,
+      "modifierFlags" : 786432
+    },
+    "firstThreeFourths" : {
+      "keyCode" : 23,
+      "modifierFlags" : 786432
+    },
+    "firstTwoThirds" : {
+      "keyCode" : 18,
+      "modifierFlags" : 786432
+    },
+    "lastFourth" : {
+      "keyCode" : 32,
+      "modifierFlags" : 786432
+    },
+    "lastThird" : {
+      "keyCode" : 14,
+      "modifierFlags" : 786432
+    },
     "lastThreeFourths" : {
-      "keyCode" : 33,
+      "keyCode" : 26,
       "modifierFlags" : 786432
     },
     "lastTwoThirds" : {
-      "keyCode" : 17,
+      "keyCode" : 20,
       "modifierFlags" : 786432
     },
     "leftHalf" : {
@@ -345,11 +357,11 @@
       "modifierFlags" : 917504
     },
     "moveDown" : {
-      "keyCode" : 6,
+      "keyCode" : 44,
       "modifierFlags" : 786432
     },
     "moveUp" : {
-      "keyCode" : 0,
+      "keyCode" : 41,
       "modifierFlags" : 786432
     },
     "nextDisplay" : {
@@ -373,11 +385,11 @@
       "modifierFlags" : 786432
     },
     "secondFourth" : {
-      "keyCode" : 34,
+      "keyCode" : 17,
       "modifierFlags" : 786432
     },
     "thirdFourth" : {
-      "keyCode" : 31,
+      "keyCode" : 16,
       "modifierFlags" : 786432
     },
     "toggleTodo" : {
@@ -385,15 +397,15 @@
       "modifierFlags" : 786432
     },
     "topCenterLeftEighth" : {
-      "keyCode" : 40,
+      "keyCode" : 5,
       "modifierFlags" : 786432
     },
     "topCenterRightEighth" : {
-      "keyCode" : 37,
+      "keyCode" : 4,
       "modifierFlags" : 786432
     },
     "topCenterSixth" : {
-      "keyCode" : 2,
+      "keyCode" : 1,
       "modifierFlags" : 786432
     },
     "topHalf" : {
@@ -401,29 +413,29 @@
       "modifierFlags" : 786432
     },
     "topLeft" : {
-      "keyCode" : 5,
+      "keyCode" : 40,
       "modifierFlags" : 786432
     },
     "topLeftEighth" : {
-      "keyCode" : 38,
+      "keyCode" : 3,
       "modifierFlags" : 786432
     },
     "topLeftSixth" : {
-      "keyCode" : 1,
+      "keyCode" : 0,
       "modifierFlags" : 786432
     },
     "topRight" : {
-      "keyCode" : 4,
+      "keyCode" : 37,
       "modifierFlags" : 786432
     },
     "topRightEighth" : {
-      "keyCode" : 41,
+      "keyCode" : 38,
       "modifierFlags" : 786432
     },
     "topRightSixth" : {
-      "keyCode" : 3,
+      "keyCode" : 2,
       "modifierFlags" : 786432
     }
   },
-  "version" : "100"
+  "version" : "102"
 }
