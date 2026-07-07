@@ -20,6 +20,20 @@
 	bvnm = branch -vv --no-merged
 	bvanm = branch -vv --all --no-merged
 	bvrnm = branch -vv --remotes --no-merged
+
+	bt=branch --sort=-committerdate
+	bat=branch --all --sort=-committerdate
+	brt=branch --remotes --sort=-committerdate
+	bnmt=branch --no-merged --sort=-committerdate
+	banmt=branch --all --no-merged --sort=-committerdate
+	brnmt=branch --remotes --no-merged --sort=-committerdate
+	bvt=branch -vv --sort=-committerdate
+	bvat=branch -vv --all --sort=-committerdate
+	bvrt=branch -vv --remotes --sort=-committerdate
+	bvnmt=branch -vv --no-merged --sort=-committerdate
+	bvanmt=branch -vv --all --no-merged --sort=-committerdate
+	bvrnmt=branch -vv --remotes --no-merged --sort=-committerdate
+
 	bd = branch --delete
 	bD = branch --delete --force
 	bm = branch --move
