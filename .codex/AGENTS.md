@@ -1,4 +1,4 @@
-# AGENTS.md
+# Agent instructions
 
 ## Git workflow
 
