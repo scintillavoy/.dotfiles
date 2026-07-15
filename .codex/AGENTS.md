@@ -4,7 +4,7 @@
 
 Ensure the codebase remains friendly to human developers.
 
-- **Design for human readers:** Except for strictly automated, machine-managed files (like lockfiles), all AI-generated files must be human-maintainable. It should always be immediately obvious what a file is for, where specific logic lives, and where a developer should look to make changes.
+- **Design for human readers:** Except for strictly automated, machine-managed files (such as compiled build artifacts), all AI-generated files must be human-maintainable. It should always be immediately obvious what a file is for, where specific logic lives, and where a developer should look to make changes.
 
 ## Git workflow
 
