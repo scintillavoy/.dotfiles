@@ -6,7 +6,7 @@ Do not stage or unstage any changes unless explicitly instructed otherwise. Leav
 
 ## Parse, don't validate
 
-Apply the ["Parse, don't validate"](https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/) pattern. Convert untrusted input into domain types at boundaries. Do not pass validated primitives downstream; parsing must yield a type that structurally guarantees its own invariants.
+Apply the ["Parse, don't validate"](https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/) pattern where structural integrity at boundaries is critical. **Treat this as a strong guiding principle rather than a rigid law.** Balance the guarantee of type safety against the practical overhead of boilerplate and development speed.
 
 - **Parse at boundaries:** Parse requests, configuration, database values, and external responses before they enter business logic. Reject malformed inputs immediately with typed errors.
 - **Use domain types:** Represent constrained values with dedicated types such as `EmailAddress`, `TicketTitle`, or `Age`, rather than raw strings or integers. Represent a closed set of states with an enum or discriminated union.
@@ -19,7 +19,7 @@ For example, prefer `TicketTitle.parse(raw) -> Result<TicketTitle, TicketTitleEr
 
 ## Rust-inspired engineering principles
 
-Mirror Rust's safety, clarity, and explicit design philosophy, regardless of the target language.
+Mirror Rust's safety, clarity, and explicit design philosophy to write robust, predictable code. **These are defaults to strive for, not dogmatic constraints.** Developers should adapt these principles dynamically depending on the language's native idioms and the project's complexity.
 
 - **Explicit errors over exceptions:** Represent expected failures with a typed `Result`-like return value and handle each outcome explicitly. Reserve exceptions for genuinely exceptional failures when the language or framework requires them.
 - **Explicit optionality:** Do not use null, nil, or undefined as an undocumented sentinel. Make genuine absence explicit with `Option`, `Maybe`, or the language's equivalent, and keep required values non-optional after parsing.
