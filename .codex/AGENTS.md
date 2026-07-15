@@ -1,8 +1,25 @@
 # Agent instructions
 
+## Human maintainability
+
+Ensure the codebase remains friendly to human developers.
+
+- **Design for human readers:** Except for strictly automated, machine-managed files (like lockfiles), all AI-generated files must be human-maintainable. It should always be immediately obvious what a file is for, where specific logic lives, and where a developer should look to make changes.
+
 ## Git workflow
 
 Do not stage or unstage any changes unless explicitly instructed otherwise. Leave all modifications as unstaged changes.
+
+## Documentation
+
+Write clean, high-impact documentation. Avoid typical AI verbosity, repetitive explanations, or filler text.
+
+- **Write concisely:** Keep descriptions, comments, and documentation brief and to the point. Prioritize information density and readability over word count.
+- **Use sentence-case for headings:** Default to sentence-like capitalization for all headings, titles, and section headers. Only capitalize the first word and proper nouns.
+- **Format comments as sentences:** Write all comments—including doc comments, inline notes, and TODOs—as sentences. Capitalize the first word (unless it is a case-sensitive identifier) and end with a terminal punctuation mark (`.`, `?`, or `!`), even for sentence fragments.
+- **One-sentence doc summaries:** Start every doc comment with a brief, user-centric summary (a sentence fragment is often sufficient) ending with a period to quickly orient the reader.
+- **Separate summary paragraphs:** Place a blank line after that first summary sentence. Put any additional context or details in subsequent paragraphs.
+- **Prefer code examples:** Consider including clear, practical code examples in documentation to demonstrate usage and resolve potential ambiguity.
 
 ## Parse, don't validate
 
@@ -19,7 +36,7 @@ For example, prefer `TicketTitle.parse(raw) -> Result<TicketTitle, TicketTitleEr
 
 ## Rust-inspired engineering principles
 
-Mirror Rust's safety, clarity, and explicit design philosophy to write robust, predictable code. **These are defaults to strive for, not dogmatic constraints.** Developers should adapt these principles dynamically depending on the language's native idioms and the project's complexity.
+Mirror Rust's safety, clarity, and explicit design philosophy to write robust, predictable code. **These are defaults to strive for, not dogmatic constraints.** Adapt these principles dynamically depending on the language's native idioms and the project's complexity.
 
 - **Explicit errors over exceptions:** Represent expected failures with a typed `Result`-like return value and handle each outcome explicitly. Reserve exceptions for genuinely exceptional failures when the language or framework requires them.
 - **Explicit optionality:** Do not use null, nil, or undefined as an undocumented sentinel. Make genuine absence explicit with `Option`, `Maybe`, or the language's equivalent, and keep required values non-optional after parsing.
