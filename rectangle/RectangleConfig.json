@@ -43,6 +43,12 @@
     "centeredDirectionalMove" : {
       "int" : 0
     },
+    "cooperativeCornerResize" : {
+      "bool" : false
+    },
+    "cornerCycleExpansionAxis" : {
+      "int" : 0
+    },
     "cornerSnapAreaSize" : {
       "float" : 20
     },
@@ -100,6 +106,9 @@
     "gapSize" : {
       "float" : 0
     },
+    "greenButtonOverride" : {
+      "bool" : false
+    },
     "hapticFeedbackOnSnap" : {
       "int" : 2
     },
@@ -143,7 +152,7 @@
       "int" : 2
     },
     "moveFixedSizeToEdge" : {
-      "int" : 0
+      "int" : 1
     },
     "notifiedOfProblemApps" : {
       "bool" : false
@@ -179,7 +188,7 @@
       "bool" : false
     },
     "screensOrderedByX" : {
-      "int" : 0
+      "int" : 3
     },
     "selectedCycleSizes" : {
       "int" : 2
@@ -198,6 +207,9 @@
     },
     "sizeOffset" : {
       "float" : 0
+    },
+    "skipGapTopEdge" : {
+      "bool" : false
     },
     "snapEdgeMarginBottom" : {
       "float" : 5
@@ -265,11 +277,11 @@
   },
   "shortcuts" : {
     "bottomCenterLeftEighth" : {
-      "keyCode" : 11,
+      "keyCode" : 43,
       "modifierFlags" : 786432
     },
     "bottomCenterRightEighth" : {
-      "keyCode" : 45,
+      "keyCode" : 47,
       "modifierFlags" : 786432
     },
     "bottomCenterSixth" : {
@@ -281,11 +293,11 @@
       "modifierFlags" : 786432
     },
     "bottomLeft" : {
-      "keyCode" : 43,
+      "keyCode" : 9,
       "modifierFlags" : 786432
     },
     "bottomLeftEighth" : {
-      "keyCode" : 9,
+      "keyCode" : 46,
       "modifierFlags" : 786432
     },
     "bottomLeftSixth" : {
@@ -293,11 +305,11 @@
       "modifierFlags" : 786432
     },
     "bottomRight" : {
-      "keyCode" : 47,
+      "keyCode" : 11,
       "modifierFlags" : 786432
     },
     "bottomRightEighth" : {
-      "keyCode" : 46,
+      "keyCode" : 44,
       "modifierFlags" : 786432
     },
     "bottomRightSixth" : {
@@ -305,7 +317,7 @@
       "modifierFlags" : 786432
     },
     "centerHalf" : {
-      "keyCode" : 22,
+      "keyCode" : 25,
       "modifierFlags" : 786432
     },
     "centerThird" : {
@@ -313,7 +325,7 @@
       "modifierFlags" : 786432
     },
     "firstFourth" : {
-      "keyCode" : 15,
+      "keyCode" : 32,
       "modifierFlags" : 786432
     },
     "firstThird" : {
@@ -321,7 +333,7 @@
       "modifierFlags" : 786432
     },
     "firstThreeFourths" : {
-      "keyCode" : 23,
+      "keyCode" : 28,
       "modifierFlags" : 786432
     },
     "firstTwoThirds" : {
@@ -329,7 +341,7 @@
       "modifierFlags" : 786432
     },
     "lastFourth" : {
-      "keyCode" : 32,
+      "keyCode" : 35,
       "modifierFlags" : 786432
     },
     "lastThird" : {
@@ -337,7 +349,7 @@
       "modifierFlags" : 786432
     },
     "lastThreeFourths" : {
-      "keyCode" : 26,
+      "keyCode" : 29,
       "modifierFlags" : 786432
     },
     "lastTwoThirds" : {
@@ -357,11 +369,11 @@
       "modifierFlags" : 917504
     },
     "moveDown" : {
-      "keyCode" : 44,
+      "keyCode" : 45,
       "modifierFlags" : 786432
     },
     "moveUp" : {
-      "keyCode" : 41,
+      "keyCode" : 4,
       "modifierFlags" : 786432
     },
     "nextDisplay" : {
@@ -385,11 +397,11 @@
       "modifierFlags" : 786432
     },
     "secondFourth" : {
-      "keyCode" : 17,
+      "keyCode" : 34,
       "modifierFlags" : 786432
     },
     "thirdFourth" : {
-      "keyCode" : 16,
+      "keyCode" : 31,
       "modifierFlags" : 786432
     },
     "toggleTodo" : {
@@ -397,11 +409,11 @@
       "modifierFlags" : 786432
     },
     "topCenterLeftEighth" : {
-      "keyCode" : 5,
+      "keyCode" : 40,
       "modifierFlags" : 786432
     },
     "topCenterRightEighth" : {
-      "keyCode" : 4,
+      "keyCode" : 37,
       "modifierFlags" : 786432
     },
     "topCenterSixth" : {
@@ -413,11 +425,11 @@
       "modifierFlags" : 786432
     },
     "topLeft" : {
-      "keyCode" : 40,
+      "keyCode" : 3,
       "modifierFlags" : 786432
     },
     "topLeftEighth" : {
-      "keyCode" : 3,
+      "keyCode" : 38,
       "modifierFlags" : 786432
     },
     "topLeftSixth" : {
@@ -425,11 +437,11 @@
       "modifierFlags" : 786432
     },
     "topRight" : {
-      "keyCode" : 37,
+      "keyCode" : 5,
       "modifierFlags" : 786432
     },
     "topRightEighth" : {
-      "keyCode" : 38,
+      "keyCode" : 41,
       "modifierFlags" : 786432
     },
     "topRightSixth" : {
@@ -437,5 +449,5 @@
       "modifierFlags" : 786432
     }
   },
-  "version" : "102"
+  "version" : "104"
 }
