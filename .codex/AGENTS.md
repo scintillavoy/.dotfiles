@@ -12,6 +12,10 @@ Ensure the codebase remains highly maintainable and friendly to human developers
 
 Do not stage or unstage any changes unless explicitly instructed otherwise. Leave all modifications as unstaged changes.
 
+## Tool management
+
+Tools are managed via `mise`. Discover installed tool paths and environment metadata using `mise ls --json`.
+
 ## Documentation
 
 Write clean, high-impact documentation. Avoid typical AI verbosity, repetitive explanations, or filler text.
