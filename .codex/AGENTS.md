@@ -10,7 +10,9 @@ Ensure the codebase remains highly maintainable and friendly to human developers
 
 ## Git workflow
 
-Do not stage or unstage any changes unless explicitly instructed otherwise. Leave all modifications as unstaged changes.
+Do not stage or unstage any changes unless explicitly instructed otherwise. Preserve the Git index exactly as you found it.
+
+If you need to undo a previous modification, do so by editing the file rather than using Git. Any such undo must be reflected as an unstaged modification.
 
 ## Tool management
 
