@@ -23,6 +23,7 @@ Tools are managed via `mise`. Discover installed tool paths and environment meta
 Write clean, high-impact documentation. Avoid typical AI verbosity, repetitive explanations, or filler text.
 
 - **Write concisely:** Keep descriptions, comments, and documentation brief and to the point. Prioritize information density and readability over word count.
+- **Link, don't duplicate:** Reference existing documentation, symbols, or files using links or cross-references instead of repeating explanations across multiple places. Maintain a single source of truth.
 - **Use sentence-case for headings:** Default to sentence-like capitalization for all headings, titles, and section headers. Only capitalize the first word and proper nouns.
 - **Format comments as sentences:** Write all comments—including doc comments, inline notes, and TODOs—as sentences. Capitalize the first word (unless it is a case-sensitive identifier) and end with a terminal punctuation mark (`.`, `?`, or `!`), even for sentence fragments.
 - **One-sentence doc summaries:** Start every doc comment with a brief, user-centric summary (a sentence fragment is often sufficient) ending with a period to quickly orient the reader.
