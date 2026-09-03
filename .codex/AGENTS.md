@@ -6,7 +6,7 @@ Ensure the codebase remains highly maintainable and friendly to human developers
 
 - **Design for human readers:** Except for strictly automated, machine-managed files (such as compiled build artifacts), all AI-generated files must be human-maintainable. It should always be immediately obvious what a file is for, where specific logic lives, and where a developer should look to make changes.
 - **Write concise code:** Avoid typical AI verbosity, redundant helper functions, excessive nesting, or over-engineered abstractions. Prioritize simplicity, readability, and high information density. Keep code straightforward, lean, and easy for a human to audit.
-- **Respect line limits:** Keep lines under 100 characters by default, wrapping lines that exceed this limit. Treat this as a flexible guideline rather than a rigid law; always prioritize consistency by aligning with the established formatting conventions of the existing codebase.
+- **Respect line limits:** Keep lines under 100 characters by default, wrapping lines that exceed this limit. Limit comment-only lines to 80 characters (including comment markers but excluding indentation) or the maximum line width (including comment markers and indentation), whichever is smaller. Treat these as flexible guidelines rather than rigid laws; always prioritize consistency by aligning with the established formatting conventions of the existing codebase.
 
 ## Git workflow
 
