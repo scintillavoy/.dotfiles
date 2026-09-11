@@ -26,8 +26,8 @@ Write clean, high-impact documentation. Avoid typical AI verbosity, repetitive e
 - **Link, don't duplicate:** Reference existing documentation, symbols, or files using links or cross-references instead of repeating explanations across multiple places. Maintain a single source of truth.
 - **Use sentence-case for headings:** Default to sentence-like capitalization for all headings, titles, and section headers. Only capitalize the first word and proper nouns.
 - **Format comments as sentences:** Write all comments—including doc comments, inline notes, and TODOs—as sentences. Capitalize the first word (unless it is a case-sensitive identifier) and end with a terminal punctuation mark (`.`, `?`, or `!`), even for sentence fragments.
-- **One-sentence doc summaries:** Start every doc comment with a brief, user-centric summary (a sentence fragment is often sufficient) ending with a period to quickly orient the reader.
-- **Separate summary paragraphs:** Place a blank line after that first summary sentence. Put any additional context or details in subsequent paragraphs.
+- **Lead with a concise description:** Start every doc comment with a brief, user-centric description ending with a period; a sentence fragment is often sufficient. When no further explanation is needed, that description is the entire comment.
+- **Separate supporting details:** When a doc comment needs more explanation, treat the opening description as its summary and place a blank line before the additional details.
 - **Start side-effect summaries with verbs:** Begin a function or method doc summary with a third-person verb (such as "Registers" or "Truncates") when its main purpose is a side effect.
 - **Prefer code examples:** Consider including clear, practical code examples in documentation to demonstrate usage and resolve potential ambiguity.
 
