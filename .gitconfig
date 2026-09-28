@@ -204,6 +204,9 @@
 	rmtsu = remote set-url
 	rmtgu = remote get-url
 	################
+	rp = rev-parse
+	rph = rev-parse HEAD
+	################
 	# root
 	################
 	rv = revert

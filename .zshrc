@@ -417,6 +417,9 @@ alias grmtv='git remote -v'
 alias grmtsu='git remote set-url'
 alias grmtgu='git remote get-url'
 
+alias grp='git rev-parse'
+alias grph='git rev-parse HEAD'
+
 alias groot='cd "$(git rev-parse --show-toplevel)"'
 
 alias grv='git revert'
