@@ -430,6 +430,7 @@ alias gs='git status'
 
 alias gsh='git show'
 alias gshrd='git show --remerge-diff'
+alias gshst='git show --stat'
 
 alias gst='git stash'
 alias gsta='git stash apply'

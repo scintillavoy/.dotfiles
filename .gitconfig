@@ -217,6 +217,7 @@
 	################
 	sh = show
 	shrd = show --remerge-diff
+	shst = show --stat
 	################
 	st = stash
 	sta = stash apply
